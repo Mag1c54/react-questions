@@ -20,7 +20,7 @@ export const QuestionsPage: React.FC = () => {
 
   useEffect(() => {
     const controller = new AbortController();
-
+    
     const loadQuestions = async () => {
       setLoading(true);
       setError(null);

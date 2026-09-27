@@ -1,5 +1,4 @@
-@import '../variables.scss';
-
+@use '../variables' as *;
 .question-nav {
   display: flex;
   flex-direction: column;
@@ -25,8 +24,8 @@
 
   &__options {
     display: flex;
-    flex-direction: column;
     gap: 6px;
+    flex-wrap: wrap;
   }
 
   &__checkbox {

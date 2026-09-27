@@ -2,12 +2,31 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
 import "@/styles/question-page/QuestionNavigationWidget.scss";
+import { CheckboxChip } from "@/shared/ui/CheckboxChip";
+
 
 interface FilterState {
   rate: string[];
   skills: string[];
   complexity: string[];
 }
+
+const skills = [
+  { id: 6, title: "React", icon: "/tech-icon.svg" },
+  { id: 22, title: "TypeScript", icon: "/tech-icon.svg" },
+  { id: 2, title: "JavaScript", icon: "/tech-icon.svg" },
+  { id: 28, title: "CSS", icon: "/design-icon.svg" },
+  { id: 3, title: "Redux", icon: "/tech-icon.svg" },
+  { id: 27, title: "HTML", icon: "/design-icon.svg" },
+  { id: 7, title: "Git", icon: "/tech-icon.svg" },
+  { id: 15, title: "React Router", icon: "/tech-icon.svg" },
+];
+
+const complexityGroups = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9, 10],
+];
 
 export const QuestionNavigationWidget: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,6 +67,28 @@ export const QuestionNavigationWidget: React.FC = () => {
     setSearchParams(newParams);
   };
 
+  const handleComplexityGroupToggle = (group: number[]) => {
+    const groupStr = group.map(String);
+    const isChecked = groupStr.every((n) =>
+      currentFilters.complexity.includes(n),
+    );
+
+    const nextValues = isChecked
+      ? currentFilters.complexity.filter((n) => !groupStr.includes(n))
+      : Array.from(new Set([...currentFilters.complexity, ...groupStr]));
+
+    const newParams = new URLSearchParams(searchParams);
+
+    if (nextValues.length > 0) {
+      newParams.set("complexity", nextValues.join(","));
+    } else {
+      newParams.delete("complexity");
+    }
+
+    newParams.set("page", "1");
+    setSearchParams(newParams);
+  };
+
   return (
     <div className="question-nav">
       <QuestionSearch
@@ -56,49 +97,61 @@ export const QuestionNavigationWidget: React.FC = () => {
       />
 
       <div className="question-nav__group">
-        <h3 className="question-nav__title">Сложность</h3>
+        <h3 className="question-nav__title">Навыки (Skills)</h3>
         <div className="question-nav__options">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
-            const strNum = String(num);
-            const isChecked = currentFilters.complexity.includes(strNum);
+          {skills.map((skill) => {
+            const strId = String(skill.id);
+            const isChecked = currentFilters.skills.includes(strId);
             return (
-              <label key={num} className="question-nav__checkbox">
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => handleCheckboxToggle("complexity", strNum)}
-                />
-                Сложность {num}
-              </label>
+              <CheckboxChip
+                key={skill.id}
+                checked={isChecked}
+                onChange={() => handleCheckboxToggle("skills", strId)}
+                icon={skill.icon}
+              >
+                {skill.title}
+              </CheckboxChip>
             );
           })}
         </div>
       </div>
 
       <div className="question-nav__group">
-        <h3 className="question-nav__title">Навыки (Skills)</h3>
+        <h3 className="question-nav__title">Сложность</h3>
         <div className="question-nav__options">
-          {[
-            { id: 6, title: "React" },
-            { id: 22, title: "TypeScript" },
-            { id: 2, title: "JavaScript" },
-            { id: 28, title: "CSS" },
-            { id: 3, title: "Redux" },
-            { id: 27, title: "HTML" },
-            { id: 7, title: "Git" },
-            { id: 15, title: "React Router" },
-          ].map((skill) => {
-            const strId = String(skill.id);
-            const isChecked = currentFilters.skills.includes(strId);
+          {complexityGroups.map((group, idx) => {
+            const groupStr = group.map(String);
+            const isChecked = groupStr.every((n) =>
+              currentFilters.complexity.includes(n),
+            );
+
             return (
-              <label key={skill.id} className="question-nav__checkbox">
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => handleCheckboxToggle("skills", strId)}
-                />
-                {skill.title}
-              </label>
+              <CheckboxChip
+                key={idx}
+                checked={isChecked}
+                onChange={() => handleComplexityGroupToggle(group)}
+              >
+                {group[0]}–{group[group.length - 1]}
+              </CheckboxChip>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="question-nav__group">
+        <h3 className="question-nav__title">Рейтинг</h3>
+        <div className="question-nav__options">
+          {[1, 2, 3, 4, 5].map((num) => {
+            const strNum = String(num);
+            const isChecked = currentFilters.rate.includes(strNum);
+            return (
+              <CheckboxChip
+                key={num}
+                checked={isChecked}
+                onChange={() => handleCheckboxToggle("rate", strNum)}
+              >
+              {num}
+              </CheckboxChip>
             );
           })}
         </div>
