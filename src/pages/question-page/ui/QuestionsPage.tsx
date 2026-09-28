@@ -14,13 +14,14 @@ export const QuestionsPage: React.FC = () => {
   const [data, setData] = useState<GetPublicQuestionsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const limit = 10;
   const currentPage = Number(searchParams.get("page")) || 1;
 
   useEffect(() => {
     const controller = new AbortController();
-    
+
     const loadQuestions = async () => {
       setLoading(true);
       setError(null);
@@ -39,7 +40,7 @@ export const QuestionsPage: React.FC = () => {
       try {
         const responseData = await fetchQuestions(
           queryParams,
-          controller.signal
+          controller.signal,
         );
         setData(responseData);
       } catch (err) {
@@ -60,6 +61,12 @@ export const QuestionsPage: React.FC = () => {
       controller.abort();
     };
   }, [searchParams, currentPage]);
+  useEffect(() => {
+    document.body.style.overflow = isSidebarOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isSidebarOpen]);
 
   const handlePageChange = (newPage: number) => {
     const newParams = new URLSearchParams(searchParams);
@@ -71,7 +78,16 @@ export const QuestionsPage: React.FC = () => {
     <main className="page-container">
       <div className="page-content">
         <section className="question-container">
-           <h1>Вопросы</h1>
+          <div className="question-header">
+            <h1>Вопросы</h1>
+            <button
+              type="button"
+              className="sidebar-toggle"
+              aria-label="Открыть настройки"
+              onClick={() => setIsSidebarOpen(true)}
+            ></button>
+          </div>
+
           <QuestionsListWidget
             data={data}
             loading={loading}
@@ -82,7 +98,16 @@ export const QuestionsPage: React.FC = () => {
           />
         </section>
 
-        <aside className="right-sidebar">
+        <aside
+          className={`right-sidebar ${isSidebarOpen ? "right-sidebar--open" : ""}`}
+        >
+          <button
+            type="button"
+            className="sidebar-close"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            Закрыть
+          </button>
           <QuestionNavigationWidget />
         </aside>
       </div>

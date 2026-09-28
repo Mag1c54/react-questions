@@ -49,7 +49,7 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={page === currentPage ? "active" : ""}
+          className={page === currentPage ? "quest-catalog__active" : ""}
           aria-current={page === currentPage ? "page" : undefined}
           aria-label={`Страница ${page}`}
         >

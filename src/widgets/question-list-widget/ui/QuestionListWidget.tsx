@@ -37,7 +37,7 @@ export const QuestionsListWidget: React.FC<QuestionsListWidgetProps> = ({
       </div>
 
       {(data?.total ?? 0) > limit && (
-        <div className="pagination">
+        <div className="questions-list__pagination">
           <QuestionPagination
             currentPage={page}
             totalCount={data?.total ?? 0}

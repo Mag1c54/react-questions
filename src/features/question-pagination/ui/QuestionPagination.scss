@@ -1,23 +1,40 @@
-@use '../../../styles/variables.scss' as *;
+@use "../../../styles/variables.scss" as *;
+$breakpoint-mobile: 480px;
+.quest-catalog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  &__active {
+    padding: 2px 6px;
+    min-width: 21px;
+    min-height: 25px;
+    border-radius: 3px;
+    background: $color-accent;
+    color: white;
+  }
 
-
-
-.quest-catalog{
-display: flex;
-justify-items: center;
-min-height: 100px;
-min-height: 50px;
-align-items: center;
-gap:10px;
-
-
-&__arrow{
+  &__arrow {
     display: flex;
-    min-height: 40px;
-    min-width: 40px;
-    border-radius: 50% ;
-    border: $color-accent 1px solid;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    background: transparent;
+    color: $color-accent;
+    cursor: pointer;
+  }
+  
 }
+
+@media (max-width:$breakpoint-mobile){
+    .quest-catalog__arrow{
+        display: none;
+    }
 }
