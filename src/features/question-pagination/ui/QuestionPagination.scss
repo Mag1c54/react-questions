@@ -1,0 +1,23 @@
+@use '../../../styles/variables.scss' as *;
+
+
+
+.quest-catalog{
+display: flex;
+justify-items: center;
+min-height: 100px;
+min-height: 50px;
+align-items: center;
+gap:10px;
+
+
+&__arrow{
+    display: flex;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50% ;
+    border: $color-accent 1px solid;
+    justify-content: center;
+    align-items: center;
+}
+}
