@@ -1,19 +1,52 @@
 @use "../../../styles/variables.scss" as *;
-$breakpoint-mobile: 480px;
+
+
+
 .quest-catalog {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  font-family: $font-main;
   font-weight: 500;
+  color: $color-text-secondary;
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $color-bg-page;
+    }
+  }
+
   &__active {
+    background: $color-accent;
+    color: $color-white;
+    font-weight: 600;
     padding: 2px 6px;
     min-width: 21px;
     min-height: 25px;
-    border-radius: 3px;
-    background: $color-accent;
-    color: white;
+    border-radius:3px ;
+
+    &:hover {
+      background: $color-accent;
+    }
+  }
+
+  &__dots {
+    color: $color-text-muted;
+    letter-spacing: 2px;
+    user-select: none;
   }
 
   &__arrow {
@@ -29,12 +62,28 @@ $breakpoint-mobile: 480px;
     background: transparent;
     color: $color-accent;
     cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      opacity 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(106, 11, 255, 0.08);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
   }
-  
 }
 
-@media (max-width:$breakpoint-mobile){
-    .quest-catalog__arrow{
-        display: none;
+@media (max-width: $breakpoint-mobile) {
+  .quest-catalog {
+    gap: 6px;
+
+    &__arrow {
+      min-width: 32px;
+      min-height: 32px;
     }
+  }
 }

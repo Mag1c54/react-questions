@@ -1,3 +1,5 @@
+@use "../../../styles/variables.scss" as *;
+
 .question-search {
   position: relative;
   display: flex;
@@ -9,20 +11,36 @@
     left: 12px;
     width: 18px;
     height: 18px;
-    color: #999;
+    color: $color-text-muted;
     pointer-events: none;
+    transition: color 0.2s ease;
   }
 
   &__input {
     width: 100%;
     padding: 10px 12px 10px 38px;
-    border: 1px solid #d9d9df;
+    border: 1px solid $color-border-light;
     border-radius: 12px;
+    background: $color-white;
+    font-family: $font-main;
     font-size: 14px;
+    color: $color-text-primary;
     outline: none;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
 
     &:focus {
-      border-color: #6a0bff;
+      border-color: $color-accent;
     }
+    &:hover {
+      border-color: $color-border-gray;
+    }
+  }
+
+  &:focus-within &__icon {
+    color: $color-accent;
   }
 }

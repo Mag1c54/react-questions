@@ -7,7 +7,8 @@ import type {
 import { fetchQuestions } from "@/entities/question/api";
 import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
 import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
-import "@/styles/question-page/QuestionPage.scss";
+import "./QuestionPage.scss";
+import { VscSettings } from "react-icons/vsc";
 
 export const QuestionsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -85,7 +86,9 @@ export const QuestionsPage: React.FC = () => {
               className="sidebar-toggle"
               aria-label="Открыть настройки"
               onClick={() => setIsSidebarOpen(true)}
-            ></button>
+            >
+              <VscSettings />
+            </button>
           </div>
 
           <QuestionsListWidget

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
-import "@/styles/question-page/QuestionNavigationWidget.scss";
+import "./QuestionNavigationWidget.scss";
 import { CheckboxChip } from "@/shared/ui/CheckboxChip";
 
 

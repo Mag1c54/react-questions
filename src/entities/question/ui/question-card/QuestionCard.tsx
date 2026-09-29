@@ -3,7 +3,7 @@ import { type Question } from "@/entities/question/model/types";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import hljs from "highlight.js/lib/core";
 import "highlight.js/styles/atom-one-dark.css";
-import "@/styles/question-page/QuestionCard.scss";
+import "./QuestionCard.scss";
 
 import javascript from "highlight.js/lib/languages/javascript";
 import typescript from "highlight.js/lib/languages/typescript";

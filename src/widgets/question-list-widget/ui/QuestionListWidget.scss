@@ -1,0 +1,49 @@
+@use "../../../styles/variables.scss" as *;
+
+.questions-list-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  font-family: $font-main;
+
+  &__status {
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-text-muted;
+
+    &--error {
+      color: #d92d20;
+    }
+  }
+
+  &__total {
+    align-self: flex-start;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-text-secondary;
+
+    span {
+      font-weight: 600;
+      color: $color-accent;
+    }
+  }
+}
+
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

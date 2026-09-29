@@ -6,15 +6,22 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border: 1.5px solid #d9d9df;
+  border: 1.5px solid $color-border-light;
   border-radius: 24px;
   cursor: pointer;
   user-select: none;
+  font-family: $font-main;
   font-size: 14px;
   font-weight: 500;
-  color: #474747;
-  background: #fff;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  color: $color-text-secondary;
+  background: $color-white;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+
+  &:hover {
+    border-color: $color-border-gray;
+  }
 
   &__native {
     position: absolute;
@@ -39,10 +46,10 @@
   }
 
   &--checked {
-    box-shadow: 0 0 0 1px #6a0bff;
-  }
+    box-shadow: 0 0 0 1px $color-accent;
 
-  &:focus-within {
-    outline-offset: 2px;
+    &:hover {
+      border-color: $color-border-light;
+    }
   }
 }

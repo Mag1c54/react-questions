@@ -2,7 +2,7 @@ import React from "react";
 import type { Question, GetPublicQuestionsResponse } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
-import "@/styles/question-page/QuestionPage.scss";
+import "./QuestionListWidget.scss";
 
 interface QuestionsListWidgetProps {
   data: GetPublicQuestionsResponse | null;
