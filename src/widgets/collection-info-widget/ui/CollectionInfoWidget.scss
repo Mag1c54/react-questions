@@ -1,0 +1,127 @@
+@use "../../../styles/variables.scss" as *;
+
+.collection-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: $color-white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(106, 99, 118, 0.1);
+  font-family: $font-main;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    color: $color-text-muted;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid $color-border-gray;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $color-text-primary;
+    text-decoration: none;
+
+    &--link {
+      transition:
+        border-color 0.15s ease,
+        color 0.15s ease;
+
+      &:hover {
+        border-color: $color-accent;
+        color: $color-accent;
+      }
+    }
+
+    &--company {
+      padding-left: 6px;
+    }
+
+    &--accent {
+      border-color: $color-accent;
+      color: $color-accent;
+    }
+  }
+
+  &__company-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  &__author {
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-accent-link;
+  }
+
+  &__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__keyword {
+    font-size: 13px;
+    color: $color-accent;
+  }
+
+  &__telegram {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid $color-border-gray;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 130%;
+    color: $color-text-primary;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+      border-color: $color-accent;
+    }
+  }
+
+  &__telegram-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border-radius: 50%;
+    background: $color-accent;
+    color: $color-white;
+  }
+
+  &__telegram-name {
+    color: $color-accent-link;
+    text-decoration: underline;
+  }
+}

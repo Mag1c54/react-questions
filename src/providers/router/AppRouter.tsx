@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { QuestionsPage } from "../../pages/question-page/ui/QuestionsPage";
+import { QuestionsPage } from "../../pages/questions/ui/QuestionsPage";
 import { Layout } from "./Layout";
-import { QuizPage } from "@/pages/quiz-page/QuizPage";
-import { CollectionPage } from "@/pages/collection-page/ui/CollectionPage";
+import { QuizPage } from "@/pages/quiz/QuizPage";
+import { CollectionPage } from "@/pages/collection/ui/CollectionPage";
+import { CollectionsPage } from "@/pages/collections/ui/CollectionsPage";
 
 const router = createBrowserRouter([
   {
-
     element: <Layout />,
 
     children: [
@@ -20,14 +20,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/collections",
-        element: <CollectionPage/>
-      }
+        element: <CollectionsPage />,
+      },
+      {
+        path: "/collections/:id",
+        element: <CollectionPage />, 
+      },
     ],
   },
   {
-      path: "/",
-      element: <div>test</div>
-  }
+    path: "/",
+    element: <div>test</div>,
+  },
 ]);
 
 export const AppRouter = () => {

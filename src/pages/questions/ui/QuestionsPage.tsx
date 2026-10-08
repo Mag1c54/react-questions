@@ -4,10 +4,10 @@ import type {
   GetPublicQuestionsResponse,
   FetchQuestionsParams,
 } from "@/entities/question/model/types";
-import { fetchQuestions } from "@/entities/question/api";
+import { fetchQuestions } from "@/entities/question/api/questionApi";
 import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
 import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
-import "./QuestionPage.scss";
+import "./QuestionsPage.scss";
 import { VscSettings } from "react-icons/vsc";
 
 export const QuestionsPage: React.FC = () => {
@@ -19,7 +19,6 @@ export const QuestionsPage: React.FC = () => {
 
   const limit = 10;
   const currentPage = Number(searchParams.get("page")) || 1;
-
   useEffect(() => {
     const controller = new AbortController();
 
