@@ -3,7 +3,9 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import App from "./App.tsx";
+import { authApi } from "@/entities/session/api/authApi";
 
+store.dispatch(authApi.endpoints.refresh.initiate());
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>

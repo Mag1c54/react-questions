@@ -1,30 +1,51 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QuestionsPage } from "../../pages/questions/ui/QuestionsPage";
-import { Layout } from "./Layout";
+import { MainLayout } from "./Layout";
 import { QuizPage } from "@/pages/quiz/QuizPage";
 import { CollectionPage } from "@/pages/collection/ui/CollectionPage";
 import { CollectionsPage } from "@/pages/collections/ui/CollectionsPage";
+import { GuestRoute, ProtectedRoute } from "./RouteGuards";
+import { LoginPage } from "@/pages/login/ui/LoginPage";
+import { RegisterPage } from "@/pages/register/ui/RegisterPage";
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
-
+    element: <GuestRoute />,
     children: [
       {
-        path: "/questions",
-        element: <QuestionsPage />,
+        path: "/login",
+        element: <LoginPage />,
       },
       {
-        path: "/trainer",
-        element: <QuizPage />,
+        path: "/register",
+        element: <RegisterPage />,
       },
+    ],
+  },
+  {
+    element: <MainLayout />,
+
+    children: [
       {
         path: "/collections",
         element: <CollectionsPage />,
       },
       {
         path: "/collections/:id",
-        element: <CollectionPage />, 
+        element: <CollectionPage />,
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/questions",
+            element: <QuestionsPage />,
+          },
+          {
+            path: "/trainer",
+            element: <QuizPage />,
+          },
+        ],
       },
     ],
   },
