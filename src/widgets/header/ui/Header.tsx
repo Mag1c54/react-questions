@@ -5,7 +5,7 @@ import "./Header.scss";
 
 const NAV_ITEMS = [
   { to: "/collections", label: "База Вопросов" },
-  { to: "/trainer", label: "Тренажер" },
+  { to: "/interview", label: "Тренажер" },
   { to: "/questions", label: "Материалы" },
 ];
 

@@ -1,0 +1,66 @@
+@use "../../styles/variables.scss" as *;
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid $color-border-gray;
+  border-radius: 12px;
+  background: $color-white;
+  font-family: $font-main;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  color: $color-text-primary;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
+
+  &:hover:not(.chip--disabled) {
+    border-color: $color-accent;
+  }
+
+  &__native {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  &--checked {
+    border-color: $color-accent;
+    color: $color-accent;
+    background: rgba($color-accent, 0.06);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:has(.chip__native:focus-visible) {
+    outline: 2px solid $color-accent-link;
+    outline-offset: 2px;
+  }
+}

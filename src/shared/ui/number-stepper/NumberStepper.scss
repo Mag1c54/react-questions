@@ -1,0 +1,37 @@
+@use "../../../styles/variables.scss" as *;
+
+.number-stepper {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 12px;
+  padding: 6px 12px;
+  border: 1px solid $color-border-gray;
+  border-radius: 12px;
+  font-family: $font-main;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $color-accent;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:disabled {
+      color: $color-border-gray;
+      cursor: not-allowed;
+    }
+  }
+
+  &__value {
+    min-width: 28px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-text-primary;
+  }
+}

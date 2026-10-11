@@ -1,0 +1,99 @@
+@use "../../../styles/variables.scss" as *;
+
+$color-error: #d92d20;
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: $font-main;
+
+  &__columns {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px 48px;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $color-text-secondary;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__skill-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 13px;
+    color: $color-text-muted;
+  }
+
+  &__error {
+    margin: 0;
+    font-size: 12px;
+    color: $color-error;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: $color-accent;
+    color: $color-white;
+    font-family: $font-main;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: $color-accent-link;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .quiz-form {
+    &__columns {
+      grid-template-columns: 1fr;
+    }
+
+    &__submit {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

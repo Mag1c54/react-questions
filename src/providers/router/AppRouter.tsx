@@ -4,9 +4,11 @@ import { MainLayout } from "./Layout";
 import { QuizPage } from "@/pages/quiz/QuizPage";
 import { CollectionPage } from "@/pages/collection/ui/CollectionPage";
 import { CollectionsPage } from "@/pages/collections/ui/CollectionsPage";
-import { GuestRoute, ProtectedRoute } from "./RouteGuards";
+import { GuestRoute } from "./RouteGuards";
+// ProtectedRoute
 import { LoginPage } from "@/pages/login/ui/LoginPage";
 import { RegisterPage } from "@/pages/register/ui/RegisterPage";
+import { QuizQuestionsPage } from "@/pages/quiz-questions/ui/QuizQuestionsPage";
 
 const router = createBrowserRouter([
   {
@@ -35,15 +37,19 @@ const router = createBrowserRouter([
         element: <CollectionPage />,
       },
       {
-        element: <ProtectedRoute />,
+        // element: <ProtectedRoute />,
         children: [
           {
             path: "/questions",
             element: <QuestionsPage />,
           },
           {
-            path: "/trainer",
+            path: "/interview",
             element: <QuizPage />,
+          },
+          {
+            path: "/interview/questions",
+            element: <QuizQuestionsPage />,
           },
         ],
       },

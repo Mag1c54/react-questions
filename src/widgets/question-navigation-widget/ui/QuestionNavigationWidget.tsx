@@ -2,8 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
 import "./QuestionNavigationWidget.scss";
-import { CheckboxChip } from "@/shared/ui/CheckboxChip";
-
+import { Chip } from "@/shared/ui/Chip";
 
 interface FilterState {
   rate: string[];
@@ -103,14 +102,14 @@ export const QuestionNavigationWidget: React.FC = () => {
             const strId = String(skill.id);
             const isChecked = currentFilters.skills.includes(strId);
             return (
-              <CheckboxChip
+              <Chip
                 key={skill.id}
                 checked={isChecked}
                 onChange={() => handleCheckboxToggle("skills", strId)}
                 icon={skill.icon}
               >
                 {skill.title}
-              </CheckboxChip>
+              </Chip>
             );
           })}
         </div>
@@ -126,13 +125,13 @@ export const QuestionNavigationWidget: React.FC = () => {
             );
 
             return (
-              <CheckboxChip
+              <Chip
                 key={idx}
                 checked={isChecked}
                 onChange={() => handleComplexityGroupToggle(group)}
               >
                 {group[0]}–{group[group.length - 1]}
-              </CheckboxChip>
+              </Chip>
             );
           })}
         </div>
@@ -145,13 +144,13 @@ export const QuestionNavigationWidget: React.FC = () => {
             const strNum = String(num);
             const isChecked = currentFilters.rate.includes(strNum);
             return (
-              <CheckboxChip
+              <Chip
                 key={num}
                 checked={isChecked}
                 onChange={() => handleCheckboxToggle("rate", strNum)}
               >
-              {num}
-              </CheckboxChip>
+                {num}
+              </Chip>
             );
           })}
         </div>
