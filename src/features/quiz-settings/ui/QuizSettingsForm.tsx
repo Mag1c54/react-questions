@@ -3,6 +3,8 @@ import { Controller, useForm } from "react-hook-form";
 import { FiArrowRight } from "react-icons/fi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
+import { useAppDispatch } from "@/store/hooks";
+import { resetQuiz } from "@/entities/quiz/model/quizSlice";
 import {
   buildQuizSearch,
   COMPLEXITY_RANGES,
@@ -23,6 +25,7 @@ interface QuizFormValues {
 
 export const QuizSettingsForm = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const initial = parseQuizSettings(searchParams);
 
@@ -56,10 +59,13 @@ export const QuizSettingsForm = () => {
 
   const onSubmit = (values: QuizFormValues) => {
     if (values.specialization === null) return;
-
+    dispatch(resetQuiz());
     navigate({
       pathname: "/interview/questions",
-      search: buildQuizSearch({ ...values, specialization: values.specialization }),
+      search: buildQuizSearch({
+        ...values,
+        specialization: values.specialization,
+      }),
     });
   };
 
@@ -67,11 +73,14 @@ export const QuizSettingsForm = () => {
     if (specialization === null) {
       return <p className="quiz-form__hint">Сначала выберите специализацию</p>;
     }
-    if (isSkillsFetching) return <p className="quiz-form__hint">Загрузка категорий...</p>;
+    if (isSkillsFetching)
+      return <p className="quiz-form__hint">Загрузка категорий...</p>;
 
     const skills = skillsData?.data ?? [];
     if (skills.length === 0) {
-      return <p className="quiz-form__hint">Для этой специализации категорий нет</p>;
+      return (
+        <p className="quiz-form__hint">Для этой специализации категорий нет</p>
+      );
     }
 
     return (
@@ -114,13 +123,17 @@ export const QuizSettingsForm = () => {
 
             {isSpecsLoading && <p className="quiz-form__hint">Загрузка...</p>}
             {isSpecsError && (
-              <p className="quiz-form__error">Не удалось загрузить специализации</p>
+              <p className="quiz-form__error">
+                Не удалось загрузить специализации
+              </p>
             )}
 
             <Controller
               name="specialization"
               control={control}
-              rules={{ validate: (value) => value !== null || "Выберите специализацию" }}
+              rules={{
+                validate: (value) => value !== null || "Выберите специализацию",
+              }}
               render={({ field }) => (
                 <div className="quiz-form__chips" role="radiogroup">
                   {specsData?.data.map((spec) => (
@@ -131,7 +144,7 @@ export const QuizSettingsForm = () => {
                       checked={field.value === spec.id}
                       onChange={() => {
                         field.onChange(spec.id);
-                        setValue("skills", []); // навыки зависят от специализации
+                        setValue("skills", []);
                       }}
                     >
                       {spec.title}
@@ -163,7 +176,9 @@ export const QuizSettingsForm = () => {
               render={({ field }) => (
                 <div className="quiz-form__chips">
                   {COMPLEXITY_RANGES.map((range) => {
-                    const checked = range.levels.every((level) => field.value.includes(level));
+                    const checked = range.levels.every((level) =>
+                      field.value.includes(level),
+                    );
                     return (
                       <Chip
                         key={range.label}
@@ -171,8 +186,12 @@ export const QuizSettingsForm = () => {
                         onChange={() =>
                           field.onChange(
                             checked
-                              ? field.value.filter((level) => !range.levels.includes(level))
-                              : Array.from(new Set([...field.value, ...range.levels])),
+                              ? field.value.filter(
+                                  (level) => !range.levels.includes(level),
+                                )
+                              : Array.from(
+                                  new Set([...field.value, ...range.levels]),
+                                ),
                           )
                         }
                       >

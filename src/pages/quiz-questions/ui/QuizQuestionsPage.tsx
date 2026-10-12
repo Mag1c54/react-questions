@@ -7,6 +7,7 @@ import { parseQuizSettings } from "@/entities/quiz/lib/quizParams";
 import {
   finishQuiz,
   goTo,
+  resetQuiz,
   selectQuiz,
   setAnswer,
   startQuiz,
@@ -31,13 +32,18 @@ export const QuizQuestionsPage = () => {
     isError,
     error,
     refetch,
-  } = useGetMockQuizQuery(settings ?? skipToken, { refetchOnMountOrArgChange: true });
+  } = useGetMockQuizQuery(settings ?? skipToken);
 
   useEffect(() => {
     if (quiz) dispatch(startQuiz(quiz.id));
   }, [quiz, dispatch]);
 
   if (!settings) return <Navigate to="/quiz" replace />;
+
+  const handleRestart = () => {
+    dispatch(resetQuiz());
+    refetch();
+  };
 
   const renderStatus = (text: string, withRetry = false) => (
     <main className="quiz-questions-page">
@@ -48,7 +54,7 @@ export const QuizQuestionsPage = () => {
             Повторить
           </button>
         )}
-        <Link to={`/interview${settingsSearch}`} className="quiz-questions-page__link">
+        <Link to={`/quiz${settingsSearch}`} className="quiz-questions-page__link">
           Изменить настройки
         </Link>
       </div>
@@ -75,7 +81,7 @@ export const QuizQuestionsPage = () => {
           questions={quiz.questions}
           answers={answers}
           settingsSearch={settingsSearch}
-          onRestart={refetch}
+          onRestart={handleRestart}
         />
       </main>
     );

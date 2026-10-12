@@ -39,8 +39,8 @@ export const QuestionNavigationWidget: React.FC = () => {
 
   const handleSearchChange = (val: string) => {
     const newParams = new URLSearchParams(searchParams);
-    if (val.trim()) {
-      newParams.set("title", val.trim());
+    if (val) {
+      newParams.set("title", val);
     } else {
       newParams.delete("title");
     }

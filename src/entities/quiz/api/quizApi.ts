@@ -13,6 +13,7 @@ export const quizApi = baseApi.injectEndpoints({
 
         return `/interview-preparation/quizzes/mock/new?${params.toString()}`;
       },
+      keepUnusedDataFor: 0,
     }),
   }),
 });

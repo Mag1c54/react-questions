@@ -1,6 +1,6 @@
 import React from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-import './QuestionPagination.scss'
+import "./QuestionPagination.scss";
 
 interface QuestionPaginationProps {
   currentPage: number;
@@ -15,13 +15,14 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
   limit,
   onPageChange,
 }) => {
-  const totalPages = Math.ceil(totalCount / limit);
+  const totalPages = Math.max(1, Math.ceil(totalCount / limit));
 
   if (totalPages <= 1) return null;
 
-  const startPage = Math.max(1, currentPage - 1);
-  const endPage = Math.min(totalPages, currentPage + 1);
+  const page = Math.min(Math.max(1, Math.trunc(currentPage) || 1), totalPages);
 
+  const startPage = Math.max(1, page);
+  const endPage = Math.min(totalPages, page + 2);
   const pages = Array.from(
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i,
@@ -68,7 +69,7 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Следующая страница"
-         className="quest-catalog__arrow"
+        className="quest-catalog__arrow"
       >
         <FaLongArrowAltRight />
       </button>

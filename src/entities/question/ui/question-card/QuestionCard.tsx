@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { type Question } from "@/entities/question/model/types";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import hljs from "highlight.js/lib/core";
+import DOMPurify from "dompurify";
 import "highlight.js/styles/atom-one-dark.css";
 import "./QuestionCard.scss";
 
@@ -24,13 +25,17 @@ interface QuestionCardProps {
   question: Question;
 }
 
-const stripInlineStyles = (html: string) => html.replace(/\sstyle="[^"]*"/g, "");
-
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
   const [open, setOpen] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => setOpen((prev) => !prev);
+
+  const sanitizedAnswer = useMemo(() => {
+    return DOMPurify.sanitize(question.longAnswer, {
+      FORBID_ATTR: ["style"],
+    });
+  }, [question.longAnswer]);
 
   useEffect(() => {
     if (open && bodyRef.current) {
@@ -72,7 +77,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
 
           <div
             className="question-accordion__description"
-            dangerouslySetInnerHTML={{ __html: stripInlineStyles(question.longAnswer) }}
+            dangerouslySetInnerHTML={{ __html: sanitizedAnswer }}
           />
         </div>
       )}

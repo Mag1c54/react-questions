@@ -5,6 +5,7 @@ import type {
   FetchQuestionsParams,
 } from "@/entities/question/model/types";
 import { fetchQuestions } from "@/entities/question/api/questionApi";
+import { parsePositiveInt } from "@/shared/lib/parseParams";
 import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
 import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
 import "./QuestionsPage.scss";
@@ -18,14 +19,15 @@ export const QuestionsPage: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const limit = 10;
-  const currentPage = Number(searchParams.get("page")) || 1;
+  const currentPage = parsePositiveInt(searchParams.get("page"));
+  const totalPages = data ? Math.max(1, Math.ceil(data.total / limit)) : 1;
+
   useEffect(() => {
     const controller = new AbortController();
 
     const loadQuestions = async () => {
       setLoading(true);
       setError(null);
-
       const queryParams: FetchQuestionsParams = {
         page: currentPage,
         limit,
@@ -38,10 +40,7 @@ export const QuestionsPage: React.FC = () => {
       };
 
       try {
-        const responseData = await fetchQuestions(
-          queryParams,
-          controller.signal,
-        );
+        const responseData = await fetchQuestions(queryParams, controller.signal);
         setData(responseData);
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
@@ -61,6 +60,21 @@ export const QuestionsPage: React.FC = () => {
       controller.abort();
     };
   }, [searchParams, currentPage]);
+
+  useEffect(() => {
+    if (!data || loading || currentPage <= totalPages) return;
+
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (totalPages > 1) next.set("page", String(totalPages));
+        else next.delete("page");
+        return next;
+      },
+      { replace: true },
+    );
+  }, [data, loading, currentPage, totalPages, setSearchParams]);
+
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";
     return () => {
@@ -100,9 +114,7 @@ export const QuestionsPage: React.FC = () => {
           />
         </section>
 
-        <aside
-          className={`right-sidebar ${isSidebarOpen ? "right-sidebar--open" : ""}`}
-        >
+        <aside className={`right-sidebar ${isSidebarOpen ? "right-sidebar--open" : ""}`}>
           <button
             type="button"
             className="sidebar-close"
