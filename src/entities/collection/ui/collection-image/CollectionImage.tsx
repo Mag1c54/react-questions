@@ -15,7 +15,7 @@ export const CollectionImage = ({ src, className }: CollectionImageProps) => {
   return (
     <img
       src={src}
-      alt=""
+      alt="collection-icon"
       className={className}
       loading="lazy"
       onError={() => setFailedSrc(src)}

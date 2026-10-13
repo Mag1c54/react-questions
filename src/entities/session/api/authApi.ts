@@ -1,32 +1,12 @@
 import { baseApi } from "@/shared/api/baseApi";
 import { logout, setAccessToken } from "../model/sessionSlice";
-
-export interface AuthUser {
-  id: string;
-  username: string;
-  email: string;
-  avatarUrl?: string | null;
-  isVerified: boolean;
-}
-
-export interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-export interface RegisterRequest {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface TokenResponse {
-  access_token: string;
-}
-
-export interface AuthResponse extends TokenResponse {
-  user: AuthUser;
-}
+import type {
+  AuthResponse,
+  LoginRequest,
+  RegisterRequest,
+  TokenResponse,
+  AuthUser,
+} from "../model/types";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -37,7 +17,7 @@ export const authApi = baseApi.injectEndpoints({
           const { data } = await queryFulfilled;
           dispatch(setAccessToken(data.access_token));
         } catch {
-          //
+          // error from form
         }
       },
     }),
@@ -49,7 +29,7 @@ export const authApi = baseApi.injectEndpoints({
           const { data } = await queryFulfilled;
           dispatch(setAccessToken(data.access_token));
         } catch {
-          //
+          // error from form
         }
       },
     }),

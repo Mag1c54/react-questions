@@ -1,7 +1,5 @@
 @use "../../../../styles/variables.scss" as *;
 
-$breakpoint-mobile: 640px;
-
 .collection-card {
   display: flex;
   gap: 16px;

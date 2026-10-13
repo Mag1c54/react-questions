@@ -1,8 +1,5 @@
 @use "../../../styles/variables.scss" as *;
 
-$breakpoint-tablet: 1024px;
-$breakpoint-mobile: 640px;
-
 .footer {
   margin-top: 40px;
   background: $color-bg-footer;

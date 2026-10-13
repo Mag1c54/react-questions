@@ -1,13 +1,17 @@
-
+import { ErrorBoundary } from "react-error-boundary";
 import { AppRouter } from "./providers/router/AppRouter";
 import "./styles/global.scss";
-import ErrorBoundary from "@/shared/ui/ErrorBoundary";
+import { logError } from "@/shared/lib/logError";
+import { ErrorFallback } from "@/shared/ui/error-fallback/ErrorFallback";
 
 function App() {
   return (
-      <ErrorBoundary>
-        <AppRouter />
-      </ErrorBoundary>
+    <ErrorBoundary
+      fallbackRender={(props) => <ErrorFallback {...props} fullScreen />}
+      onError={logError}
+    >
+      <AppRouter />
+    </ErrorBoundary>
   );
 }
 

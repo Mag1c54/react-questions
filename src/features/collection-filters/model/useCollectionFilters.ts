@@ -44,8 +44,7 @@ export const useCollectionFilters = () => {
   const setIsFree = (value: boolean | undefined) =>
     update({ isFree: value === undefined ? undefined : String(value) });
 
-  const reset = () =>
-    setSearchParams(() => new URLSearchParams());
+  const reset = () => setSearchParams(() => new URLSearchParams());
 
   const hasFilters = Boolean(search) || specializations.length > 0 || isFree !== undefined;
 

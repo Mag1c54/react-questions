@@ -1,11 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-export type SessionStatus = "checking" | "authenticated" | "guest";
-
-interface SessionState {
-  accessToken: string | null;
-  status: SessionStatus;
-}
+import type { SessionState } from "./types";
 
 const initialState: SessionState = {
   accessToken: null,
@@ -32,5 +26,4 @@ export const { setAccessToken, logout } = sessionSlice.actions;
 export const selectIsAuth = (state: { session: SessionState }) =>
   state.session.status === "authenticated";
 
-export const selectSessionStatus = (state: { session: SessionState }) =>
-  state.session.status;
+export const selectSessionStatus = (state: { session: SessionState }) => state.session.status;

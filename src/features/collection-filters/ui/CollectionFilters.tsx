@@ -48,10 +48,7 @@ export const CollectionFilters = () => {
   return (
     <div className="collection-filters">
       <label className="collection-filters__search">
-        <FiSearch
-          className="collection-filters__search-icon"
-          aria-hidden="true"
-        />
+        <FiSearch className="collection-filters__search-icon" aria-hidden="true" />
         <input
           type="search"
           value={text}
@@ -113,11 +110,7 @@ export const CollectionFilters = () => {
       </div>
 
       {hasFilters && (
-        <button
-          type="button"
-          className="collection-filters__reset"
-          onClick={reset}
-        >
+        <button type="button" className="collection-filters__reset" onClick={reset}>
           Сбросить фильтры
         </button>
       )}

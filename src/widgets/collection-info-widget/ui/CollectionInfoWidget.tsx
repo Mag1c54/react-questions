@@ -3,15 +3,14 @@ import { FaTelegramPlane } from "react-icons/fa";
 import type { Collection } from "@/entities/collection/model/types";
 import "./CollectionInfoWidget.scss";
 
-const TELEGRAM_URL = "https://t.me/"; // подставь свою ссылку
+const TELEGRAM_URL = "https://t.me/";
 
 interface CollectionInfoWidgetProps {
   collection: Collection;
 }
 
 export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) => {
-  const { specializations, isFree, company, createdBy, questionsCount, keywords } =
-    collection;
+  const { specializations, isFree, company, createdBy, questionsCount, keywords } = collection;
 
   return (
     <div className="collection-info">
@@ -35,9 +34,7 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
       <div className="collection-info__group">
         <h3 className="collection-info__label">Доступ</h3>
         <div className="collection-info__chips">
-          <span className="collection-info__chip">
-            {isFree ? "Для всех" : "Для участников"}
-          </span>
+          <span className="collection-info__chip">{isFree ? "Для всех" : "Для участников"}</span>
         </div>
       </div>
 
@@ -90,8 +87,8 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
       >
         <FaTelegramPlane className="collection-info__telegram-icon" aria-hidden="true" />
         <span>
-          Подпишись на <span className="collection-info__telegram-name">Python Developer</span>{" "}
-          в Telegram
+          Подпишись на <span className="collection-info__telegram-name">Python Developer</span> в
+          Telegram
         </span>
       </a>
     </div>
