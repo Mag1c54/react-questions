@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useGetProfileQuery } from "@/entities/session/api/authApi";
+import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
+import { LogoutButton } from "@/features/logout/ui/LogoutButton";
+import { useAppSelector } from "@/store/hooks";
 import "./Header.scss";
 
 const NAV_ITEMS = [
@@ -11,32 +15,53 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { pathname } = useLocation();
+  const status = useAppSelector(selectSessionStatus);
 
-  useEffect(() => {
-    const handleChange = () => {
-      setIsMenuOpen(false);
-    };
-    handleChange();
-  }, [pathname]);
+  const { data: profile } = useGetProfileQuery(undefined, {
+    skip: status !== "authenticated",
+  });
+
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const renderAuth = () => {
+    if (status === "checking") return null;
+
+    if (status === "authenticated") {
+      return (
+        <div className="header__auth">
+          {profile && <span className="header__user">{profile.username}</span>}
+          <LogoutButton className="header__btn header__btn--outline" />
+        </div>
+      );
+    }
+
+    return (
+      <div className="header__auth">
+        <Link to="/login" className="header__btn header__btn--outline" onClick={closeMenu}>
+          Вход
+        </Link>
+        <Link to="/register" className="header__btn header__btn--primary" onClick={closeMenu}>
+          Регистрация
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <header className="header">
       <div className="header__container">
-        <Link to="/" className="header__logo">
-          <img src=" /logo.svg" alt="logo" className="header__logo-img" />
+        <Link to="/" className="header__logo" onClick={closeMenu}>
+          <img src="/logo.svg" alt="" className="header__logo-img" />
           <span className="header__title">Yeahub</span>
         </Link>
 
-        <div
-          id="header-menu"
-          className={`header__menu ${isMenuOpen ? "header__menu--open" : ""}`}
-        >
+        <div id="header-menu" className={`header__menu ${isMenuOpen ? "header__menu--open" : ""}`}>
           <nav className="header__navigation" aria-label="Основная навигация">
             {NAV_ITEMS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
+                onClick={closeMenu}
                 className={({ isActive }) =>
                   `header__link ${isActive ? "header__link--active" : ""}`
                 }
@@ -46,14 +71,7 @@ export const Header = () => {
             ))}
           </nav>
 
-          <div className="header__auth">
-            <Link to="/login" className="header__btn header__btn--outline">
-              Вход
-            </Link>
-            <Link to="/register" className="header__btn header__btn--primary">
-              Регистрация
-            </Link>
-          </div>
+          {renderAuth()}
         </div>
 
         <button

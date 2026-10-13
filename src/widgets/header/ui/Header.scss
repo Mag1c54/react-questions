@@ -86,7 +86,6 @@ $breakpoint-header: 768px;
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border: 1px solid $color-accent;
     border-radius: 12px;
     font-size: 14px;
     font-weight: 600;
@@ -100,6 +99,8 @@ $breakpoint-header: 768px;
     &--outline {
       background: transparent;
       color: $color-accent;
+      text-decoration-line: underline;
+      text-decoration-color: solid $color-accent-link;
 
       &:hover {
         background-color: rgba($color-accent, 0.08);
@@ -109,6 +110,7 @@ $breakpoint-header: 768px;
     &--primary {
       background: $color-accent;
       color: $color-white;
+      border: 1px solid $color-accent;
 
       &:hover {
         background: $color-accent-link;

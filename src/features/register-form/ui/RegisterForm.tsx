@@ -1,33 +1,23 @@
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegisterMutation } from "@/entities/session/api/authApi";
 import { SocialAuth } from "@/features/social-auth/ui/SocialAuth";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
 import { CheckboxField } from "@/shared/ui/form/CheckboxField";
 import { PasswordField } from "@/shared/ui/form/PasswordField";
 import { TextField } from "@/shared/ui/form/TextField";
+import { registerSchema, type RegisterFormValues } from "../model/schema";
 import "@/shared/ui/form/auth-form.scss";
-
-const EMAIL_REGEXP = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-interface RegisterFormValues {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  personalDataConsent: boolean;
-  offerConsent: boolean;
-  marketingConsent: boolean;
-}
 
 export const RegisterForm = () => {
   const [registerUser] = useRegisterMutation();
   const {
     register,
     handleSubmit,
-    getValues,
     setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -42,19 +32,18 @@ export const RegisterForm = () => {
   const onSubmit = async (values: RegisterFormValues) => {
     try {
       await registerUser({
-        username: values.username.trim(),
-        email: values.email.trim(),
+        username: values.username,
+        email: values.email,
         password: values.password,
       }).unwrap();
     } catch (err) {
       const status = (err as { status?: number }).status;
-      setError("root.server", {
-        type: "server",
-        message:
-          status === 409
-            ? "Пользователь с таким никнеймом или почтой уже существует"
-            : getErrorMessage(err),
-      });
+
+      let message = getErrorMessage(err);
+      if (status === 409) message = "Пользователь с таким никнеймом или почтой уже существует";
+      if (status === 400) message = "Проверьте правильность введённых данных";
+
+      setError("root.server", { type: "server", message });
     }
   };
 
@@ -65,10 +54,7 @@ export const RegisterForm = () => {
         autoComplete="username"
         placeholder="Введите никнейм"
         error={errors.username?.message}
-        {...register("username", {
-          required: "Введите никнейм",
-          minLength: { value: 3, message: "Минимум 3 символа" },
-        })}
+        {...register("username")}
       />
 
       <TextField
@@ -77,10 +63,7 @@ export const RegisterForm = () => {
         autoComplete="email"
         placeholder="Введите электронную почту"
         error={errors.email?.message}
-        {...register("email", {
-          required: "Введите почту",
-          pattern: { value: EMAIL_REGEXP, message: "Введите корректную почту" },
-        })}
+        {...register("email")}
       />
 
       <PasswordField
@@ -88,11 +71,7 @@ export const RegisterForm = () => {
         autoComplete="new-password"
         placeholder="Введите пароль"
         error={errors.password?.message}
-        {...register("password", {
-          required: "Введите пароль",
-          minLength: { value: 6, message: "Минимум 6 символов" },
-          deps: ["confirmPassword"],
-        })}
+        {...register("password", { deps: ["confirmPassword"] })}
       />
 
       <PasswordField
@@ -100,10 +79,7 @@ export const RegisterForm = () => {
         autoComplete="new-password"
         placeholder="Введите пароль"
         error={errors.confirmPassword?.message}
-        {...register("confirmPassword", {
-          required: "Повторите пароль",
-          validate: (value) => value === getValues("password") || "Пароли не совпадают",
-        })}
+        {...register("confirmPassword")}
       />
 
       {errors.root?.server && (
@@ -116,9 +92,7 @@ export const RegisterForm = () => {
         {isSubmitting ? "Регистрируем..." : "Зарегистрироваться"}
       </button>
 
-      <p className="auth-form__hint">
-        Проставив галочку («✓») и нажимая «Зарегистрироваться»:
-      </p>
+      <p className="auth-form__hint">Проставив галочку («✓») и нажимая «Зарегистрироваться»:</p>
 
       <div className="auth-form__consents">
         <CheckboxField
@@ -135,12 +109,12 @@ export const RegisterForm = () => {
             </>
           }
           error={errors.personalDataConsent?.message}
-          {...register("personalDataConsent", { required: "Нужно согласие на обработку ПД" })}
+          {...register("personalDataConsent")}
         />
         <CheckboxField
           label="Я подтверждаю что ознакомился(-ась) с Договором-офертой"
           error={errors.offerConsent?.message}
-          {...register("offerConsent", { required: "Нужно подтвердить ознакомление" })}
+          {...register("offerConsent")}
         />
         <CheckboxField
           label="Даю согласие на получение рекламных и информационных рассылок"

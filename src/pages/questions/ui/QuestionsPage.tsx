@@ -1,68 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import type {
-  GetPublicQuestionsResponse,
-  FetchQuestionsParams,
-} from "@/entities/question/model/types";
-import { fetchQuestions } from "@/entities/question/api/questionApi";
+import { VscSettings } from "react-icons/vsc";
+import { useGetPublicQuestionsQuery } from "@/entities/question/api/questionApi";
+import { getErrorMessage } from "@/shared/lib/getErrorMessage";
 import { parsePositiveInt } from "@/shared/lib/parseParams";
+import { useDebouncedValue } from "@/shared/lib/useDebouncedValue";
 import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
 import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
 import "./QuestionsPage.scss";
-import { VscSettings } from "react-icons/vsc";
+
+const LIMIT = 10;
 
 export const QuestionsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [data, setData] = useState<GetPublicQuestionsResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const limit = 10;
   const currentPage = parsePositiveInt(searchParams.get("page"));
-  const totalPages = data ? Math.max(1, Math.ceil(data.total / limit)) : 1;
+  const title = useDebouncedValue(searchParams.get("title") ?? "");
+
+  const { data, isFetching, isError, error } = useGetPublicQuestionsQuery({
+    page: currentPage,
+    limit: LIMIT,
+    title: title || undefined,
+    complexity: searchParams.get("complexity") || undefined,
+    skills: searchParams.get("skills") || undefined,
+    rate: searchParams.get("rate") || undefined,
+    order: "ASC",
+    orderBy: "createdAt",
+  });
+
+  const totalPages = data ? Math.max(1, Math.ceil(data.total / LIMIT)) : 1;
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    const loadQuestions = async () => {
-      setLoading(true);
-      setError(null);
-      const queryParams: FetchQuestionsParams = {
-        page: currentPage,
-        limit,
-        title: searchParams.get("title") || undefined,
-        complexity: searchParams.get("complexity") || undefined,
-        skills: searchParams.get("skills") || undefined,
-        rate: searchParams.get("rate") || undefined,
-        order: "ASC",
-        orderBy: "createdAt",
-      };
-
-      try {
-        const responseData = await fetchQuestions(queryParams, controller.signal);
-        setData(responseData);
-      } catch (err) {
-        if ((err as Error).name !== "AbortError") {
-          setError((err as Error).message);
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    const timeoutId = setTimeout(loadQuestions, 300);
-
-    return () => {
-      clearTimeout(timeoutId);
-      controller.abort();
-    };
-  }, [searchParams, currentPage]);
-
-  useEffect(() => {
-    if (!data || loading || currentPage <= totalPages) return;
+    if (!data || isFetching || currentPage <= totalPages) return;
 
     setSearchParams(
       (prev) => {
@@ -73,7 +43,7 @@ export const QuestionsPage: React.FC = () => {
       },
       { replace: true },
     );
-  }, [data, loading, currentPage, totalPages, setSearchParams]);
+  }, [data, isFetching, currentPage, totalPages, setSearchParams]);
 
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";
@@ -105,21 +75,17 @@ export const QuestionsPage: React.FC = () => {
           </div>
 
           <QuestionsListWidget
-            data={data}
-            loading={loading}
-            error={error}
+            data={data ?? null}
+            loading={isFetching}
+            error={isError ? getErrorMessage(error) : null}
             page={currentPage}
-            limit={limit}
+            limit={LIMIT}
             onPageChange={handlePageChange}
           />
         </section>
 
         <aside className={`right-sidebar ${isSidebarOpen ? "right-sidebar--open" : ""}`}>
-          <button
-            type="button"
-            className="sidebar-close"
-            onClick={() => setIsSidebarOpen(false)}
-          >
+          <button type="button" className="sidebar-close" onClick={() => setIsSidebarOpen(false)}>
             Закрыть
           </button>
           <QuestionNavigationWidget />

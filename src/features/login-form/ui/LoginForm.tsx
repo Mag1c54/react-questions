@@ -1,18 +1,13 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/entities/session/api/authApi";
 import { SocialAuth } from "@/features/social-auth/ui/SocialAuth";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
 import { PasswordField } from "@/shared/ui/form/PasswordField";
 import { TextField } from "@/shared/ui/form/TextField";
+import { loginSchema, type LoginFormValues } from "../model/schema";
 import "@/shared/ui/form/auth-form.scss";
-
-const EMAIL_REGEXP = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-interface LoginFormValues {
-  email: string;
-  password: string;
-}
 
 export const LoginForm = () => {
   const [login] = useLoginMutation();
@@ -21,19 +16,20 @@ export const LoginForm = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormValues>({ defaultValues: { email: "", password: "" } });
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  });
 
   const onSubmit = async (values: LoginFormValues) => {
     try {
-      await login({ username: values.email.trim(), password: values.password }).unwrap();
+      await login({ username: values.email, password: values.password }).unwrap();
     } catch (err) {
       const status = (err as { status?: number }).status;
       setError("root.server", {
         type: "server",
         message:
-          status === 401 || status === 400
-            ? "Неверная почта или пароль"
-            : getErrorMessage(err),
+          status === 401 || status === 400 ? "Неверная почта или пароль" : getErrorMessage(err),
       });
     }
   };
@@ -46,10 +42,7 @@ export const LoginForm = () => {
         autoComplete="email"
         placeholder="Введите электронную почту"
         error={errors.email?.message}
-        {...register("email", {
-          required: "Введите почту",
-          pattern: { value: EMAIL_REGEXP, message: "Введите корректную почту" },
-        })}
+        {...register("email")}
       />
 
       <div className="auth-form__password">
@@ -58,7 +51,7 @@ export const LoginForm = () => {
           autoComplete="current-password"
           placeholder="Введите пароль"
           error={errors.password?.message}
-          {...register("password", { required: "Введите пароль" })}
+          {...register("password")}
         />
         <Link to="/forgot-password" className="auth-form__forgot">
           Забыли пароль?
