@@ -66,6 +66,7 @@
     cursor: pointer;
     white-space: nowrap;
     transition: background-color 0.2s ease;
+    text-decoration: none;
 
     &:disabled {
       opacity: 0.45;
@@ -87,6 +88,16 @@
 
       &:hover:not(:disabled) {
         background: rgba($color-error, 0.08);
+      }
+    }
+    &--primary {
+      border-color: $color-accent;
+      background: $color-accent;
+      color: $color-white;
+
+      &:hover:not(:disabled) {
+        border-color: $color-accent-link;
+        background: $color-accent-link;
       }
     }
   }

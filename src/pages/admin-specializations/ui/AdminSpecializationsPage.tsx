@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { FiSearch, FiTrash2 } from "react-icons/fi";
+import { useSearchParams, Link } from "react-router-dom";
+import { FiSearch, FiTrash2, FiPlus } from "react-icons/fi";
 import { CollectionImage } from "@/entities/collection/ui/collection-image/CollectionImage";
+
 import {
   useDeleteSpecializationMutation,
   useGetSpecializationListQuery,
@@ -219,6 +220,13 @@ export const AdminSpecializationsPage = () => {
             ? "Удаляем..."
             : `Удалить выбранное${selectedIds.length > 0 ? ` (${selectedIds.length})` : ""}`}
         </button>
+        <Link
+          to="/admin/specializations/create"
+          className="admin-page__btn admin-page__btn--primary"
+        >
+          Добавить
+          <FiPlus aria-hidden="true" />
+        </Link>
       </div>
 
       {deleteErrors.length > 0 && (
