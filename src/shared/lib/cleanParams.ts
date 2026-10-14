@@ -1,6 +1,6 @@
 type ParamValue = string | number | boolean;
 
-export const cleanParams = (params: Record<string, unknown>): Record<string, ParamValue> => {
+export const cleanParams = <T extends object>(params: T): Record<string, ParamValue> => {
   const result: Record<string, ParamValue> = {};
 
   Object.entries(params).forEach(([key, value]) => {

@@ -42,7 +42,7 @@ export interface Question {
   keywords: string[];
   longAnswer: string;
   shortAnswer: string;
-  status: 'public' | 'draft' | string;
+  status: "public" | "draft" | string;
   rate: number;
   complexity: number;
   createdById: string;
@@ -63,8 +63,7 @@ export interface PaginatedResponse<T> {
   data: T[];
 }
 
-
-export interface GetPublicQuestionsResponse {
+export interface GetQuestionsResponse {
   total: number;
   page: number;
   limit: number;
@@ -75,8 +74,8 @@ export interface FetchQuestionsParams {
   page?: number;
   limit?: number;
   title?: string;
-  order?: 'ASC' | 'DESC';
-  orderBy?: 'createdAt' | 'title' | 'complexity';
+  order?: "ASC" | "DESC";
+  orderBy?: "createdAt" | "title" | "complexity";
   complexity?: string;
   specializationId?: number;
   skills?: string;

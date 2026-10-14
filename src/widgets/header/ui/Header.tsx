@@ -29,7 +29,11 @@ export const Header = () => {
     if (status === "authenticated") {
       return (
         <div className="header__auth">
-          {profile && <span className="header__user">{profile.username}</span>}
+          {profile && (
+            <Link to={`/profile/${profile.id}`} className="header__user">
+              {profile.username}
+            </Link>
+          )}
           <LogoutButton className="header__btn header__btn--outline" />
         </div>
       );

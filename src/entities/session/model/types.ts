@@ -1,9 +1,21 @@
+export interface UserPermission {
+  id: number;
+  name: string;
+}
+
+export interface UserRole {
+  id: number;
+  name: string;
+  permissions: UserPermission[];
+}
+
 export interface AuthUser {
   id: string;
   username: string;
   email: string;
   avatarUrl?: string | null;
   isVerified: boolean;
+  userRoles?: UserRole[];
 }
 
 export interface LoginRequest {
@@ -24,6 +36,7 @@ export interface TokenResponse {
 export interface AuthResponse extends TokenResponse {
   user: AuthUser;
 }
+
 export type SessionStatus = "checking" | "authenticated" | "guest";
 
 export interface SessionState {

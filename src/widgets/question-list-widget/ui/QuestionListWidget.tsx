@@ -1,11 +1,11 @@
 import React from "react";
-import type { Question, GetPublicQuestionsResponse } from "@/entities/question/model/types";
+import type { Question, GetQuestionsResponse } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
 import "./QuestionListWidget.scss";
 
 interface QuestionsListWidgetProps {
-  data: GetPublicQuestionsResponse | null;
+  data: GetQuestionsResponse | null;
   loading: boolean;
   error: string | null;
   page: number;
@@ -22,7 +22,12 @@ export const QuestionsListWidget: React.FC<QuestionsListWidgetProps> = ({
   onPageChange,
 }) => {
   if (loading) return <div className="questions-list-widget__status">Загрузка вопросов...</div>;
-  if (error) return <div className="questions-list-widget__status questions-list-widget__status--error">Ошибка: {error}</div>;
+  if (error)
+    return (
+      <div className="questions-list-widget__status questions-list-widget__status--error">
+        Ошибка: {error}
+      </div>
+    );
 
   return (
     <section className="questions-list-widget">

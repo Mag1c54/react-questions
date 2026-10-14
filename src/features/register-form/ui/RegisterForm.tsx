@@ -35,6 +35,8 @@ export const RegisterForm = () => {
         username: values.username,
         email: values.email,
         password: values.password,
+        // @ts-expect-error if prod delete
+        isVerified: true,
       }).unwrap();
     } catch (err) {
       const status = (err as { status?: number }).status;

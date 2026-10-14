@@ -11,9 +11,7 @@ const rawBaseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    const { accessToken } = (
-      getState() as { session: { accessToken: string | null } }
-    ).session;
+    const { accessToken } = (getState() as { session: { accessToken: string | null } }).session;
     if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
     return headers;
   },
@@ -39,26 +37,29 @@ const requestNewToken = async (api: BaseQueryApi, extraOptions: object) => {
   return token;
 };
 
-const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
-  async (args, api, extraOptions) => {
-    let result = await rawBaseQuery(args, api, extraOptions);
+const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+  args,
+  api,
+  extraOptions,
+) => {
+  let result = await rawBaseQuery(args, api, extraOptions);
 
-    if (result.error?.status === 401 && !isAuthRequest(args)) {
-      refreshPromise ??= requestNewToken(api, extraOptions).finally(() => {
-        refreshPromise = null;
-      });
-      const token = await refreshPromise;
+  if (result.error?.status === 401 && !isAuthRequest(args)) {
+    refreshPromise ??= requestNewToken(api, extraOptions).finally(() => {
+      refreshPromise = null;
+    });
+    const token = await refreshPromise;
 
-      if (token) result = await rawBaseQuery(args, api, extraOptions);
-      else api.dispatch({ type: "session/logout" });
-    }
+    if (token) result = await rawBaseQuery(args, api, extraOptions);
+    else api.dispatch({ type: "session/logout" });
+  }
 
-    return result;
-  };
+  return result;
+};
 
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["Collection"],
+  tagTypes: ["Collection", "Specialization"],
   endpoints: () => ({}),
 });
