@@ -19,9 +19,8 @@ interface ProfileViewProps {
   user: ProfileViewUser;
   profile: Profile;
   specializationTitle?: string;
-  readOnly?: boolean; // чужой профиль: без редактирования и контактов
+  readOnly?: boolean;
 }
-
 const ABOUT_COLLAPSE_LENGTH = 300;
 
 const hideBrokenImage = (e: React.SyntheticEvent<HTMLImageElement>) => {

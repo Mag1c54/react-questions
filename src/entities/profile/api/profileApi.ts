@@ -27,8 +27,8 @@ export const profileApi = baseApi.injectEndpoints({
       query: () => "/auth/profile",
       providesTags: ["Profile"],
     }),
-    getUserById: build.query<AuthUser, string>({
-      query: (id) => `/users/${id}`,
+    getProfileById: build.query<Profile, string>({
+      query: (id) => `/profiles/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Profile", id }],
     }),
   }),
@@ -39,5 +39,5 @@ export const {
   useCreateProfileMutation,
   useUpdateProfileMutation,
   useGetProfileQuery,
-  useGetUserByIdQuery,
+  useGetProfileByIdQuery,
 } = profileApi;

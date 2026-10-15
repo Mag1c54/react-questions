@@ -14,6 +14,7 @@ export interface Profile {
   id: string;
   userId: string;
   profileType: number;
+  username: string;
   specializationId: number;
   markingWeight: number;
   description: string | null;
