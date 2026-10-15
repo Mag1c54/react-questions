@@ -12,6 +12,8 @@ import { ProfilePage } from "@/pages/profile/ui/ProfilePage";
 import { AdminSpecializationsPage } from "@/pages/admin-specializations/ui/AdminSpecializationsPage";
 import { AdminLayout } from "@/widgets/admin-layout/ui/AdminLayout";
 import { AdminSpecializationCreatePage } from "@/pages/admin-specialization-create/ui/AdminSpecializationCreatePage";
+import { ProfileEditPage } from "@/pages/proflie-edit/ui/ProfileEditPage";
+import { UserProfilePage } from "@/pages/user-profile/ui/UserProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,8 @@ const router = createBrowserRouter([
           { path: "/questions", element: <QuestionsPage /> },
           { path: "/interview", element: <QuizPage /> },
           { path: "/interview/questions", element: <QuizQuestionsPage /> },
-          { path: "/profile/:id", element: <ProfilePage /> },
+          { path: "/profile", element: <ProfilePage /> },
+          { path: "/profile/edit", element: <ProfileEditPage /> },
         ],
       },
     ],
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
           { path: "/admin", element: <Navigate to="/admin/specializations" replace /> },
           { path: "/admin/specializations", element: <AdminSpecializationsPage /> },
           { path: "/admin/specializations/create", element: <AdminSpecializationCreatePage /> },
+          { path: "/users/:id", element: <UserProfilePage /> },
         ],
       },
     ],

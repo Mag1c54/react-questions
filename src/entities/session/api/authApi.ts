@@ -1,12 +1,6 @@
 import { baseApi } from "@/shared/api/baseApi";
 import { logout, setAccessToken } from "../model/sessionSlice";
-import type {
-  AuthResponse,
-  LoginRequest,
-  RegisterRequest,
-  TokenResponse,
-  AuthUser,
-} from "../model/types";
+import type { AuthResponse, LoginRequest, RegisterRequest, TokenResponse } from "../model/types";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -49,11 +43,7 @@ export const authApi = baseApi.injectEndpoints({
     logout: build.mutation<void, void>({
       query: () => ({ url: "/auth/logout", method: "GET", cache: "no-store" }),
     }),
-    getProfile: build.query<AuthUser, void>({
-      query: () => "/auth/profile",
-    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetProfileQuery } =
-  authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = authApi;

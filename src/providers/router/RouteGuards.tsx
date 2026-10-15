@@ -1,6 +1,6 @@
 import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hooks";
-import { useGetProfileQuery } from "@/entities/session/api/authApi";
+import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { isAdmin } from "@/entities/session/lib/Admin";
 import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
 

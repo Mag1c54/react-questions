@@ -10,7 +10,7 @@ interface CollectionInfoWidgetProps {
 }
 
 export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) => {
-  const { specializations, isFree, company, createdBy, questionsCount, keywords } = collection;
+  const { specializations, isFree, company, questionsCount, keywords } = collection;
 
   return (
     <div className="collection-info">
@@ -51,11 +51,6 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
           </div>
         </div>
       )}
-
-      <div className="collection-info__group">
-        <h3 className="collection-info__label">Автор</h3>
-        <span className="collection-info__author">{createdBy.username}</span>
-      </div>
 
       <div className="collection-info__group">
         <h3 className="collection-info__label">Количество вопросов</h3>

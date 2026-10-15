@@ -1,3 +1,5 @@
+import type { Profile } from "@/entities/profile/model/types";
+
 export interface UserPermission {
   id: number;
   name: string;
@@ -16,8 +18,14 @@ export interface AuthUser {
   avatarUrl?: string | null;
   isVerified: boolean;
   userRoles?: UserRole[];
+  phone?: string | null;
+  country?: string | null;
+  city?: string | null;
+  birthday?: string | null;
+  address?: string | null;
+  telegramUsername?: string | null;
+  profiles?: Profile[];
 }
-
 export interface LoginRequest {
   username: string;
   password: string;

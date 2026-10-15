@@ -1,0 +1,220 @@
+@use "../../../../styles/variables.scss" as *;
+
+.profile-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: $font-main;
+  color: $color-text-primary;
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: $color-white;
+    border-radius: 16px;
+    box-shadow: 0px 4px 10px rgba(106, 99, 118, 0.1);
+  }
+
+  &__header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  &__avatar {
+    width: 120px;
+    height: 140px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    object-fit: cover;
+
+    &--empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($color-accent, 0.12);
+      color: $color-accent;
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+    overflow-wrap: anywhere;
+  }
+
+  &__role {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__muted {
+    margin: 0;
+    font-size: 13px;
+    color: $color-text-muted;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: $color-text-secondary;
+    overflow-wrap: anywhere;
+  }
+
+  &__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    color: $color-accent;
+    font-size: 12px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background: $color-accent;
+      color: $color-white;
+    }
+  }
+
+  &__edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-left: auto;
+    border-radius: 8px;
+    color: $color-accent;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba($color-accent, 0.1);
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__about {
+    margin: 0;
+    font-size: 14px;
+    line-height: 150%;
+    color: $color-text-secondary;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+
+    &--clamped {
+      display: -webkit-box;
+      overflow: hidden;
+      line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__toggle {
+    align-self: center;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: $font-main;
+    font-size: 12px;
+    color: $color-accent;
+    cursor: pointer;
+  }
+
+  &__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__skill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid $color-accent;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &__skill-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  &__empty {
+    margin: 0;
+    font-size: 14px;
+    color: $color-text-muted;
+
+    a {
+      color: $color-accent-link;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .profile-view {
+    &__header {
+      flex-direction: column;
+    }
+
+    &__avatar {
+      width: 100%;
+      max-width: 160px;
+    }
+
+    &__header > &__edit {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+  }
+}

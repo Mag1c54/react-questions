@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { FiImage } from "react-icons/fi";
 import "./ImageUploader.scss";
 
@@ -25,11 +25,32 @@ interface ImageUploaderProps {
   onChange: (dataUrl: string | null) => void;
   error?: string;
   maxSizeKb?: number;
+  requireSquare?: boolean;
+  removable?: boolean;
+  placeholderIcon?: ReactNode;
+  hints?: string[];
 }
 
-export const ImageUploader = ({ value, onChange, error, maxSizeKb = 150 }: ImageUploaderProps) => {
+export const ImageUploader = ({
+  value,
+  onChange,
+  error,
+  maxSizeKb = 150,
+  requireSquare = true,
+  removable,
+  placeholderIcon,
+  hints,
+}: ImageUploaderProps) => {
   const [fileError, setFileError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+
+  const showRemove = removable ?? Boolean(value);
+
+  const defaultHints = [
+    `JPG, PNG, JPEG (максимальный размер файла ${maxSizeKb}КБ)`,
+    "Рекомендуемый размер — 800×800 px",
+    ...(requireSquare ? ["Принимаем только квадратные картинки"] : []),
+  ];
 
   const processFile = async (file: File) => {
     setFileError(null);
@@ -45,7 +66,14 @@ export const ImageUploader = ({ value, onChange, error, maxSizeKb = 150 }: Image
 
     try {
       const dataUrl = await readAsDataUrl(file);
-      await loadImage(dataUrl);
+
+      if (requireSquare) {
+        const image = await loadImage(dataUrl);
+        if (image.naturalWidth !== image.naturalHeight) {
+          setFileError("Принимаем только квадратные картинки");
+          return;
+        }
+      }
 
       onChange(dataUrl);
     } catch {
@@ -77,10 +105,14 @@ export const ImageUploader = ({ value, onChange, error, maxSizeKb = 150 }: Image
     <div className="image-uploader">
       <div className="image-uploader__preview-col">
         <div className="image-uploader__preview">
-          {value ? <img src={value} alt="Предпросмотр картинки" /> : <FiImage aria-hidden="true" />}
+          {value ? (
+            <img src={value} alt="Предпросмотр картинки" />
+          ) : (
+            (placeholderIcon ?? <FiImage aria-hidden="true" />)
+          )}
         </div>
 
-        {value && (
+        {showRemove && (
           <button type="button" className="image-uploader__remove" onClick={handleRemove}>
             Удалить картинку
           </button>
@@ -107,11 +139,11 @@ export const ImageUploader = ({ value, onChange, error, maxSizeKb = 150 }: Image
           <span className="image-uploader__link">Кликни для изменения</span> или перетащи сюда
           картинку
         </span>
-        <span className="image-uploader__hint">
-          JPG, PNG, JPEG (максимальный размер файла {maxSizeKb}КБ)
-        </span>
-        <span className="image-uploader__hint">Рекомендуемый размер — 800×800 px</span>
-        <span className="image-uploader__hint">Принимаем только квадратные картинки</span>
+        {(hints ?? defaultHints).map((hint) => (
+          <span key={hint} className="image-uploader__hint">
+            {hint}
+          </span>
+        ))}
       </label>
 
       {message && (

@@ -195,6 +195,10 @@ $breakpoint-header: 768px;
     &__auth {
       flex-direction: column;
       align-items: stretch;
+      text-decoration: none;
+      &:hover {
+        color: $color-accent;
+      }
     }
   }
 }

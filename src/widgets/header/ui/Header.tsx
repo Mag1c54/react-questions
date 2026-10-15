@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useGetProfileQuery } from "@/entities/session/api/authApi";
+import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
 import { LogoutButton } from "@/features/logout/ui/LogoutButton";
 import { useAppSelector } from "@/store/hooks";
@@ -30,7 +30,7 @@ export const Header = () => {
       return (
         <div className="header__auth">
           {profile && (
-            <Link to={`/profile/${profile.id}`} className="header__user">
+            <Link to="/profile" className="header__user" onClick={closeMenu}>
               {profile.username}
             </Link>
           )}

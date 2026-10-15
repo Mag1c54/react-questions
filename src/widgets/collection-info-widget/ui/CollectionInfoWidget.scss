@@ -75,6 +75,11 @@
     font-size: 12px;
     font-weight: 500;
     color: $color-accent-link;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__keywords {

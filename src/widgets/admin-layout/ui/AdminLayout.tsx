@@ -15,7 +15,7 @@ import {
   FiTag,
   FiUser,
 } from "react-icons/fi";
-import { useGetProfileQuery } from "@/entities/session/api/authApi";
+import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { LogoutButton } from "@/features/logout/ui/LogoutButton";
 import "./AdminLayout.scss";
 

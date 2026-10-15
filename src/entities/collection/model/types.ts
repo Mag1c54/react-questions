@@ -25,7 +25,7 @@ export interface Collection {
   imageSrc: string | null;
   createdAt: string;
   updatedAt: string;
-  createdBy: UserShort;
+  createdBy: UserShort | null;
   isFree: boolean;
   keywords: string[];
   company: Company | null;
