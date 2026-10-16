@@ -3,6 +3,7 @@ import { MainLayout } from "./Layout";
 import { AdminLayout } from "@/widgets/admin-layout/ui/AdminLayout";
 import { AdminRoute, GuestRoute, ProtectedRoute, PageLoader } from "./RouteGuards";
 import { Suspense } from "react";
+import { NotFoundPage } from "@/pages/not-found/ui/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         lazy: async () => ({
-          Component: (await import("@/pages/home/гш/HomePage")).HomePage,
+          Component: (await import("@/pages/home/ui/HomePage")).HomePage,
         }),
       },
       {
@@ -106,6 +107,15 @@ const router = createBrowserRouter([
             }),
           },
         ],
+      },
+    ],
+  },
+  {
+    element: <MainLayout />,
+    children: [
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
