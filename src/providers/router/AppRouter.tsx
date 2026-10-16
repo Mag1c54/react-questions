@@ -1,12 +1,8 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { MainLayout } from "./Layout";
 import { AdminLayout } from "@/widgets/admin-layout/ui/AdminLayout";
-import { AdminRoute, GuestRoute, ProtectedRoute } from "./RouteGuards";
+import { AdminRoute, GuestRoute, ProtectedRoute, PageLoader } from "./RouteGuards";
 import { Suspense } from "react";
-
-const PageLoader = () => (
-  <div className="flex justify-center items-center h-screen">Загрузка...</div>
-);
 
 const router = createBrowserRouter([
   {
@@ -27,6 +23,12 @@ const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
+      {
+        path: "/",
+        lazy: async () => ({
+          Component: (await import("@/pages/home/гш/HomePage")).HomePage,
+        }),
+      },
       {
         path: "/collections",
         lazy: async () => ({
@@ -106,10 +108,6 @@ const router = createBrowserRouter([
         ],
       },
     ],
-  },
-  {
-    path: "/",
-    element: <>MAIN</>,
   },
 ]);
 

@@ -74,9 +74,8 @@ export const Header = () => {
               </NavLink>
             ))}
           </nav>
-
-          {renderAuth()}
         </div>
+        {renderAuth()}
 
         <button
           type="button"

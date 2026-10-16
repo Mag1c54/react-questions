@@ -1,0 +1,136 @@
+@use "../../../styles/variables.scss" as *;
+
+$color-hero-dark: #05020f;
+$color-hero-mid: #3d16d6;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: $font-main;
+  color: $color-white;
+  background:
+    radial-gradient(ellipse 70% 38% at 50% 78%, rgba($color-white, 0.7), transparent 70%),
+    linear-gradient(
+      180deg,
+      $color-hero-dark 0%,
+      $color-hero-dark 8%,
+      $color-hero-mid 42%,
+      $color-accent 58%,
+      #d9ccff 82%,
+      #f6f3ff 100%
+    );
+  header {
+    position: absolute !important;
+  }
+  &__hero {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 110px 24px 40px;
+    text-align: center;
+  }
+
+  &__title {
+    max-width: 960px;
+    margin: 0;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    max-width: 620px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 285px;
+    height: 52px;
+    padding: 0 28px;
+    border-radius: 12px;
+    background: $color-accent;
+    color: $color-white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: $color-accent-link;
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 0 24px 24px;
+    list-style: none;
+    color: $color-text-primary;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 92px;
+    padding: 16px 12px;
+    border-radius: 20px;
+    background: $color-white;
+    box-shadow: 0px 4px 16px rgba($color-text-primary, 0.06);
+    text-align: center;
+  }
+
+  &__stat-value {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+
+  &__stat-label {
+    font-size: 14px;
+    line-height: 130%;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .home {
+    &__stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .home {
+    &__hero {
+      padding-top: 90px;
+    }
+
+    &__stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    &__btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}

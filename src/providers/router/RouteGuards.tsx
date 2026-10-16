@@ -70,3 +70,7 @@ export const AdminRoute = () => {
 
   return <Outlet />;
 };
+
+export const PageLoader = () => (
+  <div className="flex justify-center items-center h-screen">Загрузка...</div>
+);
