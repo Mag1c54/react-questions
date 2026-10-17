@@ -1,3 +1,5 @@
+import storybook from "eslint-plugin-storybook";
+
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -9,11 +11,7 @@ export default tseslint.config(
   { ignores: ["dist", "coverage", "node_modules"] },
   {
     files: ["**/*.{ts,tsx}"],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      prettier,
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, prettier],
     languageOptions: {
       ecmaVersion: 2022,
       globals: globals.browser,
@@ -25,19 +23,38 @@ export default tseslint.config(
     rules: {
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_" },
-      ],
-      "@typescript-eslint/consistent-type-imports": [
-        "error",
-        { prefer: "type-imports" },
-      ],
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
       "no-console": ["warn", { allow: ["warn", "error"] }],
     },
   },
+  {
+    files: ["**/*.stories.{ts,tsx}"],
+    rules: { "react-refresh/only-export-components": "off" },
+  },
+  {
+    files: ["src/shared/ui/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/entities/*",
+                "@/features/*",
+                "@/widgets/*",
+                "@/pages/*",
+                "@/app/*",
+                "@/store/*",
+              ],
+              message: "UI-кит не должен импортировать слои выше shared",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  storybook.configs["flat/recommended"],
 );
