@@ -1,0 +1,41 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-card {
+  background: $color-white;
+
+  &--p-none {
+    padding: 0;
+  }
+
+  &--p-md {
+    padding: 16px;
+  }
+
+  &--p-lg {
+    padding: 24px 20px;
+  }
+
+  &--r-md {
+    border-radius: 16px;
+  }
+
+  &--r-lg {
+    border-radius: 24px;
+  }
+
+  &--shadow {
+    box-shadow: 0px 4px 10px rgba(106, 99, 118, 0.1);
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .ui-card {
+    &--p-lg {
+      padding: 16px 12px;
+    }
+
+    &--r-lg {
+      border-radius: 16px;
+    }
+  }
+}

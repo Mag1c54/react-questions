@@ -28,12 +28,7 @@ export const Chip = ({
   className,
   children,
 }: ChipProps) => {
-  const classes = [
-    "chip",
-    checked && "chip--checked",
-    disabled && "chip--disabled",
-    className,
-  ]
+  const classes = ["chip", checked && "chip--checked", disabled && "chip--disabled", className]
     .filter(Boolean)
     .join(" ");
 
@@ -42,13 +37,7 @@ export const Chip = ({
 
     if (typeof icon === "string") {
       return (
-        <img
-          src={icon}
-          alt=""
-          className="chip__icon"
-          loading="lazy"
-          onError={hideBrokenImage}
-        />
+        <img src={icon} alt="" className="chip__icon" loading="lazy" onError={hideBrokenImage} />
       );
     }
 

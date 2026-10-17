@@ -1,28 +1,77 @@
 @use "../../../styles/variables.scss" as *;
 
 $color-yellow: #ffc43d;
+$sidebar-width: 260px;
+$sidebar-collapsed-width: 76px;
 
 .admin-layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: $sidebar-width 1fr;
   min-height: 100vh;
   background: $color-bg-page;
   font-family: $font-main;
   color: $color-text-primary;
+  transition: grid-template-columns 0.2s ease;
+
+  &--collapsed {
+    grid-template-columns: $sidebar-collapsed-width 1fr;
+  }
 
   &__sidebar {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    min-width: 0;
     padding: 20px 16px;
     background: $color-white;
   }
 
+  &__brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 4px;
+  }
+
   &__logo {
-    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
     font-size: 24px;
     font-weight: 700;
     line-height: 120%;
+    text-decoration: none;
+  }
+
+  &__logo-img {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  &__collapse {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid $color-border-light;
+    border-radius: 8px;
+    background: transparent;
+    color: $color-text-secondary;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      border-color: $color-accent;
+      color: $color-accent;
+    }
   }
 
   &__nav {
@@ -49,16 +98,18 @@ $color-yellow: #ffc43d;
       background-color 0.15s ease,
       color 0.15s ease;
 
+    svg {
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
     &:hover:not(&--disabled) {
       background: rgba($color-accent, 0.06);
     }
 
-    &--platform {
+    &--platform,
+    &--platform:hover {
       background: $color-yellow;
-
-      &:hover {
-        background: $color-yellow;
-      }
     }
 
     &--active {
@@ -72,22 +123,11 @@ $color-yellow: #ffc43d;
     }
   }
 
-  &__logout {
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: auto;
-    padding: 10px 16px;
-    border: 1px solid $color-error;
-    border-radius: 12px;
-    background: transparent;
-    color: $color-error;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background: rgba($color-error, 0.08);
-    }
   }
 
   &__main {
@@ -98,16 +138,10 @@ $color-yellow: #ffc43d;
 
   &__topbar {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    gap: 12px;
     padding: 12px 24px;
     background: $color-white;
-  }
-
-  &__username {
-    font-size: 14px;
-    font-weight: 500;
+    border-bottom: 1px solid $color-border-light;
   }
 
   &__avatar {
@@ -130,12 +164,35 @@ $color-yellow: #ffc43d;
     flex: 1;
     padding: 24px;
   }
+
+  &--collapsed &__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &--collapsed &__brand {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  &--collapsed &__link {
+    justify-content: center;
+    padding-inline: 0;
+  }
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .admin-layout {
+  .admin-layout,
+  .admin-layout--collapsed {
     grid-template-columns: 1fr;
+  }
 
+  .admin-layout {
     &__sidebar {
       flex-direction: row;
       align-items: center;
@@ -144,17 +201,43 @@ $color-yellow: #ffc43d;
       overflow-x: auto;
     }
 
+    &__collapse {
+      display: none;
+    }
+
     &__nav {
       flex-direction: row;
     }
 
-    &__logout {
+    &__bottom {
+      flex-direction: row;
       margin: 0 0 0 auto;
-      white-space: nowrap;
+
+      .ui-btn {
+        width: auto;
+      }
     }
 
     &__content {
       padding: 12px;
+    }
+
+    &--collapsed &__label {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+    }
+
+    &--collapsed &__brand {
+      flex-direction: row;
+    }
+
+    &--collapsed &__link {
+      justify-content: flex-start;
+      padding-inline: 12px;
     }
   }
 }

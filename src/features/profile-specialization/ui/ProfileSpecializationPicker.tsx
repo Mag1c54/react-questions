@@ -5,7 +5,7 @@ import type { Profile } from "@/entities/profile/model/types";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { Chip } from "@/shared/ui/Chip";
+import { Chip } from "@/shared/ui/chip/Chip";
 import "./ProfileSpecializationPicker.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;

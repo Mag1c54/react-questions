@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
 import "./QuestionNavigationWidget.scss";
-import { Chip } from "@/shared/ui/Chip";
+import { Chip } from "@/shared/ui/chip/Chip";
 
 interface FilterState {
   rate: string[];
@@ -33,8 +33,7 @@ export const QuestionNavigationWidget: React.FC = () => {
   const currentFilters: FilterState = {
     rate: searchParams.get("rate")?.split(",").filter(Boolean) || [],
     skills: searchParams.get("skills")?.split(",").filter(Boolean) || [],
-    complexity:
-      searchParams.get("complexity")?.split(",").filter(Boolean) || [],
+    complexity: searchParams.get("complexity")?.split(",").filter(Boolean) || [],
   };
 
   const handleSearchChange = (val: string) => {
@@ -68,9 +67,7 @@ export const QuestionNavigationWidget: React.FC = () => {
 
   const handleComplexityGroupToggle = (group: number[]) => {
     const groupStr = group.map(String);
-    const isChecked = groupStr.every((n) =>
-      currentFilters.complexity.includes(n),
-    );
+    const isChecked = groupStr.every((n) => currentFilters.complexity.includes(n));
 
     const nextValues = isChecked
       ? currentFilters.complexity.filter((n) => !groupStr.includes(n))
@@ -90,10 +87,7 @@ export const QuestionNavigationWidget: React.FC = () => {
 
   return (
     <div className="question-nav">
-      <QuestionSearch
-        value={searchParams.get("title") || ""}
-        onChange={handleSearchChange}
-      />
+      <QuestionSearch value={searchParams.get("title") || ""} onChange={handleSearchChange} />
 
       <div className="question-nav__group">
         <h3 className="question-nav__title">Навыки (Skills)</h3>
@@ -120,9 +114,7 @@ export const QuestionNavigationWidget: React.FC = () => {
         <div className="question-nav__options">
           {complexityGroups.map((group, idx) => {
             const groupStr = group.map(String);
-            const isChecked = groupStr.every((n) =>
-              currentFilters.complexity.includes(n),
-            );
+            const isChecked = groupStr.every((n) => currentFilters.complexity.includes(n));
 
             return (
               <Chip

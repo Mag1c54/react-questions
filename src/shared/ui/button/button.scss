@@ -1,0 +1,113 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-family: $font-main;
+  font-weight: 500;
+  line-height: 120%;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+
+  &--sm {
+    height: 32px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  &--md {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+
+  &--lg {
+    height: 48px;
+    padding: 0 28px;
+    font-size: 15px;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--icon {
+    padding: 0;
+    font-size: 18px;
+
+    &.ui-btn--sm {
+      width: 32px;
+    }
+
+    &.ui-btn--md {
+      width: 40px;
+    }
+
+    &.ui-btn--lg {
+      width: 48px;
+    }
+  }
+
+  &--round {
+    border-radius: 50%;
+  }
+
+  &--primary {
+    background: $color-accent;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+      background: $color-accent-link;
+    }
+  }
+
+  &--outline {
+    border-color: $color-accent;
+    background: transparent;
+    color: $color-accent;
+
+    &:hover:not(:disabled) {
+      background: rgba($color-accent, 0.08);
+    }
+  }
+
+  &--danger {
+    background: $color-error;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+      filter: brightness(0.92);
+    }
+  }
+
+  &--danger-outline {
+    border-color: $color-error;
+    background: transparent;
+    color: $color-error;
+
+    &:hover:not(:disabled) {
+      background: rgba($color-error, 0.08);
+    }
+  }
+
+  &:disabled,
+  &[aria-busy="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent-link;
+    outline-offset: 2px;
+  }
+}

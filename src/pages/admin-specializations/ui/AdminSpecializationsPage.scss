@@ -11,138 +11,29 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 12px;
-    padding: 16px;
-    background: $color-white;
-    border-radius: 16px;
   }
 
   &__search {
-    position: relative;
+    flex: 1 1 200px;
+    max-width: 260px;
+  }
+
+  &__actions {
     display: flex;
-    flex: 1;
-    align-items: center;
-    min-width: 200px;
-  }
-
-  &__search-icon {
-    position: absolute;
-    left: 14px;
-    color: $color-text-muted;
-    pointer-events: none;
-  }
-
-  &__search-input {
-    width: 100%;
-    padding: 10px 14px 10px 40px;
-    border: 1px solid $color-border-light;
-    border-radius: 12px;
-    background: $color-white;
-    font-family: $font-main;
-    font-size: 14px;
-    color: $color-text-primary;
-    outline: none;
-    transition: border-color 0.2s ease;
-
-    &::placeholder {
-      color: $color-text-muted;
-    }
-
-    &:focus {
-      border-color: $color-accent;
-    }
-  }
-
-  &__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border: 1px solid;
-    border-radius: 12px;
-    background: transparent;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-
-    &:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    &--outline {
-      border-color: $color-accent;
-      color: $color-accent;
-
-      &:hover:not(:disabled) {
-        background: rgba($color-accent, 0.08);
-      }
-    }
-
-    &--danger {
-      border-color: $color-error;
-      color: $color-error;
-
-      &:hover:not(:disabled) {
-        background: rgba($color-error, 0.08);
-      }
-    }
-    &--primary {
-      border-color: $color-accent;
-      background: $color-accent;
-      color: $color-white;
-
-      &:hover:not(:disabled) {
-        border-color: $color-accent-link;
-        background: $color-accent-link;
-      }
-    }
-  }
-
-  &__alert {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    background: rgba($color-error, 0.08);
-    font-size: 14px;
-    color: $color-error;
-  }
-
-  &__alert-title {
-    margin: 0;
-    font-weight: 600;
-  }
-
-  &__alert-list {
-    margin: 0;
-    padding-left: 18px;
-    line-height: 150%;
-  }
-
-  &__alert-close {
-    padding: 0;
-    border: none;
-    background: none;
-    font-family: $font-main;
-    font-size: 13px;
-    color: $color-error;
-    text-decoration: underline;
-    cursor: pointer;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-left: auto;
   }
 
   &__card {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 16px;
-    background: $color-white;
-    border-radius: 16px;
+  }
+
+  &__errors {
+    margin: 4px 0 0;
+    padding-left: 18px;
   }
 
   &__status {
@@ -155,76 +46,5 @@
     &--error {
       color: $color-error;
     }
-  }
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 14px;
-
-  &__wrap {
-    overflow-x: auto;
-    border-radius: 16px;
-    transition: opacity 0.2s ease;
-
-    &--loading {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-
-  th {
-    padding: 12px 16px;
-    background: $color-accent;
-    color: $color-white;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  td {
-    padding: 12px 16px;
-    border-bottom: 1px solid $color-border-light;
-    vertical-align: middle;
-  }
-
-  tbody tr:hover {
-    background: rgba($color-accent, 0.03);
-  }
-
-  &__check {
-    width: 44px;
-
-    input {
-      width: 16px;
-      height: 16px;
-      accent-color: $color-accent;
-      cursor: pointer;
-    }
-  }
-
-  &__image {
-    display: block;
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-    object-fit: cover;
-
-    &--empty {
-      background: $color-bg-page;
-    }
-  }
-
-  &__title {
-    font-weight: 500;
-    color: $color-text-primary;
-  }
-
-  &__muted {
-    color: $color-text-secondary;
-    white-space: nowrap;
   }
 }

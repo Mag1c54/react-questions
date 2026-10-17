@@ -1,0 +1,98 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &__icon {
+    position: absolute;
+    left: 14px;
+    display: flex;
+    color: $color-text-muted;
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  &:focus-within &__icon {
+    color: $color-accent;
+  }
+
+  &__control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid $color-border-light;
+    border-radius: 12px;
+    background: $color-white;
+    font-family: $font-main;
+    font-size: 14px;
+    color: $color-text-primary;
+    outline: none;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      border-color: $color-accent;
+    }
+
+    &--with-icon {
+      padding-left: 40px;
+    }
+
+    &--error {
+      border-color: $color-error;
+    }
+
+    &:disabled {
+      background: $color-bg-page;
+      color: $color-text-muted;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.ui-textarea {
+  position: relative;
+
+  &__control {
+    display: block;
+    width: 100%;
+    min-height: 140px;
+    padding: 14px 14px 34px;
+    border: 1px solid $color-border-light;
+    border-radius: 16px;
+    background: $color-white;
+    font-family: $font-main;
+    font-size: 14px;
+    line-height: 150%;
+    color: $color-text-primary;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      border-color: $color-accent;
+    }
+
+    &--error {
+      border-color: $color-error;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    right: 28px;
+    bottom: 12px;
+    font-size: 12px;
+    color: $color-text-muted;
+    pointer-events: none;
+  }
+}

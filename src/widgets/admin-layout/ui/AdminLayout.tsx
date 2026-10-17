@@ -1,5 +1,5 @@
-import type { ComponentType } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useState, type ComponentType } from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import {
   FiAward,
   FiBookOpen,
@@ -11,13 +11,20 @@ import {
   FiHelpCircle,
   FiHome,
   FiLayers,
+  FiLogOut,
   FiMap,
+  FiMessageCircle,
+  FiSidebar,
   FiTag,
   FiUser,
 } from "react-icons/fi";
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { LogoutButton } from "@/features/logout/ui/LogoutButton";
+import { ADMIN_ROUTES } from "@/shared/config/routes";
+import { buttonClassName } from "@/shared/ui";
 import "./AdminLayout.scss";
+
+const SUPPORT_URL = "https://t.me/yeahub_it";
 
 interface NavItem {
   label: string;
@@ -29,7 +36,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: "Платформа", icon: FiGrid, to: "/", platform: true },
   { label: "Главная", icon: FiHome, to: null },
-  { label: "Специализации", icon: FiLayers, to: "/admin/specializations" },
+  { label: "Специализации", icon: FiLayers, to: ADMIN_ROUTES.specializations },
   { label: "Верификация", icon: FiCheckCircle, to: null },
   { label: "Навыки", icon: FiAward, to: null },
   { label: "Вопросы", icon: FiHelpCircle, to: null },
@@ -43,13 +50,29 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export const AdminLayout = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const { data: profile } = useGetProfileQuery();
   const initial = profile?.username?.[0]?.toUpperCase() ?? "?";
 
   return (
-    <div className="admin-layout">
+    <div className={`admin-layout ${isCollapsed ? "admin-layout--collapsed" : ""}`}>
       <aside className="admin-layout__sidebar">
-        <span className="admin-layout__logo">Yeahub</span>
+        <div className="admin-layout__brand">
+          <Link to="/" className="admin-layout__logo">
+            <img src="/logo.svg" alt="" className="admin-layout__logo-img" />
+            <span className="admin-layout__label">Yeahub</span>
+          </Link>
+
+          <button
+            type="button"
+            className="admin-layout__collapse"
+            aria-label={isCollapsed ? "Развернуть меню" : "Свернуть меню"}
+            aria-expanded={!isCollapsed}
+            onClick={() => setIsCollapsed((prev) => !prev)}
+          >
+            <FiSidebar aria-hidden="true" />
+          </button>
+        </div>
 
         <nav aria-label="Разделы админки">
           <ul className="admin-layout__nav">
@@ -59,6 +82,7 @@ export const AdminLayout = () => {
                   <NavLink
                     to={to}
                     end={to === "/"}
+                    title={isCollapsed ? label : undefined}
                     className={({ isActive }) =>
                       [
                         "admin-layout__link",
@@ -68,7 +92,7 @@ export const AdminLayout = () => {
                     }
                   >
                     <Icon aria-hidden="true" />
-                    {label}
+                    <span className="admin-layout__label">{label}</span>
                   </NavLink>
                 ) : (
                   <span
@@ -77,7 +101,7 @@ export const AdminLayout = () => {
                     title="Скоро"
                   >
                     <Icon aria-hidden="true" />
-                    {label}
+                    <span className="admin-layout__label">{label}</span>
                   </span>
                 )}
               </li>
@@ -85,16 +109,39 @@ export const AdminLayout = () => {
           </ul>
         </nav>
 
-        <LogoutButton className="admin-layout__logout" />
+        <div className="admin-layout__bottom">
+          <a
+            href={SUPPORT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClassName({ variant: "primary", fullWidth: true })}
+          >
+            <FiMessageCircle aria-hidden="true" />
+            <span className="admin-layout__label">Поддержка</span>
+          </a>
+
+          <LogoutButton className={buttonClassName({ variant: "danger-outline", fullWidth: true })}>
+            <FiLogOut aria-hidden="true" />
+            <span className="admin-layout__label">Выход</span>
+          </LogoutButton>
+        </div>
       </aside>
 
       <div className="admin-layout__main">
         <header className="admin-layout__topbar">
-          {profile?.username && <span className="admin-layout__username">{profile.username}</span>}
           {profile?.avatarUrl ? (
-            <img src={profile.avatarUrl} alt="" className="admin-layout__avatar" />
+            <img
+              src={profile.avatarUrl}
+              alt=""
+              title={profile.username}
+              className="admin-layout__avatar"
+            />
           ) : (
-            <span className="admin-layout__avatar admin-layout__avatar--empty" aria-hidden="true">
+            <span
+              className="admin-layout__avatar admin-layout__avatar--empty"
+              title={profile?.username}
+              aria-hidden="true"
+            >
               {initial}
             </span>
           )}

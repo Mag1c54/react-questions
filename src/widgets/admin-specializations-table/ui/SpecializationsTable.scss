@@ -1,0 +1,86 @@
+@use "../../../styles/variables.scss" as *;
+
+.specializations-table {
+  overflow-x: auto;
+  border-radius: 16px;
+  background: $color-bg-page;
+  font-family: $font-main;
+  transition: opacity 0.2s ease;
+
+  &--loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+
+    th {
+      padding: 12px 16px;
+      background: $color-accent;
+      color: $color-white;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      white-space: nowrap;
+
+      &:first-child {
+        border-top-left-radius: 16px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 16px;
+      }
+    }
+
+    td {
+      padding: 12px 16px;
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background: rgba($color-accent, 0.04);
+    }
+  }
+
+  &__check {
+    width: 44px;
+
+    input {
+      width: 16px;
+      height: 16px;
+      accent-color: $color-accent;
+      cursor: pointer;
+    }
+  }
+
+  th &__check input,
+  th#{&}__check input {
+    accent-color: $color-white;
+  }
+
+  &__image {
+    display: block;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+
+    &--empty {
+      background: $color-border-light;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    color: $color-text-primary;
+  }
+
+  &__muted {
+    color: $color-text-secondary;
+    white-space: nowrap;
+  }
+}

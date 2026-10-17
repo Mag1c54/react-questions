@@ -1,3 +1,3 @@
-import { CreateSpecializationForm } from "@/features/specialization-create/ui/SpecializationCreateForm";
+import { CreateSpecializationForm } from "@/features/specialization-manage/ui/CreateSpecializationForm";
 
 export const AdminSpecializationCreatePage = () => <CreateSpecializationForm />;

@@ -12,7 +12,7 @@ import {
   MAX_LIMIT,
   parseQuizSettings,
 } from "@/entities/quiz/lib/quizParams";
-import { Chip } from "@/shared/ui/Chip";
+import { Chip } from "@/shared/ui/chip/Chip";
 import { NumberStepper } from "@/shared/ui/number-stepper/NumberStepper";
 import "./QuizSettingsForm.scss";
 
@@ -73,14 +73,11 @@ export const QuizSettingsForm = () => {
     if (specialization === null) {
       return <p className="quiz-form__hint">Сначала выберите специализацию</p>;
     }
-    if (isSkillsFetching)
-      return <p className="quiz-form__hint">Загрузка категорий...</p>;
+    if (isSkillsFetching) return <p className="quiz-form__hint">Загрузка категорий...</p>;
 
     const skills = skillsData?.data ?? [];
     if (skills.length === 0) {
-      return (
-        <p className="quiz-form__hint">Для этой специализации категорий нет</p>
-      );
+      return <p className="quiz-form__hint">Для этой специализации категорий нет</p>;
     }
 
     return (
@@ -122,11 +119,7 @@ export const QuizSettingsForm = () => {
             <h2 className="quiz-form__title">Выбор специализации</h2>
 
             {isSpecsLoading && <p className="quiz-form__hint">Загрузка...</p>}
-            {isSpecsError && (
-              <p className="quiz-form__error">
-                Не удалось загрузить специализации
-              </p>
-            )}
+            {isSpecsError && <p className="quiz-form__error">Не удалось загрузить специализации</p>}
 
             <Controller
               name="specialization"
@@ -176,9 +169,7 @@ export const QuizSettingsForm = () => {
               render={({ field }) => (
                 <div className="quiz-form__chips">
                   {COMPLEXITY_RANGES.map((range) => {
-                    const checked = range.levels.every((level) =>
-                      field.value.includes(level),
-                    );
+                    const checked = range.levels.every((level) => field.value.includes(level));
                     return (
                       <Chip
                         key={range.label}
@@ -186,12 +177,8 @@ export const QuizSettingsForm = () => {
                         onChange={() =>
                           field.onChange(
                             checked
-                              ? field.value.filter(
-                                  (level) => !range.levels.includes(level),
-                                )
-                              : Array.from(
-                                  new Set([...field.value, ...range.levels]),
-                                ),
+                              ? field.value.filter((level) => !range.levels.includes(level))
+                              : Array.from(new Set([...field.value, ...range.levels])),
                           )
                         }
                       >
