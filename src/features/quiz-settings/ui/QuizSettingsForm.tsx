@@ -3,8 +3,9 @@ import { Controller, useForm } from "react-hook-form";
 import { FiArrowRight } from "react-icons/fi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { resetQuiz } from "@/entities/quiz/model/quizSlice";
+import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
 import {
   buildQuizSearch,
   COMPLEXITY_RANGES,
@@ -15,7 +16,7 @@ import {
 import { Chip } from "@/shared/ui/chip/Chip";
 import { NumberStepper } from "@/shared/ui/number-stepper/NumberStepper";
 import "./QuizSettingsForm.scss";
-
+import { Button, Popup } from "@/shared/ui";
 interface QuizFormValues {
   specialization: number | null;
   skills: number[];
@@ -28,6 +29,8 @@ export const QuizSettingsForm = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const initial = parseQuizSettings(searchParams);
+  const sessionStatus = useAppSelector(selectSessionStatus);
+  const isAuthenticated = sessionStatus === "authenticated";
 
   const {
     control,
@@ -88,22 +91,38 @@ export const QuizSettingsForm = () => {
           <div className="quiz-form__chips">
             {skills.map((skill) => {
               const checked = field.value.includes(skill.id);
-              return (
+
+              const chipNode = (
                 <Chip
                   key={skill.id}
                   checked={checked}
+                  disabled={!isAuthenticated}
                   icon={skill.imageSrc ?? "/logo.svg"}
-                  onChange={() =>
+                  onChange={() => {
+                    if (!isAuthenticated) return;
                     field.onChange(
                       checked
                         ? field.value.filter((id) => id !== skill.id)
                         : [...field.value, skill.id],
-                    )
-                  }
+                    );
+                  }}
                 >
                   {skill.title}
                 </Chip>
               );
+
+              if (!isAuthenticated) {
+                return (
+                  <Popup
+                    key={skill.id}
+                    content="Доступно только для зарегистрированных пользователей"
+                  >
+                    {chipNode}
+                  </Popup>
+                );
+              }
+
+              return chipNode;
             })}
           </div>
         )}
@@ -210,10 +229,10 @@ export const QuizSettingsForm = () => {
       </div>
 
       <div className="quiz-form__footer">
-        <button type="submit" className="quiz-form__submit">
+        <Button type="submit" className="quiz-form__submit">
           Начать
           <FiArrowRight aria-hidden="true" />
-        </button>
+        </Button>
       </div>
     </form>
   );

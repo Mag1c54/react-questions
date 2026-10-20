@@ -43,6 +43,10 @@ const router = createBrowserRouter([
         }),
       },
       {
+        path: "/interview",
+        lazy: async () => ({ Component: (await import("@/pages/quiz/QuizPage")).QuizPage }),
+      },
+      {
         element: <ProtectedRoute />,
         children: [
           {
@@ -50,10 +54,6 @@ const router = createBrowserRouter([
             lazy: async () => ({
               Component: (await import("../../pages/questions/ui/QuestionsPage")).QuestionsPage,
             }),
-          },
-          {
-            path: "/interview",
-            lazy: async () => ({ Component: (await import("@/pages/quiz/QuizPage")).QuizPage }),
           },
           {
             path: "/interview/questions",

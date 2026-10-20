@@ -14,3 +14,4 @@ export { Input, type InputProps } from "./input/Input";
 export { Textarea, type TextareaProps } from "./input/Textarea";
 export { NumberStepper } from "./number-stepper/NumberStepper";
 export { SafeImage } from "./safe-image/SafeImage";
+export { Popup } from "./popup/Popup";

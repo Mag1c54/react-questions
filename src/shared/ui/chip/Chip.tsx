@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, MouseEvent } from "react";
 import "./Chip.scss";
 
 interface ChipProps {
@@ -11,6 +11,8 @@ interface ChipProps {
   disabled?: boolean;
   className?: string;
   children: ReactNode;
+  onMouseOver?: (e: MouseEvent<HTMLLabelElement>) => void;
+  onMouseOut?: (e: MouseEvent<HTMLLabelElement>) => void;
 }
 
 const hideBrokenImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -27,6 +29,8 @@ export const Chip = ({
   disabled = false,
   className,
   children,
+  onMouseOver,
+  onMouseOut,
 }: ChipProps) => {
   const classes = ["chip", checked && "chip--checked", disabled && "chip--disabled", className]
     .filter(Boolean)
@@ -45,7 +49,7 @@ export const Chip = ({
   };
 
   return (
-    <label className={classes}>
+    <label className={classes} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
       <input
         type={type}
         name={name}
