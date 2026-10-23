@@ -83,7 +83,7 @@ export const ProfileSpecializationPicker = ({
               checked={profile.id === activeProfileId}
               onChange={() => onSelect(profile.id)}
             >
-              {titleById.get(profile.specializationId) ?? "Специализация"}
+              {titleById.get(profile.specializationId) ?? `empty`}
             </Chip>
           ))}
         </div>
@@ -137,7 +137,8 @@ export const ProfileSpecializationPicker = ({
       )}
 
       <p className="spec-picker__hint">
-        Каждая специализация это отдельный профиль со своим описанием и навыками.
+        Каждая специализация это отдельный профиль со своим описанием и навыками. Число в скобках
+        это количество выбранных навыков.
       </p>
     </div>
   );

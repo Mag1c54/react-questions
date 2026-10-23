@@ -1,7 +1,8 @@
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
-import { getActiveProfile, PROFILE_PARAM } from "@/entities/profile/lib/getActiveProfile";
+import { PROFILE_PARAM } from "@/entities/profile/lib/getActiveProfile";
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
+import { useActiveProfile } from "@/entities/profile/model/useActiveProfile";
 import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
 import { EditProfileForm } from "@/features/profile-edit/ui/EditProfileForm";
 import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
@@ -9,11 +10,9 @@ import "./ProfileEditPage.scss";
 
 export const ProfileEditPage = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const { data: user, isLoading, isError, refetch } = useGetProfileQuery();
 
-  const profiles = user?.profiles ?? [];
-  const profile = getActiveProfile(profiles, searchParams.get(PROFILE_PARAM));
+  const { profiles, profile } = useActiveProfile(user);
 
   const renderBody = () => {
     if (isLoading) return <p className="profile-edit-page__status">Загрузка профиля...</p>;
