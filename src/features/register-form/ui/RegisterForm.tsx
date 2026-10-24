@@ -7,6 +7,7 @@ import { CheckboxField } from "@/shared/ui/form/CheckboxField";
 import { PasswordField } from "@/shared/ui/form/PasswordField";
 import { TextField } from "@/shared/ui/form/TextField";
 import { registerSchema, type RegisterFormValues } from "../model/schema";
+import { Button } from "@/shared/ui";
 import "@/shared/ui/form/auth-form.scss";
 
 export const RegisterForm = () => {
@@ -90,9 +91,9 @@ export const RegisterForm = () => {
         </p>
       )}
 
-      <button type="submit" className="auth-form__submit" disabled={isSubmitting}>
+      <Button type="submit" className="auth-form__submit" disabled={isSubmitting}>
         {isSubmitting ? "Регистрируем..." : "Зарегистрироваться"}
-      </button>
+      </Button>
 
       <p className="auth-form__hint">Проставив галочку («✓») и нажимая «Зарегистрироваться»:</p>
 

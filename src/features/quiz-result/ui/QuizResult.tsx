@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import type { Question } from "@/entities/question/model/types";
 import type { QuizAnswer } from "@/entities/quiz/model/types";
 import "./QuizResult.scss";
-
+import { QUIZ_ROUTES } from "@/shared/config/routes";
+import { Button } from "@/shared/ui";
 interface QuizResultProps {
   questions: Question[];
   answers: Record<number, QuizAnswer>;
@@ -46,10 +47,10 @@ export const QuizResult = ({ questions, answers, settingsSearch, onRestart }: Qu
       )}
 
       <div className="quiz-result__actions">
-        <button type="button" className="quiz-result__btn" onClick={onRestart}>
+        <Button type="button" className="quiz-result__btn" onClick={onRestart}>
           Пройти заново
-        </button>
-        <Link to={`/quiz${settingsSearch}`} className="quiz-result__link">
+        </Button>
+        <Link to={`${QUIZ_ROUTES.settings}${settingsSearch}`} className="quiz-result__link">
           Изменить настройки
         </Link>
       </div>

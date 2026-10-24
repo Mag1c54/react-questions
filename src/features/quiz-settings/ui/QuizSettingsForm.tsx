@@ -6,6 +6,7 @@ import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { resetQuiz } from "@/entities/quiz/model/quizSlice";
 import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
+import { QUIZ_ROUTES } from "@/shared/config/routes";
 import {
   buildQuizSearch,
   COMPLEXITY_RANGES,
@@ -64,11 +65,8 @@ export const QuizSettingsForm = () => {
     if (values.specialization === null) return;
     dispatch(resetQuiz());
     navigate({
-      pathname: "/interview/questions",
-      search: buildQuizSearch({
-        ...values,
-        specialization: values.specialization,
-      }),
+      pathname: QUIZ_ROUTES.questions,
+      search: buildQuizSearch({ ...values, specialization: values.specialization }),
     });
   };
 
