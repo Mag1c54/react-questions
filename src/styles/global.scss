@@ -1,7 +1,5 @@
 @use "./variables.scss" as *;
 
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
-
 *,
 *::before,
 *::after {
@@ -55,6 +53,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
 .app {
   min-height: 100vh;
 }

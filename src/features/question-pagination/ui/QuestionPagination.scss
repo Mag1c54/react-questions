@@ -1,7 +1,5 @@
 @use "../../../styles/variables.scss" as *;
 
-
-
 .quest-catalog {
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +34,7 @@
     padding: 2px 6px;
     min-width: 21px;
     min-height: 25px;
-    border-radius:3px ;
+    border-radius: 3px;
 
     &:hover {
       background: $color-accent;
@@ -67,7 +65,7 @@
       opacity 0.2s ease;
 
     &:hover:not(:disabled) {
-      background-color: rgba(106, 11, 255, 0.08);
+      background-color: rgb(106 11 255 / 8%);
     }
 
     &:disabled {

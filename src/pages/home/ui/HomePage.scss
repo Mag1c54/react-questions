@@ -20,9 +20,11 @@ $color-hero-mid: #3d16d6;
       #d9ccff 82%,
       #f6f3ff 100%
     );
+
   header {
     position: absolute !important;
   }
+
   &__hero {
     display: flex;
     flex: 1;
@@ -93,7 +95,7 @@ $color-hero-mid: #3d16d6;
     padding: 16px 12px;
     border-radius: 20px;
     background: $color-white;
-    box-shadow: 0px 4px 16px rgba($color-text-primary, 0.06);
+    box-shadow: 0 4px 16px rgba($color-text-primary, 0.06);
     text-align: center;
   }
 

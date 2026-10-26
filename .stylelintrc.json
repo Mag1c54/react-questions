@@ -1,0 +1,14 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-z0-9]*(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+      { "message": "Используй BEM: block__element--modifier (строчные буквы и дефисы)" }
+    ],
+    "no-descending-specificity": null,
+    "media-feature-range-notation": null,
+    "scss/load-partial-extension": null,
+    "declaration-property-value-no-unknown": null,
+    "media-query-no-invalid": null
+  }
+}

@@ -1,22 +1,31 @@
+// colors
 $color-bg-page: #f4f4f4;
 $color-bg-footer: #18003e;
-$color-white: #ffffff;
-
+$color-white: #fff;
 $color-text-primary: #191919;
 $color-text-dark: #303030;
 $color-text-secondary: #474747;
 $color-text-muted: #8c8c8c;
-
 $color-border-light: #e8e8e8;
 $color-border-gray: #bababa;
-$color-border-dark: rgba(28, 28, 28, 0.2);
-$color-line: rgba(230, 230, 230, 0.1);
-
+$color-border-dark: rgb(28 28 28 / 20%);
+$color-line: rgb(230 230 230 / 10%);
 $color-accent: #6a0bff;
 $color-accent-link: #5509cc;
 $color-error: #d92d20;
-
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 1024px;
-
 $font-main: "Manrope", sans-serif;
+
+// raduis
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+// shadow
+$shadow-card: 0 4px 10px rgb(106 99 118 / 10%);
+$shadow-card-hover: 0 8px 20px rgb(106 99 118 / 14%);
+$shadow-drawer: -4px 0 24px rgba($color-text-primary, 0.12);
+$shadow-menu: 0 12px 24px rgba($color-text-primary, 0.08);
+$transition-base: 0.2s ease;

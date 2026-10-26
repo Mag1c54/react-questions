@@ -171,7 +171,7 @@ $sidebar-collapsed-width: 76px;
     height: 1px;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
     white-space: nowrap;
   }
 
@@ -228,7 +228,7 @@ $sidebar-collapsed-width: 76px;
       height: auto;
       margin: 0;
       overflow: visible;
-      clip: auto;
+      clip-path: none;
     }
 
     &--collapsed &__brand {
