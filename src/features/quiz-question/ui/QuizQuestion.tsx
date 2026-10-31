@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiChevronLeft, FiChevronRight, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import type { Question } from "@/entities/question/model/types";
 import type { QuizAnswer } from "@/entities/quiz/model/types";
+import { Button } from "@/shared/ui";
 import "./QuizQuestion.scss";
 
 interface QuizQuestionProps {
@@ -30,7 +31,7 @@ export const QuizQuestion = ({
   return (
     <section className="quiz-question">
       <div className="quiz-question__nav">
-        <button
+        <Button
           type="button"
           className="quiz-question__nav-btn"
           disabled={isFirst}
@@ -38,16 +39,11 @@ export const QuizQuestion = ({
         >
           <FiChevronLeft aria-hidden="true" />
           Назад
-        </button>
-        <button
-          type="button"
-          className="quiz-question__nav-btn"
-          disabled={isLast}
-          onClick={onNext}
-        >
+        </Button>
+        <Button type="button" className="quiz-question__nav-btn" disabled={isLast} onClick={onNext}>
           Далее
           <FiChevronRight aria-hidden="true" />
-        </button>
+        </Button>
       </div>
 
       <div
@@ -56,14 +52,14 @@ export const QuizQuestion = ({
         <div className="quiz-question__content">
           <h2 className="quiz-question__title">{question.title}</h2>
 
-          <button
+          <Button
             type="button"
             className="quiz-question__toggle"
             aria-expanded={isAnswerShown}
             onClick={() => setIsAnswerShown((prev) => !prev)}
           >
             {isAnswerShown ? "Скрыть ответ" : "Посмотреть ответ"}
-          </button>
+          </Button>
 
           {isAnswerShown && (
             <p className="quiz-question__answer">
@@ -72,7 +68,7 @@ export const QuizQuestion = ({
           )}
 
           <div className="quiz-question__rate">
-            <button
+            <Button
               type="button"
               aria-pressed={answer === "UNKNOWN"}
               className={`quiz-question__rate-btn ${answer === "UNKNOWN" ? "quiz-question__rate-btn--active" : ""}`}
@@ -80,8 +76,8 @@ export const QuizQuestion = ({
             >
               <FiThumbsDown aria-hidden="true" />
               Не знаю
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               aria-pressed={answer === "KNOWN"}
               className={`quiz-question__rate-btn ${answer === "KNOWN" ? "quiz-question__rate-btn--active" : ""}`}
@@ -89,7 +85,7 @@ export const QuizQuestion = ({
             >
               <FiThumbsUp aria-hidden="true" />
               Знаю
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -99,9 +95,9 @@ export const QuizQuestion = ({
       </div>
 
       <div className="quiz-question__footer">
-        <button type="button" className="quiz-question__finish" onClick={onFinish}>
+        <Button type="button" className="quiz-question__finish" onClick={onFinish}>
           Завершить
-        </button>
+        </Button>
       </div>
     </section>
   );

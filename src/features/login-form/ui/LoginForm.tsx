@@ -4,8 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/entities/session/api/authApi";
 import { SocialAuth } from "@/features/social-auth/ui/SocialAuth";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { PasswordField } from "@/shared/ui/form/PasswordField";
-import { TextField } from "@/shared/ui/form/TextField";
+import { Alert, Button, PasswordField, TextField } from "@/shared/ui";
 import { loginSchema, type LoginFormValues } from "../model/schema";
 import "@/shared/ui/form/auth-form.scss";
 
@@ -58,15 +57,11 @@ export const LoginForm = () => {
         </Link>
       </div>
 
-      {errors.root?.server && (
-        <p className="auth-form__error" role="alert">
-          {errors.root.server.message}
-        </p>
-      )}
+      {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
 
-      <button type="submit" className="auth-form__submit" disabled={isSubmitting}>
-        {isSubmitting ? "Входим..." : "Вход"}
-      </button>
+      <Button type="submit" size="lg" fullWidth isLoading={isSubmitting} loadingText="Входим...">
+        Вход
+      </Button>
 
       <SocialAuth />
     </form>

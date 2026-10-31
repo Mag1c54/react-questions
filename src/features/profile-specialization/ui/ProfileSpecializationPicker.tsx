@@ -5,7 +5,7 @@ import type { Profile } from "@/entities/profile/model/types";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { Chip } from "@/shared/ui/chip/Chip";
+import { Chip, Button } from "@/shared/ui/";
 import "./ProfileSpecializationPicker.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -118,14 +118,14 @@ export const ProfileSpecializationPicker = ({
               <FiChevronDown className="spec-picker__select-icon" aria-hidden="true" />
             </div>
 
-            <button
+            <Button
               type="button"
               className="spec-picker__btn"
               disabled={isCreating}
               onClick={handleAdd}
             >
               {isCreating ? "Добавляем..." : "Добавить"}
-            </button>
+            </Button>
           </div>
         </div>
       )}

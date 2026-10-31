@@ -1,5 +1,6 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
+import { Input } from "@/shared/ui";
 import "./QuestionSearch.scss";
 
 interface QuestionSearchProps {
@@ -7,14 +8,11 @@ interface QuestionSearchProps {
   onChange: (value: string) => void;
 }
 
-export const QuestionSearch: React.FC<QuestionSearchProps> = ({
-  value,
-  onChange,
-}) => {
+export const QuestionSearch: React.FC<QuestionSearchProps> = ({ value, onChange }) => {
   return (
     <div className="question-search">
       <CiSearch className="question-search__icon" />
-      <input
+      <Input
         type="text"
         placeholder="Введите вопрос..."
         value={value}

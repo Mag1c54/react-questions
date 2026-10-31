@@ -89,6 +89,20 @@
       filter: brightness(0.92);
     }
   }
+  &--link {
+    height: auto;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: none;
+    color: $color-accent-link;
+    font-weight: 400;
+    text-decoration: underline;
+
+    &:hover:not(:disabled) {
+      text-decoration: none;
+    }
+  }
 
   &--danger-outline {
     border-color: $color-error;
@@ -98,6 +112,11 @@
     &:hover:not(:disabled) {
       background: rgba($color-error, 0.08);
     }
+  }
+
+  &--none {
+    padding: 0;
+    // empty styles
   }
 
   &:disabled,

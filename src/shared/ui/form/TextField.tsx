@@ -1,44 +1,28 @@
-import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from "react";
-import "./form.scss";
+import { forwardRef, useId } from "react";
+import { Field } from "../field/Field";
+import { Input, type InputProps } from "../input/Input";
 
-export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends Omit<InputProps, "id" | "hasError"> {
   label: string;
   error?: string;
-  endAdornment?: ReactNode;
+  hint?: string;
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ label, error, endAdornment, ...props }, ref) => {
+  ({ label, error, hint, variant = "filled", ...props }, ref) => {
     const id = useId();
 
     return (
-      <div className="text-field">
-        <label htmlFor={id} className="text-field__label">
-          {label}
-        </label>
-
-        <div className="text-field__control">
-          <input
-            ref={ref}
-            id={id}
-            className={[
-              "text-field__input",
-              error ? "text-field__input--error" : "",
-              endAdornment ? "text-field__input--with-adornment" : "",
-            ].join(" ")}
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? `${id}-error` : undefined}
-            {...props}
-          />
-          {endAdornment && <div className="text-field__adornment">{endAdornment}</div>}
-        </div>
-
-        {error && (
-          <span id={`${id}-error`} className="text-field__error" role="alert">
-            {error}
-          </span>
-        )}
-      </div>
+      <Field label={label} htmlFor={id} error={error} hint={hint}>
+        <Input
+          ref={ref}
+          id={id}
+          variant={variant}
+          hasError={Boolean(error)}
+          aria-describedby={error ? `${id}-error` : undefined}
+          {...props}
+        />
+      </Field>
     );
   },
 );

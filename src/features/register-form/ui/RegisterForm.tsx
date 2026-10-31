@@ -3,11 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegisterMutation } from "@/entities/session/api/authApi";
 import { SocialAuth } from "@/features/social-auth/ui/SocialAuth";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { CheckboxField } from "@/shared/ui/form/CheckboxField";
-import { PasswordField } from "@/shared/ui/form/PasswordField";
-import { TextField } from "@/shared/ui/form/TextField";
+
 import { registerSchema, type RegisterFormValues } from "../model/schema";
-import { Button } from "@/shared/ui";
+import { Alert, Button, CheckboxField, PasswordField, TextField } from "@/shared/ui";
 import "@/shared/ui/form/auth-form.scss";
 
 export const RegisterForm = () => {
@@ -85,11 +83,17 @@ export const RegisterForm = () => {
         {...register("confirmPassword")}
       />
 
-      {errors.root?.server && (
-        <p className="auth-form__error" role="alert">
-          {errors.root.server.message}
-        </p>
-      )}
+      {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
+
+      <Button
+        type="submit"
+        size="lg"
+        fullWidth
+        isLoading={isSubmitting}
+        loadingText="Регистрируем..."
+      >
+        Зарегистрироваться
+      </Button>
 
       <Button type="submit" className="auth-form__submit" disabled={isSubmitting}>
         {isSubmitting ? "Регистрируем..." : "Зарегистрироваться"}

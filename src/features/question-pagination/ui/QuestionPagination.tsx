@@ -1,6 +1,7 @@
 import React from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import "./QuestionPagination.scss";
+import { Button } from "@/shared/ui";
 
 interface QuestionPaginationProps {
   currentPage: number;
@@ -23,56 +24,59 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
 
   const startPage = Math.max(1, page);
   const endPage = Math.min(totalPages, page + 2);
-  const pages = Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i,
-  );
+  const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
     <div className="quest-catalog">
-      <button
+      <Button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Предыдущая страница"
         className="quest-catalog__arrow"
       >
         <FaLongArrowAltLeft />
-      </button>
+      </Button>
 
       {startPage > 1 && (
         <>
-          <button onClick={() => onPageChange(1)}>1</button>
+          <Button onClick={() => onPageChange(1)} variant="none">
+            1
+          </Button>
           {startPage > 2 && <span>...</span>}
         </>
       )}
 
       {pages.map((page) => (
-        <button
+        <Button
           key={page}
           onClick={() => onPageChange(page)}
-          className={page === currentPage ? "quest-catalog__active" : ""}
+          className={page === currentPage ? "quest-catalog__active btn-outline" : ""}
           aria-current={page === currentPage ? "page" : undefined}
           aria-label={`Страница ${page}`}
+          variant="none"
         >
           {page}
-        </button>
+        </Button>
       ))}
 
       {endPage < totalPages && (
         <>
           {endPage < totalPages - 1 && <span>...</span>}
-          <button onClick={() => onPageChange(totalPages)}>{totalPages}</button>
+          <Button onClick={() => onPageChange(totalPages)} variant="none">
+            {totalPages}
+          </Button>
         </>
       )}
 
-      <button
+      <Button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Следующая страница"
         className="quest-catalog__arrow"
+        variant="none"
       >
         <FaLongArrowAltRight />
-      </button>
+      </Button>
     </div>
   );
 };

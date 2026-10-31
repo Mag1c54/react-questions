@@ -3,7 +3,7 @@ import { useCreateProfileMutation } from "@/entities/profile/api/profileApi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { Chip } from "@/shared/ui/chip/Chip";
+import { Chip, Button } from "@/shared/ui/";
 import "./CreateProfileCard.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -83,14 +83,14 @@ export const CreateProfileCard = ({ userId }: CreateProfileCardProps) => {
         </p>
       )}
 
-      <button
+      <Button
         type="button"
         className="create-profile__btn"
         disabled={isCreating}
         onClick={handleCreate}
       >
         {isCreating ? "Создаём..." : "Создать профиль"}
-      </button>
+      </Button>
     </section>
   );
 };

@@ -5,6 +5,7 @@ import type { Question } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
 import "./CollectionQuestionsWidget.scss";
+import { Button } from "@/shared/ui";
 
 const LIMIT = 10;
 
@@ -12,9 +13,7 @@ interface CollectionQuestionsWidgetProps {
   collection: Collection;
 }
 
-export const CollectionQuestionsWidget = ({
-  collection,
-}: CollectionQuestionsWidgetProps) => {
+export const CollectionQuestionsWidget = ({ collection }: CollectionQuestionsWidgetProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
@@ -47,9 +46,9 @@ export const CollectionQuestionsWidget = ({
       return (
         <div className="collection-questions__status collection-questions__status--error">
           Не удалось загрузить вопросы
-          <button type="button" className="collection-questions__retry" onClick={refetch}>
+          <Button type="button" className="collection-questions__retry" onClick={refetch}>
             Повторить
-          </button>
+          </Button>
         </div>
       );
     }

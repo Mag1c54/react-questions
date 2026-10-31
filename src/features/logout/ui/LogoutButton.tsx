@@ -4,6 +4,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { useLogoutMutation } from "@/entities/session/api/authApi";
 import { logout } from "@/entities/session/model/sessionSlice";
 import { baseApi } from "@/shared/api/baseApi";
+import { Button } from "@/shared/ui";
 
 interface LogoutButtonProps {
   className?: string;
@@ -27,8 +28,8 @@ export const LogoutButton = ({ className, children }: LogoutButtonProps) => {
   };
 
   return (
-    <button type="button" className={className} onClick={handleLogout}>
+    <Button type="button" className={className} onClick={handleLogout}>
       {children ?? "Выйти"}
-    </button>
+    </Button>
   );
 };

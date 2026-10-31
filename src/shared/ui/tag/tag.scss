@@ -1,0 +1,45 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid $color-accent;
+  border-radius: 10px;
+  font-family: $font-main;
+  font-size: 13px;
+  font-weight: 500;
+  color: $color-text-primary;
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+
+    &--empty {
+      display: none;
+    }
+  }
+
+  &__remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: -4px;
+    padding: 0;
+    border: 1px solid $color-error;
+    border-radius: 50%;
+    background: transparent;
+    color: $color-error;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba($color-error, 0.1);
+    }
+  }
+}

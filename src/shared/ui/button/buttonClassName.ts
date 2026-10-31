@@ -1,6 +1,6 @@
 import "./button.scss";
 
-export type ButtonVariant = "primary" | "outline" | "danger" | "danger-outline";
+export type ButtonVariant = "primary" | "outline" | "danger" | "danger-outline" | "link" | "none";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonStyleProps {

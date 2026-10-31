@@ -4,7 +4,7 @@ import { TextField, type TextFieldProps } from "./TextField";
 
 export const PasswordField = forwardRef<
   HTMLInputElement,
-  Omit<TextFieldProps, "type" | "endAdornment">
+  Omit<TextFieldProps, "type" | "rightSlot">
 >((props, ref) => {
   const [visible, setVisible] = useState(false);
 
@@ -12,10 +12,10 @@ export const PasswordField = forwardRef<
     <TextField
       ref={ref}
       type={visible ? "text" : "password"}
-      endAdornment={
+      rightSlot={
         <button
           type="button"
-          className="text-field__toggle"
+          className="ui-input__toggle"
           aria-label={visible ? "Скрыть пароль" : "Показать пароль"}
           aria-pressed={visible}
           onClick={() => setVisible((prev) => !prev)}

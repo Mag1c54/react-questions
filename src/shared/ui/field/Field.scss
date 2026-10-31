@@ -1,0 +1,27 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-family: $font-main;
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $color-text-primary;
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: $color-text-muted;
+  }
+
+  &__error {
+    font-size: 12px;
+    line-height: 130%;
+    color: $color-error;
+  }
+}

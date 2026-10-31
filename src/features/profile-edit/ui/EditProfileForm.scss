@@ -4,10 +4,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 24px 20px;
-  background: $color-white;
-  border-radius: 24px;
-  box-shadow: 0 4px 10px rgb(106 99 118 / 10%);
   font-family: $font-main;
   color: $color-text-primary;
 
@@ -17,141 +13,16 @@
     font-weight: 500;
   }
 
-  &__tabs {
-    display: flex;
-    gap: 4px;
-    padding: 4px;
-    overflow-x: auto;
-    border-radius: 12px;
-    background: $color-bg-page;
-  }
-
-  &__tab {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    font-family: $font-main;
-    font-size: 13px;
-    font-weight: 500;
-    color: $color-text-secondary;
-    white-space: nowrap;
-    cursor: pointer;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-
-    &--active {
-      background: $color-white;
-      color: $color-accent;
-    }
-
-    &--disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-  }
-
-  &__alert {
-    margin: 0;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background: rgba($color-error, 0.08);
-    font-size: 14px;
-    color: $color-error;
-  }
-
   &__panel {
     display: flex;
     flex-direction: column;
     gap: 28px;
-
-    &[hidden] {
-      display: none;
-    }
-  }
-
-  &__row {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 12px 24px;
-    align-items: start;
-  }
-
-  &__label {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  &__label-title {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 130%;
-  }
-
-  &__label-hint {
-    font-size: 12px;
-    color: $color-text-secondary;
   }
 
   &__fields {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px 16px;
-  }
-
-  &__textarea-wrap {
-    position: relative;
-  }
-
-  &__textarea {
-    display: block;
-    width: 100%;
-    min-height: 200px;
-    padding: 14px 14px 34px;
-    border: 1px solid $color-border-light;
-    border-radius: 16px;
-    background: $color-white;
-    font-family: $font-main;
-    font-size: 14px;
-    line-height: 150%;
-    color: $color-text-primary;
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.2s ease;
-
-    &::placeholder {
-      color: $color-text-muted;
-    }
-
-    &:focus {
-      border-color: $color-accent;
-    }
-
-    &--error {
-      border-color: $color-error;
-    }
-  }
-
-  &__counter {
-    position: absolute;
-    right: 28px;
-    bottom: 12px;
-    font-size: 12px;
-    color: $color-text-muted;
-    pointer-events: none;
-  }
-
-  &__error {
-    font-size: 12px;
-    color: $color-error;
-  }
-
-  &__hint {
-    margin: 0;
-    font-size: 13px;
-    color: $color-text-muted;
   }
 
   &__skills {
@@ -162,52 +33,7 @@
   }
 
   &__select-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
     max-width: 420px;
-  }
-
-  &__select-label {
-    font-size: 12px;
-    color: $color-text-secondary;
-  }
-
-  &__select-wrap {
-    position: relative;
-  }
-
-  &__select {
-    width: 100%;
-    padding: 12px 40px 12px 14px;
-    border: 1px solid transparent;
-    border-radius: 12px;
-    background: rgba($color-text-primary, 0.04);
-    font-family: $font-main;
-    font-size: 14px;
-    color: $color-text-primary;
-    outline: none;
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-
-    &:focus {
-      border-color: $color-accent;
-    }
-
-    &:disabled {
-      color: $color-text-muted;
-      cursor: not-allowed;
-    }
-  }
-
-  &__select-icon {
-    position: absolute;
-    top: 50%;
-    right: 14px;
-    color: $color-text-muted;
-    transform: translateY(-50%);
-    pointer-events: none;
   }
 
   &__selected {
@@ -231,92 +57,26 @@
     list-style: none;
   }
 
-  &__tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 8px 6px 12px;
-    border: 1px solid $color-accent;
-    border-radius: 10px;
+  &__hint {
+    margin: 0;
     font-size: 13px;
-    font-weight: 500;
-  }
-
-  &__tag-icon {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
-  }
-
-  &__tag-remove {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 1px solid $color-error;
-    border-radius: 50%;
-    background: transparent;
-    color: $color-error;
-    font-size: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background: rgba($color-error, 0.1);
-    }
+    color: $color-text-muted;
   }
 
   &__footer {
     display: flex;
     justify-content: flex-end;
   }
-
-  &__next {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 12px;
-    background: $color-accent;
-    color: $color-white;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition:
-      background-color 0.2s ease,
-      opacity 0.2s ease;
-
-    &:hover:not(:disabled) {
-      background: $color-accent-link;
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  }
 }
 
 @media (max-width: $breakpoint-tablet) {
   .profile-edit {
-    padding: 16px 12px;
-    border-radius: 16px;
-
-    &__row {
-      grid-template-columns: 1fr;
-    }
-
     &__fields {
       grid-template-columns: 1fr;
     }
 
-    &__next {
+    &__footer .ui-btn {
       width: 100%;
-      justify-content: center;
     }
   }
 }
