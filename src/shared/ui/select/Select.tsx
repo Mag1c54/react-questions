@@ -1,6 +1,6 @@
 import { forwardRef, type SelectHTMLAttributes } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import "./select.scss";
+import "./Select.scss";
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   variant?: "outline" | "filled";

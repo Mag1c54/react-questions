@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./field.scss";
+import "./Field.scss";
 
 interface FieldProps {
   label: string;
