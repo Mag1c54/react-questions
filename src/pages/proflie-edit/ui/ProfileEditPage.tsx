@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import { PROFILE_PARAM } from "@/entities/profile/lib/getActiveProfile";
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
@@ -6,6 +6,7 @@ import { useActiveProfile } from "@/entities/profile/model/useActiveProfile";
 import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
 import { EditProfileForm } from "@/features/profile-edit/ui/EditProfileForm";
 import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
+import { Button, ButtonLink } from "@/shared/ui";
 import "./ProfileEditPage.scss";
 
 export const ProfileEditPage = () => {
@@ -21,9 +22,9 @@ export const ProfileEditPage = () => {
       return (
         <div className="profile-edit-page__status">
           Не удалось загрузить профиль
-          <button type="button" className="profile-edit-page__retry" onClick={refetch}>
+          <Button variant="outline" size="sm" onClick={refetch}>
             Повторить
-          </button>
+          </Button>
         </div>
       );
     }
@@ -54,12 +55,14 @@ export const ProfileEditPage = () => {
 
   return (
     <main className="profile-edit-page">
-      <Link
+      <ButtonLink
         to={profile ? `/profile?${PROFILE_PARAM}=${profile.id}` : "/profile"}
+        variant="link"
         className="profile-edit-page__back"
+        leftIcon={<FiArrowLeft aria-hidden="true" />}
       >
-        <FiArrowLeft aria-hidden="true" />К профилю
-      </Link>
+        К профилю
+      </ButtonLink>
       {renderBody()}
     </main>
   );

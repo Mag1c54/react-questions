@@ -7,6 +7,7 @@ import { parsePositiveInt } from "@/shared/lib/parseParams";
 import { useDebouncedValue } from "@/shared/lib/useDebouncedValue";
 import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
 import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
+import { Button, Card } from "@/shared/ui";
 import "./QuestionsPage.scss";
 
 const LIMIT = 10;
@@ -61,17 +62,19 @@ export const QuestionsPage: React.FC = () => {
   return (
     <main className="page-container">
       <div className="page-content">
-        <section className="question-container">
+        <Card as="section" padding="none" radius="lg" shadow className="question-container">
           <div className="question-header">
             <h1>Вопросы</h1>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              iconOnly
               className="sidebar-toggle"
               aria-label="Открыть настройки"
               onClick={() => setIsSidebarOpen(true)}
             >
-              <VscSettings />
-            </button>
+              <VscSettings aria-hidden="true" />
+            </Button>
           </div>
 
           <QuestionsListWidget
@@ -82,12 +85,17 @@ export const QuestionsPage: React.FC = () => {
             limit={LIMIT}
             onPageChange={handlePageChange}
           />
-        </section>
+        </Card>
 
         <aside className={`right-sidebar ${isSidebarOpen ? "right-sidebar--open" : ""}`}>
-          <button type="button" className="sidebar-close" onClick={() => setIsSidebarOpen(false)}>
+          <Button
+            type="button"
+            variant="outline"
+            className="sidebar-close"
+            onClick={() => setIsSidebarOpen(false)}
+          >
             Закрыть
-          </button>
+          </Button>
           <QuestionNavigationWidget />
         </aside>
       </div>

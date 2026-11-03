@@ -4,6 +4,7 @@ import { useGetCollectionsQuery } from "@/entities/collection/api/collectionApi"
 import { useCollectionFilters } from "@/features/collection-filters/model/useCollectionFilters";
 import { CollectionFilters } from "@/features/collection-filters/ui/CollectionFilters";
 import { CollectionListWidget } from "@/widgets/collection-list-widget/ui/CollectionListWidget";
+import { Button, Card } from "@/shared/ui";
 import "./CollectionsPage.scss";
 
 const LIMIT = 10;
@@ -30,17 +31,19 @@ export const CollectionsPage = () => {
   return (
     <main className="collections-page">
       <div className="collections-page__content">
-        <section className="collections-page__main">
+        <Card as="section" padding="none" radius="lg" shadow className="collections-page__main">
           <div className="collections-page__header">
             <h1>Коллекции</h1>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              iconOnly
               className="collections-page__toggle"
               aria-label="Открыть фильтры"
               onClick={() => setIsSidebarOpen(true)}
             >
-              <VscSettings />
-            </button>
+              <VscSettings aria-hidden="true" />
+            </Button>
           </div>
 
           <CollectionListWidget
@@ -53,18 +56,19 @@ export const CollectionsPage = () => {
             onPageChange={setPage}
             onRetry={refetch}
           />
-        </section>
+        </Card>
 
         <aside
           className={`collections-page__sidebar ${isSidebarOpen ? "collections-page__sidebar--open" : ""}`}
         >
-          <button
+          <Button
             type="button"
+            variant="outline"
             className="collections-page__close"
             onClick={() => setIsSidebarOpen(false)}
           >
             Закрыть
-          </button>
+          </Button>
           <CollectionFilters />
         </aside>
       </div>

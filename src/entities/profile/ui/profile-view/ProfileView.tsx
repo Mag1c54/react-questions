@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
 import { isHttpUrl } from "@/shared/lib/isHttpUrl";
+import { Card, Tag } from "@/shared/ui";
 import { getPlatform } from "../../config/platforms";
 import type { Profile } from "../../model/types";
 import "./ProfileView.scss";
@@ -54,7 +55,13 @@ export const ProfileView = ({
 
   return (
     <div className="profile-view">
-      <section className="profile-view__card profile-view__header">
+      <Card
+        as="section"
+        padding="none"
+        radius="md"
+        shadow
+        className="profile-view__card profile-view__header"
+      >
         {user.avatarUrl ? (
           <img
             src={user.avatarUrl}
@@ -104,9 +111,9 @@ export const ProfileView = ({
         </div>
 
         {!readOnly && <EditLink to={editLink()} label="Редактировать профиль" />}
-      </section>
+      </Card>
 
-      <section className="profile-view__card">
+      <Card as="section" padding="none" radius="md" shadow className="profile-view__card">
         <div className="profile-view__head">
           <h2 className="profile-view__title">Обо мне</h2>
           {!readOnly && <EditLink to={editLink("about")} label="Редактировать «Обо мне»" />}
@@ -137,9 +144,9 @@ export const ProfileView = ({
             Расскажите о себе. <Link to={editLink("about")}>Добавить описание</Link>
           </p>
         )}
-      </section>
+      </Card>
 
-      <section className="profile-view__card">
+      <Card as="section" padding="none" radius="md" shadow className="profile-view__card">
         <div className="profile-view__head">
           <h2 className="profile-view__title">Навыки</h2>
           {!readOnly && <EditLink to={editLink("skills")} label="Редактировать навыки" />}
@@ -148,16 +155,8 @@ export const ProfileView = ({
         {profile.profileSkills.length > 0 ? (
           <ul className="profile-view__skills">
             {profile.profileSkills.map((skill) => (
-              <li key={skill.id} className="profile-view__skill">
-                {skill.imageSrc && (
-                  <img
-                    src={skill.imageSrc}
-                    alt=""
-                    className="profile-view__skill-icon"
-                    onError={hideBrokenImage}
-                  />
-                )}
-                {skill.title}
+              <li key={skill.id}>
+                <Tag iconSrc={skill.imageSrc}>{skill.title}</Tag>
               </li>
             ))}
           </ul>
@@ -168,7 +167,7 @@ export const ProfileView = ({
             Навыки пока не добавлены. <Link to={editLink("skills")}>Выбрать навыки</Link>
           </p>
         )}
-      </section>
+      </Card>
     </div>
   );
 };

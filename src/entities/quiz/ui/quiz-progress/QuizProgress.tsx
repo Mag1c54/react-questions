@@ -1,3 +1,4 @@
+import { Card } from "@/shared/ui";
 import "./QuizProgress.scss";
 
 interface QuizProgressProps {
@@ -9,7 +10,7 @@ export const QuizProgress = ({ current, total }: QuizProgressProps) => {
   const percent = total > 0 ? Math.round((current / total) * 100) : 0;
 
   return (
-    <section className="quiz-progress">
+    <Card as="section" padding="none" radius="md" shadow className="quiz-progress">
       <div className="quiz-progress__head">
         <h2 className="quiz-progress__title">Вопросы собеседования</h2>
         <span className="quiz-progress__count">
@@ -25,6 +26,6 @@ export const QuizProgress = ({ current, total }: QuizProgressProps) => {
       >
         <div className="quiz-progress__bar" style={{ width: `${percent}%` }} />
       </div>
-    </section>
+    </Card>
   );
 };

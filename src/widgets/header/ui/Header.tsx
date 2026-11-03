@@ -5,6 +5,7 @@ import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
 import { LogoutButton } from "@/features/logout/ui/LogoutButton";
 import { useAppSelector } from "@/store/hooks";
+import { Button, ButtonLink, SafeImage } from "@/shared/ui";
 import "./Header.scss";
 
 const NAV_ITEMS = [
@@ -34,19 +35,19 @@ export const Header = () => {
               {profile.username}
             </Link>
           )}
-          <LogoutButton className="header__btn header__btn--outline" />
+          <LogoutButton variant="outline" />
         </div>
       );
     }
 
     return (
       <div className="header__auth">
-        <Link to="/login" className="header__btn header__btn--outline" onClick={closeMenu}>
+        <ButtonLink to="/login" variant="outline" onClick={closeMenu}>
           Вход
-        </Link>
-        <Link to="/register" className="header__btn header__btn--primary" onClick={closeMenu}>
+        </ButtonLink>
+        <ButtonLink to="/register" onClick={closeMenu}>
           Регистрация
-        </Link>
+        </ButtonLink>
       </div>
     );
   };
@@ -55,7 +56,7 @@ export const Header = () => {
     <header className="header">
       <div className="header__container">
         <Link to="/" className="header__logo" onClick={closeMenu}>
-          <img src="/logo.svg" alt="" className="header__logo-img" />
+          <SafeImage src="/logo.svg" alt="" className="header__logo-img" />
           <span className="header__title">Yeahub</span>
         </Link>
 
@@ -77,8 +78,10 @@ export const Header = () => {
         </div>
         {renderAuth()}
 
-        <button
+        <Button
           type="button"
+          variant="outline"
+          iconOnly
           className="header__burger"
           aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={isMenuOpen}
@@ -86,7 +89,7 @@ export const Header = () => {
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        </Button>
       </div>
     </header>
   );

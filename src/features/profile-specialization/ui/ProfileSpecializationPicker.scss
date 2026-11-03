@@ -31,61 +31,10 @@
     gap: 8px;
   }
 
-  &__select-wrap {
-    position: relative;
+  &__select {
     flex: 1;
     min-width: 220px;
     max-width: 360px;
-  }
-
-  &__select {
-    width: 100%;
-    padding: 10px 36px 10px 14px;
-    border: 1px solid transparent;
-    border-radius: 12px;
-    background: rgba($color-text-primary, 0.04);
-    font-family: $font-main;
-    font-size: 14px;
-    color: $color-text-primary;
-    outline: none;
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-
-    &:focus {
-      border-color: $color-accent;
-    }
-  }
-
-  &__select-icon {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    color: $color-text-muted;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  &__btn {
-    padding: 10px 18px;
-    border: 1px solid $color-accent;
-    border-radius: 12px;
-    background: transparent;
-    color: $color-accent;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover:not(:disabled) {
-      background: rgba($color-accent, 0.08);
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
   }
 
   &__error {

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
 import type { Collection } from "@/entities/collection/model/types";
+import { Card, SafeImage } from "@/shared/ui";
 import "./CollectionInfoWidget.scss";
 
 const TELEGRAM_URL = "https://t.me/";
@@ -13,7 +14,7 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
   const { specializations, isFree, company, questionsCount, keywords } = collection;
 
   return (
-    <div className="collection-info">
+    <Card padding="none" radius="md" shadow className="collection-info">
       {specializations.length > 0 && (
         <div className="collection-info__group">
           <h3 className="collection-info__label">Специализация</h3>
@@ -44,7 +45,11 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
           <div className="collection-info__chips">
             <span className="collection-info__chip collection-info__chip--company">
               {company.imageSrc && (
-                <img src={company.imageSrc} alt="" className="collection-info__company-logo" />
+                <SafeImage
+                  src={company.imageSrc}
+                  alt=""
+                  className="collection-info__company-logo"
+                />
               )}
               {company.title}
             </span>
@@ -86,6 +91,6 @@ export const CollectionInfoWidget = ({ collection }: CollectionInfoWidgetProps) 
           Telegram
         </span>
       </a>
-    </div>
+    </Card>
   );
 };

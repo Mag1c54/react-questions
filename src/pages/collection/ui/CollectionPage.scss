@@ -9,18 +9,7 @@
   color: $color-text-primary;
 
   &__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     margin-bottom: 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: $color-accent-link;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   &__content {
@@ -60,18 +49,6 @@
     &--error {
       color: #d92d20;
     }
-  }
-
-  &__retry {
-    padding: 8px 16px;
-    border: 1px solid $color-accent;
-    border-radius: 8px;
-    background: transparent;
-    color: $color-accent;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
   }
 }
 

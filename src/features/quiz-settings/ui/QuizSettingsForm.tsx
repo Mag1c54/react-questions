@@ -14,10 +14,8 @@ import {
   MAX_LIMIT,
   parseQuizSettings,
 } from "@/entities/quiz/lib/quizParams";
-import { Chip } from "@/shared/ui/chip/Chip";
-import { NumberStepper } from "@/shared/ui/number-stepper/NumberStepper";
+import { Button, Chip, NumberStepper, Popup } from "@/shared/ui";
 import "./QuizSettingsForm.scss";
-import { Button, Popup } from "@/shared/ui";
 interface QuizFormValues {
   specialization: number | null;
   skills: number[];

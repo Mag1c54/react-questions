@@ -1,6 +1,6 @@
 import { FaTelegram } from "react-icons/fa";
-import "./SocialAuth.scss";
 import { Button } from "@/shared/ui";
+import "./SocialAuth.scss";
 
 type Provider = "telegram";
 
@@ -18,6 +18,7 @@ export const SocialAuth = ({ onSelect }: SocialAuthProps) => (
         <Button
           key={id}
           type="button"
+          variant="none"
           className={`social-auth__btn social-auth__btn--${id}`}
           aria-label={label}
           onClick={() => onSelect?.(id)}

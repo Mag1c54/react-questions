@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import hljs from "highlight.js/lib/core";
 import DOMPurify from "dompurify";
 import "highlight.js/styles/atom-one-dark.css";
+import { Card } from "@/shared/ui";
 import "./QuestionCard.scss";
 
 import javascript from "highlight.js/lib/languages/javascript";
@@ -46,7 +47,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
   }, [open]);
 
   return (
-    <article className={`question-accordion ${open ? "is-open" : ""}`}>
+    <Card
+      as="article"
+      padding="none"
+      radius="md"
+      shadow
+      className={`question-accordion ${open ? "is-open" : ""}`}
+    >
       <header className="question-accordion__header" onClick={handleToggle}>
         <div className="question-accordion__title-group">
           <span className="question-accordion__dot" />
@@ -81,6 +88,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
           />
         </div>
       )}
-    </article>
+    </Card>
   );
 };

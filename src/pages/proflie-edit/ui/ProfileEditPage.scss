@@ -11,18 +11,7 @@
   font-family: $font-main;
 
   &__back {
-    display: inline-flex;
-    align-items: center;
     align-self: flex-start;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    color: $color-accent-link;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   &__status {
@@ -34,18 +23,6 @@
     font-size: 16px;
     font-weight: 500;
     color: $color-text-muted;
-  }
-
-  &__retry {
-    padding: 8px 16px;
-    border: 1px solid $color-accent;
-    border-radius: 8px;
-    background: transparent;
-    color: $color-accent;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
   }
 }
 

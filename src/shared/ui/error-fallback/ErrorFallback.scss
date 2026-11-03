@@ -53,40 +53,4 @@
     gap: 12px;
     margin-top: 8px;
   }
-
-  &__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    border: 1px solid $color-accent;
-    border-radius: 10px;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease;
-
-    &--primary {
-      background: $color-accent;
-      color: $color-white;
-
-      &:hover {
-        border-color: $color-accent-link;
-        background: $color-accent-link;
-      }
-    }
-
-    &--outline {
-      background: transparent;
-      color: $color-accent;
-
-      &:hover {
-        background: rgba($color-accent, 0.08);
-      }
-    }
-  }
 }

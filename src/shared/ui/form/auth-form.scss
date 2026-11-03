@@ -1,7 +1,5 @@
 @use "../../../styles/variables.scss" as *;
 
-$color-error: #d92d20;
-
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -24,41 +22,6 @@ $color-error: #d92d20;
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  &__submit {
-    width: 100%;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
-    background: $color-accent;
-    color: $color-white;
-    font-family: $font-main;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition:
-      background-color 0.2s ease,
-      opacity 0.2s ease;
-
-    &:hover:not(:disabled) {
-      background: $color-accent-link;
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  }
-
-  &__error {
-    margin: 0;
-    padding: 10px 12px;
-    border-radius: 8px;
-    background: rgba($color-error, 0.08);
-    font-size: 13px;
-    line-height: 140%;
-    color: $color-error;
   }
 
   &__hint {

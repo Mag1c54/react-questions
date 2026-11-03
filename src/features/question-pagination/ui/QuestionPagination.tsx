@@ -1,7 +1,7 @@
 import React from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-import "./QuestionPagination.scss";
 import { Button } from "@/shared/ui";
+import "./QuestionPagination.scss";
 
 interface QuestionPaginationProps {
   currentPage: number;
@@ -29,6 +29,7 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
   return (
     <div className="quest-catalog">
       <Button
+        variant="outline"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Предыдущая страница"
@@ -50,7 +51,7 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
         <Button
           key={page}
           onClick={() => onPageChange(page)}
-          className={page === currentPage ? "quest-catalog__active btn-outline" : ""}
+          className={page === currentPage ? "quest-catalog__active" : ""}
           aria-current={page === currentPage ? "page" : undefined}
           aria-label={`Страница ${page}`}
           variant="none"
@@ -69,11 +70,11 @@ export const QuestionPagination: React.FC<QuestionPaginationProps> = ({
       )}
 
       <Button
+        variant="outline"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Следующая страница"
         className="quest-catalog__arrow"
-        variant="none"
       >
         <FaLongArrowAltRight />
       </Button>

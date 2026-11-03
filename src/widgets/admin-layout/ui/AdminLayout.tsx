@@ -21,7 +21,7 @@ import {
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { LogoutButton } from "@/features/logout/ui/LogoutButton";
 import { ADMIN_ROUTES } from "@/shared/config/routes";
-import { buttonClassName } from "@/shared/ui";
+import { Button, buttonClassName, SafeImage } from "@/shared/ui";
 import "./AdminLayout.scss";
 
 const SUPPORT_URL = "https://t.me/yeahub_it";
@@ -59,19 +59,22 @@ export const AdminLayout = () => {
       <aside className="admin-layout__sidebar">
         <div className="admin-layout__brand">
           <Link to="/" className="admin-layout__logo">
-            <img src="/logo.svg" alt="" className="admin-layout__logo-img" />
+            <SafeImage src="/logo.svg" alt="" className="admin-layout__logo-img" />
             <span className="admin-layout__label">Yeahub</span>
           </Link>
 
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="sm"
+            iconOnly
             className="admin-layout__collapse"
             aria-label={isCollapsed ? "Развернуть меню" : "Свернуть меню"}
             aria-expanded={!isCollapsed}
             onClick={() => setIsCollapsed((prev) => !prev)}
           >
             <FiSidebar aria-hidden="true" />
-          </button>
+          </Button>
         </div>
 
         <nav aria-label="Разделы админки">
@@ -120,7 +123,7 @@ export const AdminLayout = () => {
             <span className="admin-layout__label">Поддержка</span>
           </a>
 
-          <LogoutButton className={buttonClassName({ variant: "danger-outline", fullWidth: true })}>
+          <LogoutButton variant="danger-outline" fullWidth>
             <FiLogOut aria-hidden="true" />
             <span className="admin-layout__label">Выход</span>
           </LogoutButton>

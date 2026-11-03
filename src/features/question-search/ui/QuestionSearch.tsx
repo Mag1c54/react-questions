@@ -1,24 +1,17 @@
 import React from "react";
-import { CiSearch } from "react-icons/ci";
-import { Input } from "@/shared/ui";
-import "./QuestionSearch.scss";
+import { SearchInput } from "@/shared/ui";
 
 interface QuestionSearchProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export const QuestionSearch: React.FC<QuestionSearchProps> = ({ value, onChange }) => {
-  return (
-    <div className="question-search">
-      <CiSearch className="question-search__icon" />
-      <Input
-        type="text"
-        placeholder="Введите вопрос..."
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="question-search__input"
-      />
-    </div>
-  );
-};
+export const QuestionSearch: React.FC<QuestionSearchProps> = ({ value, onChange }) => (
+  <SearchInput
+    value={value}
+    onChange={onChange}
+    delay={0}
+    placeholder="Введите вопрос..."
+    aria-label="Поиск вопросов"
+  />
+);

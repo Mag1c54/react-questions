@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiChevronLeft, FiChevronRight, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import type { Question } from "@/entities/question/model/types";
 import type { QuizAnswer } from "@/entities/quiz/model/types";
-import { Button } from "@/shared/ui";
+import { Button, Card, SafeImage } from "@/shared/ui";
 import "./QuizQuestion.scss";
 
 interface QuizQuestionProps {
@@ -29,7 +29,7 @@ export const QuizQuestion = ({
   const [isAnswerShown, setIsAnswerShown] = useState(false);
 
   return (
-    <section className="quiz-question">
+    <Card as="section" padding="none" radius="md" shadow className="quiz-question">
       <div className="quiz-question__nav">
         <Button
           type="button"
@@ -90,7 +90,7 @@ export const QuizQuestion = ({
         </div>
 
         {question.imageSrc && (
-          <img src={question.imageSrc} alt="" className="quiz-question__image" />
+          <SafeImage src={question.imageSrc} alt="" className="quiz-question__image" />
         )}
       </div>
 
@@ -99,6 +99,6 @@ export const QuizQuestion = ({
           Завершить
         </Button>
       </div>
-    </section>
+    </Card>
   );
 };

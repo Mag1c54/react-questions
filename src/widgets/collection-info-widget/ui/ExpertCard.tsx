@@ -1,5 +1,6 @@
 import { FaTelegramPlane, FaYoutube } from "react-icons/fa";
 import { FiLink } from "react-icons/fi";
+import { Card } from "@/shared/ui";
 import "./ExpertCard.scss";
 
 const EXPERT = {
@@ -18,7 +19,7 @@ export const ExpertCard = () => {
   const { name, role, about, avatarSrc, links } = EXPERT;
 
   return (
-    <section className="expert-card">
+    <Card as="section" padding="md" radius="md" className="expert-card">
       <div className="expert-card__head">
         {avatarSrc ? (
           <img src={avatarSrc} alt="" className="expert-card__avatar" />
@@ -50,6 +51,6 @@ export const ExpertCard = () => {
           </li>
         ))}
       </ul>
-    </section>
+    </Card>
   );
 };

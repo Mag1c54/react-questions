@@ -1,4 +1,6 @@
 import type { FallbackProps } from "react-error-boundary";
+import { Button } from "../button/Button";
+import { buttonClassName } from "../button/buttonClassName";
 import "./ErrorFallback.scss";
 
 interface ErrorFallbackProps extends FallbackProps {
@@ -25,25 +27,17 @@ export const ErrorFallback = ({
       {import.meta.env.DEV && <pre className="error-fallback__details">{message}</pre>}
 
       <div className="error-fallback__actions">
-        <button
-          type="button"
-          className="error-fallback__btn error-fallback__btn--primary"
-          onClick={resetErrorBoundary}
-        >
+        <Button type="button" onClick={resetErrorBoundary}>
           Попробовать снова
-        </button>
+        </Button>
 
         {fullScreen && (
-          <button
-            type="button"
-            className="error-fallback__btn error-fallback__btn--outline"
-            onClick={() => window.location.reload()}
-          >
+          <Button type="button" variant="outline" onClick={() => window.location.reload()}>
             Перезагрузить страницу
-          </button>
+          </Button>
         )}
 
-        <a href="/" className="error-fallback__btn error-fallback__btn--outline">
+        <a href="/" className={buttonClassName({ variant: "outline" })}>
           На главную
         </a>
       </div>

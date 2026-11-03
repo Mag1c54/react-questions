@@ -4,14 +4,13 @@ import { useAppDispatch } from "@/store/hooks";
 import { useLogoutMutation } from "@/entities/session/api/authApi";
 import { logout } from "@/entities/session/model/sessionSlice";
 import { baseApi } from "@/shared/api/baseApi";
-import { Button } from "@/shared/ui";
+import { Button, type ButtonProps } from "@/shared/ui";
 
-interface LogoutButtonProps {
-  className?: string;
+interface LogoutButtonProps extends Omit<ButtonProps, "type" | "onClick" | "children"> {
   children?: ReactNode;
 }
 
-export const LogoutButton = ({ className, children }: LogoutButtonProps) => {
+export const LogoutButton = ({ children, ...props }: LogoutButtonProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [logoutRequest] = useLogoutMutation();
@@ -28,7 +27,7 @@ export const LogoutButton = ({ className, children }: LogoutButtonProps) => {
   };
 
   return (
-    <Button type="button" className={className} onClick={handleLogout}>
+    <Button type="button" {...props} onClick={handleLogout}>
       {children ?? "Выйти"}
     </Button>
   );

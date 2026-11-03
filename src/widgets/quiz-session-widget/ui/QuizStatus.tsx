@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import type { QuizLoadStatus } from "@/entities/quiz/model/useMockQuiz";
 import { QUIZ_ROUTES } from "@/shared/config/routes";
-import { Button } from "@/shared/ui";
+import { Button, ButtonLink } from "@/shared/ui";
 import "./QuizStatus.scss";
 
 const MESSAGES: Record<Exclude<QuizLoadStatus, "ready">, string> = {
@@ -26,8 +25,8 @@ export const QuizStatus = ({ status, settingsSearch, onRetry }: QuizStatusProps)
       </Button>
     )}
 
-    <Link to={`${QUIZ_ROUTES.settings}${settingsSearch}`} className="quiz-status__link">
+    <ButtonLink to={`${QUIZ_ROUTES.settings}${settingsSearch}`} variant="link">
       Изменить настройки
-    </Link>
+    </ButtonLink>
   </div>
 );

@@ -95,10 +95,6 @@ export const RegisterForm = () => {
         Зарегистрироваться
       </Button>
 
-      <Button type="submit" className="auth-form__submit" disabled={isSubmitting}>
-        {isSubmitting ? "Регистрируем..." : "Зарегистрироваться"}
-      </Button>
-
       <p className="auth-form__hint">Проставив галочку («✓») и нажимая «Зарегистрироваться»:</p>
 
       <div className="auth-form__consents">

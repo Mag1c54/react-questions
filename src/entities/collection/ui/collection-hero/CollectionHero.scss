@@ -3,10 +3,6 @@
 .collection-hero {
   display: flex;
   gap: 16px;
-  padding: 16px;
-  background: $color-white;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgb(106 99 118 / 10%);
   font-family: $font-main;
 
   &__image {

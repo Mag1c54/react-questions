@@ -1,6 +1,7 @@
 import { CollectionCard } from "@/entities/collection/ui/collection-card/CollectionCard";
 import type { GetCollectionsResponse } from "@/entities/collection/model/types";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import { Button } from "@/shared/ui";
 import "./CollectionListWidget.scss";
 
 interface CollectionListWidgetProps {
@@ -32,9 +33,9 @@ export const CollectionListWidget = ({
     return (
       <div className="collection-list__status collection-list__status--error">
         Не удалось загрузить коллекции
-        <button type="button" className="collection-list__retry" onClick={onRetry}>
+        <Button variant="outline" size="sm" onClick={onRetry}>
           Повторить
-        </button>
+        </Button>
       </div>
     );
   }

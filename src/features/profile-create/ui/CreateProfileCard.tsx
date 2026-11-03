@@ -3,7 +3,7 @@ import { useCreateProfileMutation } from "@/entities/profile/api/profileApi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { Chip, Button } from "@/shared/ui/";
+import { Button, Card, Chip } from "@/shared/ui";
 import "./CreateProfileCard.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -51,7 +51,7 @@ export const CreateProfileCard = ({ userId }: CreateProfileCardProps) => {
   };
 
   return (
-    <section className="create-profile">
+    <Card as="section" padding="lg" radius="lg" shadow className="create-profile">
       <h1 className="create-profile__title">Создайте профиль</h1>
       <p className="create-profile__text">
         Выберите специализацию, чтобы мы подобрали вам вопросы для подготовки. Остальное можно
@@ -91,6 +91,6 @@ export const CreateProfileCard = ({ userId }: CreateProfileCardProps) => {
       >
         {isCreating ? "Создаём..." : "Создать профиль"}
       </Button>
-    </section>
+    </Card>
   );
 };

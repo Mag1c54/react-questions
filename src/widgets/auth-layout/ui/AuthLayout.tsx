@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { FiCheckCircle } from "react-icons/fi";
+import { SafeImage } from "@/shared/ui";
 import "./AuthLayout.scss";
 
 const BENEFITS = [
@@ -30,16 +31,14 @@ export const AuthLayout = ({
     <aside className="auth-layout__aside">
       <div className="auth-layout__brand">
         <Link to="/" className="auth-layout__logo">
-          <img src='/logo.svg' alt="" className="auth-layout__logo-img" />
+          <SafeImage src="/logo.svg" alt="" className="auth-layout__logo-img" />
           <span className="auth-layout__logo-text">Yeahub</span>
         </Link>
         <p className="auth-layout__slogan">YeaHub объединяет IT-специалистов</p>
       </div>
 
       <div className="auth-layout__benefits-block">
-        <h2 className="auth-layout__benefits-title">
-          Стань частью сообщества YeaHub и получи:
-        </h2>
+        <h2 className="auth-layout__benefits-title">Стань частью сообщества YeaHub и получи:</h2>
         <ul className="auth-layout__benefits">
           {BENEFITS.map((benefit) => (
             <li key={benefit} className="auth-layout__benefit">

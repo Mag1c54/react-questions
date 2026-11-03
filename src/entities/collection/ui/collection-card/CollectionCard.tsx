@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { FiGlobe, FiHelpCircle, FiUsers } from "react-icons/fi";
+import { SafeImage } from "@/shared/ui";
 import type { Collection } from "../../model/types";
 import "./CollectionCard.scss";
-import { CollectionImage } from "../collection-image/CollectionImage";
 
 const pluralize = (n: number, forms: [string, string, string]) => {
   const m10 = n % 10;
@@ -17,19 +17,11 @@ interface CollectionCardProps {
 }
 
 export const CollectionCard = ({ collection }: CollectionCardProps) => {
-  const {
-    id,
-    title,
-    imageSrc,
-    keywords,
-    isFree,
-    questionsCount,
-    specializations,
-  } = collection;
+  const { id, title, imageSrc, keywords, isFree, questionsCount, specializations } = collection;
 
   return (
     <Link to={`/collections/${id}`} className="collection-card">
-      <CollectionImage src={imageSrc} className="collection-card__image" />
+      <SafeImage src={imageSrc} className="collection-card__image" alt="collection-icon" />
 
       <div className="collection-card__content">
         {keywords.length > 0 && (
@@ -46,17 +38,12 @@ export const CollectionCard = ({ collection }: CollectionCardProps) => {
 
         <div className="collection-card__meta">
           <span className="collection-card__meta-item">
-            {isFree ? (
-              <FiGlobe aria-hidden="true" />
-            ) : (
-              <FiUsers aria-hidden="true" />
-            )}
+            {isFree ? <FiGlobe aria-hidden="true" /> : <FiUsers aria-hidden="true" />}
             {isFree ? "Для всех" : "Для участников"}
           </span>
           <span className="collection-card__meta-item">
             <FiHelpCircle aria-hidden="true" />
-            {questionsCount}{" "}
-            {pluralize(questionsCount, ["вопрос", "вопроса", "вопросов"])}
+            {questionsCount} {pluralize(questionsCount, ["вопрос", "вопроса", "вопросов"])}
           </span>
         </div>
 

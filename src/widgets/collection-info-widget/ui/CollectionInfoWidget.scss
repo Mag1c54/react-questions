@@ -5,9 +5,6 @@
   flex-direction: column;
   gap: 16px;
   padding: 20px;
-  background: $color-white;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgb(106 99 118 / 10%);
   font-family: $font-main;
 
   &__group {
@@ -69,6 +66,10 @@
     height: 20px;
     border-radius: 4px;
     object-fit: cover;
+
+    &--empty {
+      display: none;
+    }
   }
 
   &__author {

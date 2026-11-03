@@ -4,8 +4,8 @@ import { useGetPublicQuestionsQuery } from "@/entities/question/api/questionApi"
 import type { Question } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import { Button, Card } from "@/shared/ui";
 import "./CollectionQuestionsWidget.scss";
-import { Button } from "@/shared/ui";
 
 const LIMIT = 10;
 
@@ -46,7 +46,7 @@ export const CollectionQuestionsWidget = ({ collection }: CollectionQuestionsWid
       return (
         <div className="collection-questions__status collection-questions__status--error">
           Не удалось загрузить вопросы
-          <Button type="button" className="collection-questions__retry" onClick={refetch}>
+          <Button type="button" variant="outline" size="sm" onClick={refetch}>
             Повторить
           </Button>
         </div>
@@ -80,9 +80,9 @@ export const CollectionQuestionsWidget = ({ collection }: CollectionQuestionsWid
   };
 
   return (
-    <section className="collection-questions">
+    <Card as="section" padding="lg" radius="md" shadow className="collection-questions">
       <h2 className="collection-questions__heading">{heading}</h2>
       {renderBody()}
-    </section>
+    </Card>
   );
 };

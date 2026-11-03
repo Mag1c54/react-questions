@@ -1,8 +1,8 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
+import { Button, Card, Chip } from "@/shared/ui";
 import "./QuestionNavigationWidget.scss";
-import { Chip } from "@/shared/ui/chip/Chip";
 
 interface FilterState {
   rate: string[];
@@ -86,7 +86,7 @@ export const QuestionNavigationWidget: React.FC = () => {
   };
 
   return (
-    <div className="question-nav">
+    <Card padding="none" radius="lg" shadow className="question-nav">
       <QuestionSearch value={searchParams.get("title") || ""} onChange={handleSearchChange} />
 
       <div className="question-nav__group">
@@ -148,12 +148,9 @@ export const QuestionNavigationWidget: React.FC = () => {
         </div>
       </div>
 
-      <button
-        className="question-nav__reset"
-        onClick={() => setSearchParams(new URLSearchParams())}
-      >
+      <Button variant="outline" size="sm" onClick={() => setSearchParams(new URLSearchParams())}>
         Сбросить все фильтры
-      </button>
-    </div>
+      </Button>
+    </Card>
   );
 };

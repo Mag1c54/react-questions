@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import type { Question } from "@/entities/question/model/types";
 import type { QuizAnswer } from "@/entities/quiz/model/types";
-import "./QuizResult.scss";
 import { QUIZ_ROUTES } from "@/shared/config/routes";
-import { Button } from "@/shared/ui";
+import { Button, ButtonLink, Card } from "@/shared/ui";
+import "./QuizResult.scss";
 interface QuizResultProps {
   questions: Question[];
   answers: Record<number, QuizAnswer>;
@@ -17,7 +16,7 @@ export const QuizResult = ({ questions, answers, settingsSearch, onRestart }: Qu
   const skipped = questions.length - known - unknownQuestions.length;
 
   return (
-    <section className="quiz-result">
+    <Card as="section" padding="lg" radius="lg" shadow className="quiz-result">
       <h1 className="quiz-result__title">Результаты собеседования</h1>
 
       <ul className="quiz-result__stats">
@@ -47,13 +46,13 @@ export const QuizResult = ({ questions, answers, settingsSearch, onRestart }: Qu
       )}
 
       <div className="quiz-result__actions">
-        <Button type="button" className="quiz-result__btn" onClick={onRestart}>
+        <Button type="button" onClick={onRestart}>
           Пройти заново
         </Button>
-        <Link to={`${QUIZ_ROUTES.settings}${settingsSearch}`} className="quiz-result__link">
+        <ButtonLink to={`${QUIZ_ROUTES.settings}${settingsSearch}`} variant="link">
           Изменить настройки
-        </Link>
+        </ButtonLink>
       </div>
-    </section>
+    </Card>
   );
 };

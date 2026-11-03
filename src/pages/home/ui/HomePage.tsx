@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
 import { useAppSelector } from "@/store/hooks";
+import { ButtonLink } from "@/shared/ui";
 import "./HomePage.scss";
 
 const STATS: { value?: string; label: string }[] = [
@@ -27,12 +27,9 @@ export const HomePage = () => {
           техническому собеседованию и прохождению отбора в IT компании.
         </p>
 
-        <Link
-          to={isAuth ? "/interview" : "/register"}
-          className="home__btn home__btn--primary home__btn--large"
-        >
+        <ButtonLink to={isAuth ? "/interview" : "/register"} size="lg" className="home__btn">
           {isAuth ? "Начать подготовку" : "Присоединиться"}
-        </Link>
+        </ButtonLink>
       </main>
 
       <ul className="home__stats" aria-label="Yeahub в цифрах">

@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
 import { useCreateProfileMutation } from "@/entities/profile/api/profileApi";
 import type { Profile } from "@/entities/profile/model/types";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { Chip, Button } from "@/shared/ui/";
+import { Button, Chip, Select } from "@/shared/ui";
 import "./ProfileSpecializationPicker.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -98,32 +97,25 @@ export const ProfileSpecializationPicker = ({
           </label>
 
           <div className="spec-picker__add-row">
-            <div className="spec-picker__select-wrap">
-              <select
-                id="spec-picker-select"
-                className="spec-picker__select"
-                value={newSpecializationId}
-                onChange={(e) => {
-                  setNewSpecializationId(e.target.value);
-                  setError(null);
-                }}
-              >
-                <option value="">Выберите специализацию</option>
-                {available.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.title}
-                  </option>
-                ))}
-              </select>
-              <FiChevronDown className="spec-picker__select-icon" aria-hidden="true" />
-            </div>
-
-            <Button
-              type="button"
-              className="spec-picker__btn"
-              disabled={isCreating}
-              onClick={handleAdd}
+            <Select
+              id="spec-picker-select"
+              variant="filled"
+              wrapperClassName="spec-picker__select"
+              value={newSpecializationId}
+              onChange={(e) => {
+                setNewSpecializationId(e.target.value);
+                setError(null);
+              }}
             >
+              <option value="">Выберите специализацию</option>
+              {available.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.title}
+                </option>
+              ))}
+            </Select>
+
+            <Button type="button" variant="outline" disabled={isCreating} onClick={handleAdd}>
               {isCreating ? "Добавляем..." : "Добавить"}
             </Button>
           </div>

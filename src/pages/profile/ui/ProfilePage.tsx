@@ -4,6 +4,7 @@ import { ProfileView } from "@/entities/profile/ui/profile-view/ProfileView";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
 import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
+import { Button, Card } from "@/shared/ui";
 import "./ProfilePage.scss";
 
 export const ProfilePage = () => {
@@ -18,9 +19,9 @@ export const ProfilePage = () => {
       return (
         <div className="profile-page__status profile-page__status--error">
           Не удалось загрузить профиль
-          <button type="button" className="profile-page__retry" onClick={refetch}>
+          <Button variant="outline" size="sm" onClick={refetch}>
             Повторить
-          </button>
+          </Button>
         </div>
       );
     }
@@ -33,14 +34,14 @@ export const ProfilePage = () => {
 
     return (
       <>
-        <section className="profile-page__spec">
+        <Card as="section" padding="none" radius="md" shadow className="profile-page__spec">
           <ProfileSpecializationPicker
             userId={user.id}
             profiles={profiles}
             activeProfileId={profile.id}
             onSelect={selectProfile}
           />
-        </section>
+        </Card>
 
         <ProfileView user={user} profile={profile} specializationTitle={specializationTitle} />
       </>

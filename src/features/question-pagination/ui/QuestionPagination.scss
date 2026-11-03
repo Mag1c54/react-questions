@@ -10,23 +10,6 @@
   font-weight: 500;
   color: $color-text-secondary;
 
-  &__item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 3px;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: $color-bg-page;
-    }
-  }
-
   &__active {
     background: $color-accent;
     color: $color-white;
@@ -39,12 +22,6 @@
     &:hover {
       background: $color-accent;
     }
-  }
-
-  &__dots {
-    color: $color-text-muted;
-    letter-spacing: 2px;
-    user-select: none;
   }
 
   &__arrow {

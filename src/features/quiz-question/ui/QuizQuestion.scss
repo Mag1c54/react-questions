@@ -7,9 +7,6 @@ $color-error: #d92d20;
   flex-direction: column;
   gap: 16px;
   padding: 16px 20px 20px;
-  background: $color-white;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgb(106 99 118 / 10%);
   font-family: $font-main;
 
   &__nav {
@@ -138,6 +135,10 @@ $color-error: #d92d20;
     max-height: 340px;
     border-radius: 16px;
     object-fit: cover;
+
+    &--empty {
+      background: $color-bg-page;
+    }
   }
 
   &__footer {

@@ -12,9 +12,6 @@
 
   &__spec {
     padding: 20px;
-    background: $color-white;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgb(106 99 118 / 10%);
   }
 
   &__status {
@@ -30,18 +27,6 @@
     &--error {
       color: $color-error;
     }
-  }
-
-  &__retry {
-    padding: 8px 16px;
-    border: 1px solid $color-accent;
-    border-radius: 8px;
-    background: transparent;
-    color: $color-accent;
-    font-family: $font-main;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
   }
 }
 

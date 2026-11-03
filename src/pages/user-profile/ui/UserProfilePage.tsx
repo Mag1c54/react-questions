@@ -3,6 +3,7 @@ import { useGetProfileByIdQuery } from "@/entities/profile/api/profileApi";
 import { ProfileView } from "@/entities/profile/ui/profile-view/ProfileView";
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
+import { Button } from "@/shared/ui";
 import "./UserProfilePage.scss";
 
 export const UserProfilePage = () => {
@@ -35,9 +36,9 @@ export const UserProfilePage = () => {
         <div className="user-profile-page__status">
           {isNotFound ? "Профиль не найден" : "Не удалось загрузить профиль"}
           {!isNotFound && (
-            <button type="button" className="user-profile-page__retry" onClick={refetch}>
+            <Button variant="outline" size="sm" onClick={refetch}>
               Повторить
-            </button>
+            </Button>
           )}
         </div>
       );

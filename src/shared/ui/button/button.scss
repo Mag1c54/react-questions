@@ -89,6 +89,7 @@
       filter: brightness(0.92);
     }
   }
+
   &--link {
     height: auto;
     padding: 0;
@@ -116,7 +117,6 @@
 
   &--none {
     padding: 0;
-    // empty styles
   }
 
   &:disabled,
