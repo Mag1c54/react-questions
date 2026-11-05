@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useCreateProfileMutation } from "@/entities/profile/api/profileApi";
-import type { Profile } from "@/entities/profile/model/types";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
-import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
+import { useCreateProfileMutation } from "@/entities/profile";
+import type { Profile } from "@/entities/profile";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { getApiErrorCode } from "@/shared/lib";
+import { getErrorMessage } from "@/shared/lib";
 import { Button, Chip, Select } from "@/shared/ui";
 import { ProfileSpecializationPickerSkeleton } from "./ProfileSpecializationPickerSkeleton";
 import "./ProfileSpecializationPicker.scss";

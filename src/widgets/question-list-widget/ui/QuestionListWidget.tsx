@@ -1,7 +1,7 @@
 import React from "react";
-import type { Question, GetQuestionsResponse } from "@/entities/question/model/types";
-import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
-import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import type { Question, GetQuestionsResponse } from "@/entities/question";
+import { QuestionCard } from "@/entities/question";
+import { QuestionPagination } from "@/features/question-pagination";
 import { QuestionListWidgetSkeleton } from "./QuestionListWidgetSkeleton";
 import "./QuestionListWidget.scss";
 

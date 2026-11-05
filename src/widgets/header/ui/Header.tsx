@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
-import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
-import { LogoutButton } from "@/features/logout/ui/LogoutButton";
-import { useAppSelector } from "@/store/hooks";
+import { useGetProfileQuery } from "@/entities/profile";
+import { selectSessionStatus } from "@/entities/session";
+import { LogoutButton } from "@/features/logout";
+import { useSelector } from "react-redux";
 import { Button, ButtonLink, SafeImage } from "@/shared/ui";
 import "./Header.scss";
 
@@ -16,7 +16,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const status = useAppSelector(selectSessionStatus);
+  const status = useSelector(selectSessionStatus);
 
   const { data: profile } = useGetProfileQuery(undefined, {
     skip: status !== "authenticated",

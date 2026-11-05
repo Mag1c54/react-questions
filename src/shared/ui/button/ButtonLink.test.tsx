@@ -1,7 +1,7 @@
 import { createRef } from "react";
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { renderWithRouter } from "@/test/utils";
+import { renderWithRouter } from "@/shared/testing";
 import { ButtonLink } from "./ButtonLink";
 
 describe("ButtonLink", () => {

@@ -3,18 +3,18 @@ import { FiPlus, FiSearch, FiTrash2 } from "react-icons/fi";
 import {
   useDeleteSpecializationMutation,
   useGetSpecializationListQuery,
-} from "@/entities/specialization/api/specializationApi";
-import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
-import { describeDeleteError } from "@/features/specialization-manage/model/errors";
-import { ADMIN_ROUTES } from "@/shared/config/routes";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { runBulk } from "@/shared/lib/runBulk";
-import { useDebouncedValue } from "@/shared/lib/useDebouncedValue";
-import { useClampPage, usePageParam } from "@/shared/lib/usePageParam";
-import { useRowSelection } from "@/shared/lib/useRowSelection";
+} from "@/entities/specialization";
+import { QuestionPagination } from "@/features/question-pagination";
+import { describeDeleteError } from "@/features/specialization-manage";
+import { ADMIN_ROUTES } from "@/shared/config";
+import { getErrorMessage } from "@/shared/lib";
+import { runBulk } from "@/shared/lib";
+import { useDebouncedValue } from "@/shared/lib";
+import { useClampPage, usePageParam } from "@/shared/lib";
+import { useRowSelection } from "@/shared/lib";
 import { Alert, Button, ButtonLink, Card, Input } from "@/shared/ui";
-import { SpecializationsTable } from "@/widgets/admin-specializations-table/ui/SpecializationsTable";
-import { SpecializationsTableSkeleton } from "@/widgets/admin-specializations-table/ui/SpecializationsTableSkeleton";
+import { SpecializationsTable } from "@/widgets/admin-specializations-table";
+import { SpecializationsTableSkeleton } from "@/widgets/admin-specializations-table";
 import "./AdminSpecializationsPage.scss";
 
 const LIMIT = 10;

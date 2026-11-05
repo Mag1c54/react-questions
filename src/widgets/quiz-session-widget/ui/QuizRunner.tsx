@@ -1,8 +1,8 @@
-import type { MockQuiz } from "@/entities/quiz/model/types";
-import { useQuizProgress } from "@/entities/quiz/model/useQuizProgress";
-import { QuizProgress } from "@/entities/quiz/ui/quiz-progress/QuizProgress";
-import { QuizQuestion } from "@/features/quiz-question/ui/QuizQuestion";
-import { QuizResult } from "@/features/quiz-result/ui/QuizResult";
+import type { MockQuiz } from "@/entities/quiz";
+import { useQuizProgress } from "@/entities/quiz";
+import { QuizProgress } from "@/entities/quiz";
+import { QuizQuestion } from "@/features/quiz-question";
+import { QuizResult } from "@/features/quiz-result";
 
 interface QuizRunnerProps {
   quiz: MockQuiz;

@@ -1,5 +1,5 @@
-import { RegisterForm } from "@/features/register-form/ui/RegisterForm";
-import { AuthLayout } from "@/widgets/auth-layout/ui/AuthLayout";
+import { RegisterForm } from "@/features/register-form";
+import { AuthLayout } from "@/widgets/auth-layout";
 
 export const RegisterPage = () => (
   <AuthLayout

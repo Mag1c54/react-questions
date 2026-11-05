@@ -1,5 +1,5 @@
 import { Skeleton } from "@/shared/ui";
-import { QuestionCardSkeleton } from "@/entities/question/ui/question-card/QuestionCardSkeleton";
+import { QuestionCardSkeleton } from "@/entities/question";
 import "./QuestionListWidget.scss";
 
 const ITEMS = [0, 1, 2, 3, 4, 5];

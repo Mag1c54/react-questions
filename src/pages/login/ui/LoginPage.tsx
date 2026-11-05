@@ -1,5 +1,5 @@
-import { LoginForm } from "@/features/login-form/ui/LoginForm";
-import { AuthLayout } from "@/widgets/auth-layout/ui/AuthLayout";
+import { LoginForm } from "@/features/login-form";
+import { AuthLayout } from "@/widgets/auth-layout";
 
 export const LoginPage = () => (
   <AuthLayout

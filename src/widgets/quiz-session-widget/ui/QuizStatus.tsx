@@ -1,5 +1,5 @@
-import type { QuizLoadStatus } from "@/entities/quiz/model/useMockQuiz";
-import { QUIZ_ROUTES } from "@/shared/config/routes";
+import type { QuizLoadStatus } from "@/entities/quiz";
+import { QUIZ_ROUTES } from "@/shared/config";
 import { Button, ButtonLink } from "@/shared/ui";
 import { QuizSessionSkeleton } from "./QuizSessionSkeleton";
 import "./QuizStatus.scss";

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetMockQuizQuery } from "../api/quizApi";
 import { resetQuiz, selectQuiz, startQuiz } from "./quizSlice";
 import type { MockQuiz, QuizSettings } from "./types";
@@ -33,8 +33,8 @@ export const resolveMockQuizState = ({
 };
 
 export const useMockQuiz = (settings: QuizSettings) => {
-  const dispatch = useAppDispatch();
-  const storeQuizId = useAppSelector((state) => selectQuiz(state).quizId);
+  const dispatch = useDispatch();
+  const storeQuizId = useSelector(selectQuiz).quizId;
 
   const { data: quiz, isFetching, isError, error, refetch } = useGetMockQuizQuery(settings);
 

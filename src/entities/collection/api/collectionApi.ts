@@ -1,9 +1,5 @@
-import { baseApi } from "@/shared/api/baseApi";
-import type {
-  Collection,
-  GetCollectionsParams,
-  GetCollectionsResponse,
-} from "../model/types";
+import { baseApi } from "@/shared/api";
+import type { Collection, GetCollectionsParams, GetCollectionsResponse } from "../model/types";
 
 export const collectionApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

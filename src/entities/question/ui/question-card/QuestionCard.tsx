@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { type Question } from "@/entities/question/model/types";
+import { type Question } from "../../model/types";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import hljs from "highlight.js/lib/core";
 import DOMPurify from "dompurify";

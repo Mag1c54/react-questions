@@ -1,8 +1,4 @@
-export const parsePositiveInt = (
-  value: string | null,
-  fallback = 1,
-  max = 1_000_000,
-): number => {
+export const parsePositiveInt = (value: string | null, fallback = 1, max = 1_000_000): number => {
   if (value === null || !/^\d+$/.test(value)) return fallback;
 
   const n = Number(value);

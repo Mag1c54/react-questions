@@ -18,9 +18,9 @@ import {
   FiTag,
   FiUser,
 } from "react-icons/fi";
-import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
-import { LogoutButton } from "@/features/logout/ui/LogoutButton";
-import { ADMIN_ROUTES } from "@/shared/config/routes";
+import { useGetProfileQuery } from "@/entities/profile";
+import { LogoutButton } from "@/features/logout";
+import { ADMIN_ROUTES } from "@/shared/config";
 import { Button, buttonClassName, SafeImage } from "@/shared/ui";
 import "./AdminLayout.scss";
 

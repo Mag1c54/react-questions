@@ -1,4 +1,4 @@
-import { baseApi } from "@/shared/api/baseApi";
+import { baseApi } from "@/shared/api";
 import type { MockQuiz, QuizSettings } from "../model/types";
 
 export const quizApi = baseApi.injectEndpoints({

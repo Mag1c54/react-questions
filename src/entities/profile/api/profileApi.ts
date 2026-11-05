@@ -1,11 +1,11 @@
-import { baseApi } from "@/shared/api/baseApi";
+import { baseApi } from "@/shared/api";
 import type {
   CreateProfilePayload,
   Profile,
   UpdateProfilePayload,
   UpdateUserPayload,
 } from "../model/types";
-import type { AuthUser } from "@/entities/session/model/types";
+import type { AuthUser } from "@/entities/session";
 
 export const profileApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

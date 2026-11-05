@@ -1,5 +1,5 @@
-import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
-import { useAppSelector } from "@/store/hooks";
+import { selectSessionStatus } from "@/entities/session";
+import { useSelector } from "react-redux";
 import { ButtonLink } from "@/shared/ui";
 import "./HomePage.scss";
 
@@ -13,7 +13,7 @@ const STATS: { value?: string; label: string }[] = [
 ];
 
 export const HomePage = () => {
-  const isAuth = useAppSelector(selectSessionStatus) === "authenticated";
+  const isAuth = useSelector(selectSessionStatus) === "authenticated";
 
   return (
     <div className="home">

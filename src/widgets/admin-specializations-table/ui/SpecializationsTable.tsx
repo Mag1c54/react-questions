@@ -1,5 +1,5 @@
-import type { Specialization } from "@/entities/specialization/model/types";
-import { formatDate } from "@/shared/lib/formatDate";
+import type { Specialization } from "@/entities/specialization";
+import { formatDate } from "@/shared/lib";
 import { SafeImage } from "@/shared/ui";
 import "./SpecializationsTable.scss";
 

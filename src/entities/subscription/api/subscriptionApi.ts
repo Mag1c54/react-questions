@@ -1,4 +1,4 @@
-import { baseApi } from "@/shared/api/baseApi";
+import { baseApi } from "@/shared/api";
 
 export const subscriptionApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

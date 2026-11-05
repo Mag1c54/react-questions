@@ -1,4 +1,4 @@
-import type { Question } from "@/entities/question/model/types";
+import type { Question } from "@/entities/question";
 
 export type QuizAnswer = "KNOWN" | "UNKNOWN";
 

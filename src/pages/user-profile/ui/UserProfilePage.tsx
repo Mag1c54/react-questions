@@ -1,9 +1,9 @@
 import { Navigate, useParams } from "react-router-dom";
-import { useGetProfileByIdQuery } from "@/entities/profile/api/profileApi";
-import { ProfileView } from "@/entities/profile/ui/profile-view/ProfileView";
-import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
-import { ProfileViewSkeleton } from "@/entities/profile/ui/profile-view/ProfileViewSkeleton";
+import { useGetProfileByIdQuery } from "@/entities/profile";
+import { ProfileView } from "@/entities/profile";
+import { useGetProfileQuery } from "@/entities/profile";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { ProfileViewSkeleton } from "@/entities/profile";
 import { Button } from "@/shared/ui";
 import "./UserProfilePage.scss";
 

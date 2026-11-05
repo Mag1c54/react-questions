@@ -1,6 +1,6 @@
 import { CardSkeleton } from "@/shared/ui";
-import { ProfileViewSkeleton } from "@/entities/profile/ui/profile-view/ProfileViewSkeleton";
-import { ProfileSpecializationPickerSkeleton } from "@/features/profile-specialization/ui/ProfileSpecializationPickerSkeleton";
+import { ProfileViewSkeleton } from "@/entities/profile";
+import { ProfileSpecializationPickerSkeleton } from "@/features/profile-specialization";
 import "./ProfilePage.scss";
 
 export const ProfilePageSkeleton = () => (

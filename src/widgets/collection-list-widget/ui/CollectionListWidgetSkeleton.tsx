@@ -1,5 +1,5 @@
 import { Skeleton } from "@/shared/ui";
-import { CollectionCardSkeleton } from "@/entities/collection/ui/collection-card/CollectionCardSkeleton";
+import { CollectionCardSkeleton } from "@/entities/collection";
 import "./CollectionListWidget.scss";
 
 const ITEMS = [0, 1, 2, 3, 4];

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { VscSettings } from "react-icons/vsc";
-import { useGetCollectionsQuery } from "@/entities/collection/api/collectionApi";
-import { useCollectionFilters } from "@/features/collection-filters/model/useCollectionFilters";
-import { CollectionFilters } from "@/features/collection-filters/ui/CollectionFilters";
-import { CollectionListWidget } from "@/widgets/collection-list-widget/ui/CollectionListWidget";
+import { useGetCollectionsQuery } from "@/entities/collection";
+import { useCollectionFilters } from "@/features/collection-filters";
+import { CollectionFilters } from "@/features/collection-filters";
+import { CollectionListWidget } from "@/widgets/collection-list-widget";
 import { Button, Card } from "@/shared/ui";
 import "./CollectionsPage.scss";
 

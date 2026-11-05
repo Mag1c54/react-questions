@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import type { Profile } from "@/entities/profile/model/types";
-import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
+import type { Profile } from "@/entities/profile";
+import { useGetSkillsQuery } from "@/entities/skill";
 import { Field, FormRow, Select, Tag } from "@/shared/ui";
 import type { ProfileEditValues } from "../../model/schema";
 import { SkillsTabSkeleton } from "./SkillsTabSkeleton";

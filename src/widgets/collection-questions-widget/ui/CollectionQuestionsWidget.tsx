@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import type { Collection } from "@/entities/collection/model/types";
-import { useGetPublicQuestionsQuery } from "@/entities/question/api/questionApi";
-import type { Question } from "@/entities/question/model/types";
-import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
-import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import type { Collection } from "@/entities/collection";
+import { useGetPublicQuestionsQuery } from "@/entities/question";
+import type { Question } from "@/entities/question";
+import { QuestionCard } from "@/entities/question";
+import { QuestionPagination } from "@/features/question-pagination";
 import { Button, Card } from "@/shared/ui";
 import { CollectionQuestionsWidgetSkeleton } from "./CollectionQuestionsWidgetSkeleton";
 import "./CollectionQuestionsWidget.scss";

@@ -1,11 +1,11 @@
-import type { Question } from "@/entities/question/model/types";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import type { Question } from "@/entities/question";
+import { useDispatch, useSelector } from "react-redux";
 import { finishQuiz, goTo, selectQuiz, setAnswer } from "./quizSlice";
 import type { QuizAnswer } from "./types";
 
 export const useQuizProgress = (questions: Question[]) => {
-  const dispatch = useAppDispatch();
-  const { currentIndex, answers, isFinished } = useAppSelector(selectQuiz);
+  const dispatch = useDispatch();
+  const { currentIndex, answers, isFinished } = useSelector(selectQuiz);
 
   const total = questions.length;
   const question: Question | undefined = questions[currentIndex];

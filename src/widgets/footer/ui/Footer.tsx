@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  FaFigma,
-  FaTelegramPlane,
-  FaYoutube,
-  FaTiktok,
-  FaGithub,
-} from "react-icons/fa";
+import { FaFigma, FaTelegramPlane, FaYoutube, FaTiktok, FaGithub } from "react-icons/fa";
 import "./Footer.scss";
 
 const SOCIALS = [
@@ -24,13 +18,11 @@ export const Footer = () => {
           <Link to="/" className="footer__logo">
             Yeahub
           </Link>
-          <p className="footer__slogan">
-            Выбери, каким будет IT завтра, вместе с нами
-          </p>
+          <p className="footer__slogan">Выбери, каким будет IT завтра, вместе с нами</p>
           <p className="footer__description">
-            YeaHub — это полностью открытый проект, призванный объединить и
-            улучшить IT-сферу. Наш исходный код доступен для просмотра на
-            GitHub. Дизайн проекта также открыт для ознакомления в Figma.
+            YeaHub — это полностью открытый проект, призванный объединить и улучшить IT-сферу. Наш
+            исходный код доступен для просмотра на GitHub. Дизайн проекта также открыт для
+            ознакомления в Figma.
           </p>
         </div>
 
@@ -43,9 +35,7 @@ export const Footer = () => {
           </div>
 
           <div className="footer__socials">
-            <span className="footer__socials-text">
-              Ищите нас и в других соцсетях @yeahub_it
-            </span>
+            <span className="footer__socials-text">Ищите нас и в других соцсетях @yeahub_it</span>
             <ul className="footer__socials-list">
               {SOCIALS.map(({ href, label, icon: Icon }) => (
                 <li key={label}>

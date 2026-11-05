@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
-import { isHttpUrl } from "@/shared/lib/isHttpUrl";
+import { isHttpUrl } from "@/shared/lib";
 import { Card, Tag } from "@/shared/ui";
 import { getPlatform } from "../../config/platforms";
 import type { Profile } from "../../model/types";

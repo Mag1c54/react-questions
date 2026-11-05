@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { emailSchema, newPasswordSchema, usernameSchema } from "@/shared/lib/validation";
+import { emailSchema, newPasswordSchema, usernameSchema } from "@/shared/lib";
 
 const requiredConsent = (message: string) => z.boolean().refine((value) => value, message);
 

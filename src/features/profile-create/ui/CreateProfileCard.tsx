@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useCreateProfileMutation } from "@/entities/profile/api/profileApi";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
-import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
+import { useCreateProfileMutation } from "@/entities/profile";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { getApiErrorCode } from "@/shared/lib";
+import { getErrorMessage } from "@/shared/lib";
 import { Button, Card, Chip } from "@/shared/ui";
 import { CreateProfileCardSkeleton } from "./CreateProfileCardSkeleton";
 import "./CreateProfileCard.scss";

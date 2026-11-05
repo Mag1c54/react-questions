@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { QuestionSearch } from "@/features/question-search/ui/QuestionSearch";
+import { QuestionSearch } from "@/features/question-search";
 import { Button, Card, Chip } from "@/shared/ui";
 import "./QuestionNavigationWidget.scss";
 

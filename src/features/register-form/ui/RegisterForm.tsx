@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRegisterMutation } from "@/entities/session/api/authApi";
-import { SocialAuth } from "@/features/social-auth/ui/SocialAuth";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
+import { useRegisterMutation } from "@/entities/session";
+import { SocialAuth } from "@/entities/session";
+import { getErrorMessage } from "@/shared/lib";
 
 import { registerSchema, type RegisterFormValues } from "../model/schema";
 import { Alert, Button, CheckboxField, PasswordField, TextField } from "@/shared/ui";

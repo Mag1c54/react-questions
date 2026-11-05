@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { isHttpUrl } from "@/shared/lib/isHttpUrl";
-import { usernameSchema } from "@/shared/lib/validation";
+import { isHttpUrl } from "@/shared/lib";
+import { usernameSchema } from "@/shared/lib";
 
 export const ABOUT_MAX = 1000;
 

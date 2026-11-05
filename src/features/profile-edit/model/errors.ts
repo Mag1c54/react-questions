@@ -1,5 +1,5 @@
-import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
+import { getApiErrorCode } from "@/shared/lib";
+import { getErrorMessage } from "@/shared/lib";
 
 export const describeProfileError = (error: unknown): string => {
   const code = getApiErrorCode(error);

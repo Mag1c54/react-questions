@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useCreateSpecializationMutation } from "@/entities/specialization/api/specializationApi";
-import { ADMIN_ROUTES } from "@/shared/config/routes";
-import { stripDataUrlPrefix } from "@/shared/lib/isHttpUrl";
+import { useCreateSpecializationMutation } from "@/entities/specialization";
+import { ADMIN_ROUTES } from "@/shared/config";
+import { stripDataUrlPrefix } from "@/shared/lib";
 import type { SpecializationFormValues } from "../model/schema";
 import { SpecializationForm } from "./SpecializationForm";
 

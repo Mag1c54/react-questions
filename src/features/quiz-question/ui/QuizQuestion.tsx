@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiChevronLeft, FiChevronRight, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
-import type { Question } from "@/entities/question/model/types";
-import type { QuizAnswer } from "@/entities/quiz/model/types";
+import type { Question } from "@/entities/question";
+import type { QuizAnswer } from "@/entities/quiz";
 import { Button, Card, SafeImage } from "@/shared/ui";
 import "./QuizQuestion.scss";
 

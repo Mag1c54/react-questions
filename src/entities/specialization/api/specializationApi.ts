@@ -1,5 +1,5 @@
-import { baseApi } from "@/shared/api/baseApi";
-import { cleanParams } from "@/shared/lib/cleanParams";
+import { baseApi } from "@/shared/api";
+import { cleanParams } from "@/shared/lib";
 import type {
   DeleteResponse,
   GetSpecializationsParams,

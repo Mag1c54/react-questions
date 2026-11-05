@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
-import type { Collection } from "@/entities/collection/model/types";
+import type { Collection } from "@/entities/collection";
 import { Card, SafeImage } from "@/shared/ui";
 import "./CollectionInfoWidget.scss";
 

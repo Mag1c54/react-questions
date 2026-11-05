@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FiUser } from "react-icons/fi";
-import { SOCIAL_PLATFORMS } from "@/entities/profile/config/platforms";
-import type { AuthUser } from "@/entities/session/model/types";
+import { SOCIAL_PLATFORMS } from "@/entities/profile";
+import type { AuthUser } from "@/entities/session";
 import { FormRow, ImageUploader, TextField } from "@/shared/ui";
 import type { ProfileEditValues } from "../../model/schema";
 

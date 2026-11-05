@@ -1,6 +1,6 @@
-import { CollectionCard } from "@/entities/collection/ui/collection-card/CollectionCard";
-import type { GetCollectionsResponse } from "@/entities/collection/model/types";
-import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import { CollectionCard } from "@/entities/collection";
+import type { GetCollectionsResponse } from "@/entities/collection";
+import { QuestionPagination } from "@/features/question-pagination";
 import { Button } from "@/shared/ui";
 import { CollectionListWidgetSkeleton } from "./CollectionListWidgetSkeleton";
 import "./CollectionListWidget.scss";

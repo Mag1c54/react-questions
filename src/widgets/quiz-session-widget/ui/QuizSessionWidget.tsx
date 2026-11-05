@@ -1,5 +1,5 @@
-import type { QuizSettings } from "@/entities/quiz/model/types";
-import { useMockQuiz } from "@/entities/quiz/model/useMockQuiz";
+import type { QuizSettings } from "@/entities/quiz";
+import { useMockQuiz } from "@/entities/quiz";
 import { QuizRunner } from "./QuizRunner";
 import { QuizStatus } from "./QuizStatus";
 

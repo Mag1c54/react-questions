@@ -26,10 +26,7 @@ export const quizSlice = createSlice({
     resetQuiz() {
       return initialState;
     },
-    setAnswer(
-      state,
-      action: PayloadAction<{ questionId: number; answer: QuizAnswer }>,
-    ) {
+    setAnswer(state, action: PayloadAction<{ questionId: number; answer: QuizAnswer }>) {
       state.answers[action.payload.questionId] = action.payload.answer;
     },
     goTo(state, action: PayloadAction<number>) {

@@ -1,6 +1,6 @@
-import type { Question } from "@/entities/question/model/types";
-import type { QuizAnswer } from "@/entities/quiz/model/types";
-import { QUIZ_ROUTES } from "@/shared/config/routes";
+import type { Question } from "@/entities/question";
+import type { QuizAnswer } from "@/entities/quiz";
+import { QUIZ_ROUTES } from "@/shared/config";
 import { Button, ButtonLink, Card } from "@/shared/ui";
 import "./QuizResult.scss";
 interface QuizResultProps {

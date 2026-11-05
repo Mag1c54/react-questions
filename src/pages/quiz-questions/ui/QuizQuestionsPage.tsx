@@ -1,7 +1,7 @@
 import { Navigate, useSearchParams } from "react-router-dom";
-import { parseQuizSettings } from "@/entities/quiz/lib/quizParams";
-import { QUIZ_ROUTES } from "@/shared/config/routes";
-import { QuizSessionWidget } from "@/widgets/quiz-session-widget/ui/QuizSessionWidget";
+import { parseQuizSettings } from "@/entities/quiz";
+import { QUIZ_ROUTES } from "@/shared/config";
+import { QuizSessionWidget } from "@/widgets/quiz-session-widget";
 import "./QuizQuestionsPage.scss";
 
 export const QuizQuestionsPage = () => {

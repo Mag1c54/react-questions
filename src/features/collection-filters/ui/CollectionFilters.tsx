@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
 import { Button, Card, Chip, SearchInput } from "@/shared/ui";
 import { useCollectionFilters } from "../model/useCollectionFilters";
 import { CollectionFiltersSkeleton } from "./CollectionFiltersSkeleton";

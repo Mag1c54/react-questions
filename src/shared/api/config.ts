@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'https://api.yeatwork.ru';
+export const API_BASE_URL = "https://api.yeatwork.ru";

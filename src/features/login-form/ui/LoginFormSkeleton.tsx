@@ -1,5 +1,5 @@
 import { Skeleton } from "@/shared/ui";
-import { SocialAuthSkeleton } from "../../social-auth/ui/SocialAuthSkeleton";
+import { SocialAuthSkeleton } from "@/entities/session";
 import "@/shared/ui/form/auth-form.scss";
 
 export const LoginFormSkeleton = () => (

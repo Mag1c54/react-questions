@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { VscSettings } from "react-icons/vsc";
-import { useGetPublicQuestionsQuery } from "@/entities/question/api/questionApi";
-import { getErrorMessage } from "@/shared/lib/getErrorMessage";
-import { parsePositiveInt } from "@/shared/lib/parseParams";
-import { useDebouncedValue } from "@/shared/lib/useDebouncedValue";
-import { QuestionsListWidget } from "@/widgets/question-list-widget/ui/QuestionListWidget";
-import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget/ui/QuestionNavigationWidget";
+import { useGetPublicQuestionsQuery } from "@/entities/question";
+import { getErrorMessage } from "@/shared/lib";
+import { parsePositiveInt } from "@/shared/lib";
+import { useDebouncedValue } from "@/shared/lib";
+import { QuestionsListWidget } from "@/widgets/question-list-widget";
+import { QuestionNavigationWidget } from "@/widgets/question-navigation-widget";
 import { Button, Card } from "@/shared/ui";
 import "./QuestionsPage.scss";
 

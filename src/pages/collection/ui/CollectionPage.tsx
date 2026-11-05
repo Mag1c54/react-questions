@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
-import { useGetCollectionByIdQuery } from "@/entities/collection/api/collectionApi";
-import { CollectionHero } from "@/entities/collection/ui/collection-hero/CollectionHero";
-import { CollectionInfoWidget } from "@/widgets/collection-info-widget/ui/CollectionInfoWidget";
-import { ExpertCard } from "@/widgets/collection-info-widget/ui/ExpertCard";
-import { CollectionQuestionsWidget } from "@/widgets/collection-questions-widget/ui/CollectionQuestionsWidget";
+import { useGetCollectionByIdQuery } from "@/entities/collection";
+import { CollectionHero } from "@/entities/collection";
+import { CollectionInfoWidget } from "@/widgets/collection-info-widget";
+import { ExpertCard } from "@/widgets/collection-info-widget";
+import { CollectionQuestionsWidget } from "@/widgets/collection-questions-widget";
 import { Button, ButtonLink } from "@/shared/ui";
 import { CollectionPageSkeleton } from "./CollectionPageSkeleton";
 import "./CollectionPage.scss";

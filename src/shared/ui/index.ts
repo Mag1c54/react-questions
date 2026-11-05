@@ -4,6 +4,7 @@ export { ButtonLink, type ButtonLinkProps } from "./button/ButtonLink";
 export { buttonClassName } from "./button/buttonClassName";
 export { Card } from "./card/Card";
 export { CardSkeleton } from "./skeleton/CardSkeleton";
+export { ErrorFallback } from "./error-fallback/ErrorFallback";
 export { Chip } from "./chip/Chip";
 export { CheckboxField } from "./form/CheckboxField";
 export { PasswordField } from "./form/PasswordField";

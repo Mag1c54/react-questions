@@ -1,19 +1,19 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { FiArrowRight } from "react-icons/fi";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
-import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { resetQuiz } from "@/entities/quiz/model/quizSlice";
-import { selectSessionStatus } from "@/entities/session/model/sessionSlice";
-import { QUIZ_ROUTES } from "@/shared/config/routes";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { useGetSkillsQuery } from "@/entities/skill";
+import { useDispatch, useSelector } from "react-redux";
+import { resetQuiz } from "@/entities/quiz";
+import { selectSessionStatus } from "@/entities/session";
+import { QUIZ_ROUTES } from "@/shared/config";
 import {
   buildQuizSearch,
   COMPLEXITY_RANGES,
   DEFAULT_LIMIT,
   MAX_LIMIT,
   parseQuizSettings,
-} from "@/entities/quiz/lib/quizParams";
+} from "@/entities/quiz";
 import { Button, Chip, NumberStepper, Popup, Skeleton } from "@/shared/ui";
 import { QuizSettingsFormSkeleton } from "./QuizSettingsFormSkeleton";
 import "./QuizSettingsForm.scss";
@@ -26,10 +26,10 @@ interface QuizFormValues {
 
 export const QuizSettingsForm = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const initial = parseQuizSettings(searchParams);
-  const sessionStatus = useAppSelector(selectSessionStatus);
+  const sessionStatus = useSelector(selectSessionStatus);
   const isAuthenticated = sessionStatus === "authenticated";
 
   const {

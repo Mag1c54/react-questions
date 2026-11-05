@@ -1,4 +1,4 @@
-import { baseApi } from "@/shared/api/baseApi";
+import { baseApi } from "@/shared/api";
 import { logout, setAccessToken } from "../model/sessionSlice";
 import type { AuthResponse, LoginRequest, RegisterRequest, TokenResponse } from "../model/types";
 

@@ -1,9 +1,9 @@
-import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
-import { useActiveProfile } from "@/entities/profile/model/useActiveProfile";
-import { ProfileView } from "@/entities/profile/ui/profile-view/ProfileView";
-import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
-import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
-import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
+import { useGetProfileQuery } from "@/entities/profile";
+import { useActiveProfile } from "@/entities/profile";
+import { ProfileView } from "@/entities/profile";
+import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { CreateProfileCard } from "@/features/profile-create";
+import { ProfileSpecializationPicker } from "@/features/profile-specialization";
 import { Button, Card } from "@/shared/ui";
 import { ProfilePageSkeleton } from "./ProfilePageSkeleton";
 import "./ProfilePage.scss";

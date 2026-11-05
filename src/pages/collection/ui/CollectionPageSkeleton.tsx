@@ -1,7 +1,7 @@
-import { CollectionHeroSkeleton } from "@/entities/collection/ui/collection-hero/CollectionHeroSkeleton";
-import { CollectionInfoWidgetSkeleton } from "@/widgets/collection-info-widget/ui/CollectionInfoWidgetSkeleton";
-import { ExpertCardSkeleton } from "@/widgets/collection-info-widget/ui/ExpertCardSkeleton";
-import { CollectionQuestionsWidgetSkeleton } from "@/widgets/collection-questions-widget/ui/CollectionQuestionsWidgetSkeleton";
+import { CollectionHeroSkeleton } from "@/entities/collection";
+import { CollectionInfoWidgetSkeleton } from "@/widgets/collection-info-widget";
+import { ExpertCardSkeleton } from "@/widgets/collection-info-widget";
+import { CollectionQuestionsWidgetSkeleton } from "@/widgets/collection-questions-widget";
 import "./CollectionPage.scss";
 
 export const CollectionPageSkeleton = () => (

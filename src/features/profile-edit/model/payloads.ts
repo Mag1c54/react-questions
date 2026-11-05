@@ -1,11 +1,7 @@
-import { SOCIAL_PLATFORMS } from "@/entities/profile/config/platforms";
-import type {
-  Profile,
-  UpdateProfilePayload,
-  UpdateUserPayload,
-} from "@/entities/profile/model/types";
-import type { AuthUser } from "@/entities/session/model/types";
-import { stripDataUrlPrefix } from "@/shared/lib/isHttpUrl";
+import { SOCIAL_PLATFORMS } from "@/entities/profile";
+import type { Profile, UpdateProfilePayload, UpdateUserPayload } from "@/entities/profile";
+import type { AuthUser } from "@/entities/session";
+import { stripDataUrlPrefix } from "@/shared/lib";
 import type { ProfileEditValues } from "./schema";
 
 export const buildDefaultValues = (user: AuthUser, profile: Profile): ProfileEditValues => {

@@ -1,4 +1,4 @@
-import type { Specialization } from "@/entities/specialization/model/types";
+import type { Specialization } from "@/entities/specialization";
 
 export interface SkillAuthor {
   id: string;
