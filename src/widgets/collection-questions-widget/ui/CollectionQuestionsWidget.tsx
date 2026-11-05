@@ -5,6 +5,7 @@ import type { Question } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
 import { Button, Card } from "@/shared/ui";
+import { CollectionQuestionsWidgetSkeleton } from "./CollectionQuestionsWidgetSkeleton";
 import "./CollectionQuestionsWidget.scss";
 
 const LIMIT = 10;
@@ -37,11 +38,11 @@ export const CollectionQuestionsWidget = ({ collection }: CollectionQuestionsWid
     ? `Вопросы ${collection.keywords.join(", ")}`
     : "Вопросы";
 
-  const renderBody = () => {
-    if (isLoading) {
-      return <p className="collection-questions__status">Загрузка вопросов...</p>;
-    }
+  if (isLoading) {
+    return <CollectionQuestionsWidgetSkeleton />;
+  }
 
+  const renderBody = () => {
     if (isError) {
       return (
         <div className="collection-questions__status collection-questions__status--error">

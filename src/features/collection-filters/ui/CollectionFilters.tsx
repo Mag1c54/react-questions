@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
 import { Button, Card, Chip, SearchInput } from "@/shared/ui";
 import { useCollectionFilters } from "../model/useCollectionFilters";
+import { CollectionFiltersSkeleton } from "./CollectionFiltersSkeleton";
 import "./CollectionFilters.scss";
 
 const VISIBLE_COUNT = 4;
@@ -18,11 +19,15 @@ export const CollectionFilters = () => {
     reset,
   } = useCollectionFilters();
 
-  const { data } = useGetSpecializationsQuery();
+  const { data, isLoading } = useGetSpecializationsQuery();
   const [showAll, setShowAll] = useState(false);
 
   const allSpecs = data?.data ?? [];
   const visibleSpecs = showAll ? allSpecs : allSpecs.slice(0, VISIBLE_COUNT);
+
+  if (isLoading) {
+    return <CollectionFiltersSkeleton />;
+  }
 
   return (
     <Card padding="md" radius="lg" shadow className="collection-filters">

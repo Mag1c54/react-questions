@@ -5,6 +5,7 @@ import { useGetSpecializationsQuery } from "@/entities/specialization/api/specia
 import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
 import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
 import { Button, Card } from "@/shared/ui";
+import { ProfilePageSkeleton } from "./ProfilePageSkeleton";
 import "./ProfilePage.scss";
 
 export const ProfilePage = () => {
@@ -13,7 +14,7 @@ export const ProfilePage = () => {
   const { profiles, profile, selectProfile } = useActiveProfile(user);
 
   const renderBody = () => {
-    if (isLoading) return <p className="profile-page__status">Загрузка профиля...</p>;
+    if (isLoading) return <ProfilePageSkeleton />;
 
     if (isError || !user) {
       return (

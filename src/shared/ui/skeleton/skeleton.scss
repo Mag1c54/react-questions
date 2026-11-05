@@ -1,0 +1,155 @@
+@use "../../../styles/variables.scss" as *;
+
+.ui-skeleton {
+  display: block;
+  width: 100%;
+  border-radius: $radius-sm;
+  background: linear-gradient(
+    90deg,
+    rgba($color-text-primary, 0.08) 25%,
+    rgba($color-text-primary, 0.04) 37%,
+    rgba($color-text-primary, 0.08) 63%
+  );
+  background-size: 400% 100%;
+  animation: ui-skeleton-shimmer 1.4s ease infinite;
+  pointer-events: none;
+
+  &--r-sm {
+    border-radius: $radius-sm;
+  }
+
+  &--r-md {
+    border-radius: $radius-md;
+  }
+
+  &--r-lg {
+    border-radius: $radius-lg;
+  }
+
+  &--r-full {
+    border-radius: 50%;
+  }
+
+  &--circle {
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+}
+
+.ui-skeleton-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ui-skeleton-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.ui-skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.ui-skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.ui-skeleton-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.ui-skeleton-tabs {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: $radius-md;
+  background: $color-bg-page;
+}
+
+.ui-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  width: 100%;
+}
+
+.ui-skeleton-upload {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 12px 20px;
+  align-items: start;
+  width: 100%;
+}
+
+.ui-skeleton-self-end {
+  align-self: flex-end;
+}
+
+.ui-skeleton-form-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 12px 24px;
+  align-items: start;
+  width: 100%;
+
+  &--stacked {
+    grid-template-columns: 1fr;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__control {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+}
+
+@keyframes ui-skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .ui-skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ui-skeleton-upload {
+    grid-template-columns: 1fr;
+  }
+
+  .ui-skeleton-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-skeleton {
+    animation: none;
+  }
+}

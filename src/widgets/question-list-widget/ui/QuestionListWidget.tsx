@@ -2,6 +2,7 @@ import React from "react";
 import type { Question, GetQuestionsResponse } from "@/entities/question/model/types";
 import { QuestionCard } from "@/entities/question/ui/question-card/QuestionCard";
 import { QuestionPagination } from "@/features/question-pagination/ui/QuestionPagination";
+import { QuestionListWidgetSkeleton } from "./QuestionListWidgetSkeleton";
 import "./QuestionListWidget.scss";
 
 interface QuestionsListWidgetProps {
@@ -21,7 +22,7 @@ export const QuestionsListWidget: React.FC<QuestionsListWidgetProps> = ({
   limit,
   onPageChange,
 }) => {
-  if (loading) return <div className="questions-list-widget__status">Загрузка вопросов...</div>;
+  if (loading) return <QuestionListWidgetSkeleton />;
   if (error)
     return (
       <div className="questions-list-widget__status questions-list-widget__status--error">

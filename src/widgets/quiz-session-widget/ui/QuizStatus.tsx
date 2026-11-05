@@ -1,10 +1,10 @@
 import type { QuizLoadStatus } from "@/entities/quiz/model/useMockQuiz";
 import { QUIZ_ROUTES } from "@/shared/config/routes";
 import { Button, ButtonLink } from "@/shared/ui";
+import { QuizSessionSkeleton } from "./QuizSessionSkeleton";
 import "./QuizStatus.scss";
 
-const MESSAGES: Record<Exclude<QuizLoadStatus, "ready">, string> = {
-  loading: "Подбираем вопросы...",
+const MESSAGES: Record<Exclude<QuizLoadStatus, "ready" | "loading">, string> = {
   empty: "По выбранным параметрам вопросов не нашлось",
   error: "Не удалось загрузить вопросы",
 };
@@ -15,18 +15,24 @@ interface QuizStatusProps {
   onRetry: () => void;
 }
 
-export const QuizStatus = ({ status, settingsSearch, onRetry }: QuizStatusProps) => (
-  <div className="quiz-status">
-    {MESSAGES[status]}
+export const QuizStatus = ({ status, settingsSearch, onRetry }: QuizStatusProps) => {
+  if (status === "loading") {
+    return <QuizSessionSkeleton />;
+  }
 
-    {status === "error" && (
-      <Button variant="outline" size="sm" onClick={onRetry}>
-        Повторить
-      </Button>
-    )}
+  return (
+    <div className="quiz-status">
+      {MESSAGES[status]}
 
-    <ButtonLink to={`${QUIZ_ROUTES.settings}${settingsSearch}`} variant="link">
-      Изменить настройки
-    </ButtonLink>
-  </div>
-);
+      {status === "error" && (
+        <Button variant="outline" size="sm" onClick={onRetry}>
+          Повторить
+        </Button>
+      )}
+
+      <ButtonLink to={`${QUIZ_ROUTES.settings}${settingsSearch}`} variant="link">
+        Изменить настройки
+      </ButtonLink>
+    </div>
+  );
+};

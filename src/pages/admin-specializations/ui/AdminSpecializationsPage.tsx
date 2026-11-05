@@ -14,6 +14,7 @@ import { useClampPage, usePageParam } from "@/shared/lib/usePageParam";
 import { useRowSelection } from "@/shared/lib/useRowSelection";
 import { Alert, Button, ButtonLink, Card, Input } from "@/shared/ui";
 import { SpecializationsTable } from "@/widgets/admin-specializations-table/ui/SpecializationsTable";
+import { SpecializationsTableSkeleton } from "@/widgets/admin-specializations-table/ui/SpecializationsTableSkeleton";
 import "./AdminSpecializationsPage.scss";
 
 const LIMIT = 10;
@@ -73,7 +74,7 @@ export const AdminSpecializationsPage = () => {
   };
 
   const renderTable = () => {
-    if (isLoading) return <p className="admin-page__status">Загрузка...</p>;
+    if (isLoading) return <SpecializationsTableSkeleton />;
 
     if (isError) {
       return (

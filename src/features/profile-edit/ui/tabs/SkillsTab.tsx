@@ -4,6 +4,7 @@ import type { Profile } from "@/entities/profile/model/types";
 import { useGetSkillsQuery } from "@/entities/skill/api/skillApi";
 import { Field, FormRow, Select, Tag } from "@/shared/ui";
 import type { ProfileEditValues } from "../../model/schema";
+import { SkillsTabSkeleton } from "./SkillsTabSkeleton";
 
 interface SkillOption {
   id: number;
@@ -22,6 +23,10 @@ export const SkillsTab = ({ profile }: { profile: Profile }) => {
     return Array.from(map.values());
   }, [profile.profileSkills, data]);
 
+  if (isLoading) {
+    return <SkillsTabSkeleton />;
+  }
+
   return (
     <FormRow title="Твои навыки" hint="Покажи что ты умеешь и в чём ты действительно хорошо">
       <Controller
@@ -33,11 +38,8 @@ export const SkillsTab = ({ profile }: { profile: Profile }) => {
             .filter((option): option is SkillOption => Boolean(option));
           const available = options.filter((option) => !field.value.includes(option.id));
 
-          const placeholder = isLoading
-            ? "Загрузка..."
-            : available.length === 0
-              ? "Все навыки выбраны"
-              : "Выбери навык из списка";
+          const placeholder =
+            available.length === 0 ? "Все навыки выбраны" : "Выбери навык из списка";
 
           return (
             <div className="profile-edit__skills">

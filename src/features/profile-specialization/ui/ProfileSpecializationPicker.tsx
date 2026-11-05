@@ -5,6 +5,7 @@ import { useGetSpecializationsQuery } from "@/entities/specialization/api/specia
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
 import { Button, Chip, Select } from "@/shared/ui";
+import { ProfileSpecializationPickerSkeleton } from "./ProfileSpecializationPickerSkeleton";
 import "./ProfileSpecializationPicker.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -32,6 +33,10 @@ export const ProfileSpecializationPicker = ({
   const titleById = new Map(specializations.map((item) => [item.id, item.title]));
   const usedIds = new Set(profiles.map((item) => item.specializationId));
   const available = specializations.filter((item) => !usedIds.has(item.id));
+
+  if (isLoading) {
+    return <ProfileSpecializationPickerSkeleton />;
+  }
 
   const handleAdd = async () => {
     const specializationId = Number(newSpecializationId);
@@ -87,8 +92,6 @@ export const ProfileSpecializationPicker = ({
           ))}
         </div>
       </div>
-
-      {isLoading && <p className="spec-picker__hint">Загрузка специализаций...</p>}
 
       {available.length > 0 && (
         <div className="spec-picker__add">

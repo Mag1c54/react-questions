@@ -14,7 +14,8 @@ import {
   MAX_LIMIT,
   parseQuizSettings,
 } from "@/entities/quiz/lib/quizParams";
-import { Button, Chip, NumberStepper, Popup } from "@/shared/ui";
+import { Button, Chip, NumberStepper, Popup, Skeleton } from "@/shared/ui";
+import { QuizSettingsFormSkeleton } from "./QuizSettingsFormSkeleton";
 import "./QuizSettingsForm.scss";
 interface QuizFormValues {
   specialization: number | null;
@@ -59,6 +60,10 @@ export const QuizSettingsForm = () => {
     { skip: specialization === null },
   );
 
+  if (isSpecsLoading) {
+    return <QuizSettingsFormSkeleton />;
+  }
+
   const onSubmit = (values: QuizFormValues) => {
     if (values.specialization === null) return;
     dispatch(resetQuiz());
@@ -72,7 +77,16 @@ export const QuizSettingsForm = () => {
     if (specialization === null) {
       return <p className="quiz-form__hint">Сначала выберите специализацию</p>;
     }
-    if (isSkillsFetching) return <p className="quiz-form__hint">Загрузка категорий...</p>;
+
+    if (isSkillsFetching) {
+      return (
+        <div className="quiz-form__chips" role="status" aria-label="Загрузка категорий вопросов">
+          {[96, 118, 84, 108, 92, 116].map((width) => (
+            <Skeleton key={width} width={width} height={34} radius="md" />
+          ))}
+        </div>
+      );
+    }
 
     const skills = skillsData?.data ?? [];
     if (skills.length === 0) {
@@ -133,7 +147,6 @@ export const QuizSettingsForm = () => {
           <div className="quiz-form__block">
             <h2 className="quiz-form__title">Выбор специализации</h2>
 
-            {isSpecsLoading && <p className="quiz-form__hint">Загрузка...</p>}
             {isSpecsError && <p className="quiz-form__error">Не удалось загрузить специализации</p>}
 
             <Controller

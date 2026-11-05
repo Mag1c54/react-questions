@@ -4,6 +4,7 @@ import { useGetSpecializationsQuery } from "@/entities/specialization/api/specia
 import { getApiErrorCode } from "@/shared/lib/getApiErrorCode";
 import { getErrorMessage } from "@/shared/lib/getErrorMessage";
 import { Button, Card, Chip } from "@/shared/ui";
+import { CreateProfileCardSkeleton } from "./CreateProfileCardSkeleton";
 import "./CreateProfileCard.scss";
 
 const PROFILE_TYPE_CANDIDATE = 1;
@@ -18,6 +19,10 @@ export const CreateProfileCard = ({ userId }: CreateProfileCardProps) => {
 
   const [specializationId, setSpecializationId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  if (isSpecsLoading) {
+    return <CreateProfileCardSkeleton />;
+  }
 
   const handleCreate = async () => {
     if (specializationId === null) {
@@ -57,8 +62,6 @@ export const CreateProfileCard = ({ userId }: CreateProfileCardProps) => {
         Выберите специализацию, чтобы мы подобрали вам вопросы для подготовки. Остальное можно
         заполнить позже.
       </p>
-
-      {isSpecsLoading && <p className="create-profile__text">Загрузка специализаций...</p>}
 
       <div className="create-profile__chips" role="radiogroup" aria-label="Специализация">
         {data?.data.map((spec) => (

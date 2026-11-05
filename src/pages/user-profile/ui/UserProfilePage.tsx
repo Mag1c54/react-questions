@@ -3,6 +3,7 @@ import { useGetProfileByIdQuery } from "@/entities/profile/api/profileApi";
 import { ProfileView } from "@/entities/profile/ui/profile-view/ProfileView";
 import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationApi";
+import { ProfileViewSkeleton } from "@/entities/profile/ui/profile-view/ProfileViewSkeleton";
 import { Button } from "@/shared/ui";
 import "./UserProfilePage.scss";
 
@@ -27,7 +28,7 @@ export const UserProfilePage = () => {
   const titleById = new Map(specializations?.data.map((item) => [item.id, item.title]));
 
   const renderBody = () => {
-    if (isLoading) return <p className="user-profile-page__status">Загрузка профиля...</p>;
+    if (isLoading) return <ProfileViewSkeleton />;
 
     if (isError || !profile) {
       const isNotFound = !!error && "status" in error && error.status === 404;

@@ -5,6 +5,7 @@ import { useGetProfileQuery } from "@/entities/profile/api/profileApi";
 import { useActiveProfile } from "@/entities/profile/model/useActiveProfile";
 import { CreateProfileCard } from "@/features/profile-create/ui/CreateProfileCard";
 import { EditProfileForm } from "@/features/profile-edit/ui/EditProfileForm";
+import { EditProfileFormSkeleton } from "@/features/profile-edit/ui/EditProfileFormSkeleton";
 import { ProfileSpecializationPicker } from "@/features/profile-specialization/ui/ProfileSpecializationPicker";
 import { Button, ButtonLink } from "@/shared/ui";
 import "./ProfileEditPage.scss";
@@ -16,7 +17,7 @@ export const ProfileEditPage = () => {
   const { profiles, profile } = useActiveProfile(user);
 
   const renderBody = () => {
-    if (isLoading) return <p className="profile-edit-page__status">Загрузка профиля...</p>;
+    if (isLoading) return <EditProfileFormSkeleton />;
 
     if (isError || !user) {
       return (

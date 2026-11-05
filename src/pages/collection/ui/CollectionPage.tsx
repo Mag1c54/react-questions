@@ -6,6 +6,7 @@ import { CollectionInfoWidget } from "@/widgets/collection-info-widget/ui/Collec
 import { ExpertCard } from "@/widgets/collection-info-widget/ui/ExpertCard";
 import { CollectionQuestionsWidget } from "@/widgets/collection-questions-widget/ui/CollectionQuestionsWidget";
 import { Button, ButtonLink } from "@/shared/ui";
+import { CollectionPageSkeleton } from "./CollectionPageSkeleton";
 import "./CollectionPage.scss";
 
 export const CollectionPage = () => {
@@ -18,7 +19,7 @@ export const CollectionPage = () => {
 
   const renderBody = () => {
     if (isLoading) {
-      return <div className="collection-page__status">Загрузка коллекции...</div>;
+      return <CollectionPageSkeleton />;
     }
 
     if (isNotFound) {
