@@ -1,4 +1,4 @@
-import type { Profile } from "@/entities/profile";
+import type { Profile } from "@/entities/profile/@x/session";
 
 export interface UserPermission {
   id: number;

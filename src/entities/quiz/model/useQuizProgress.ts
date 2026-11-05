@@ -1,4 +1,4 @@
-import type { Question } from "@/entities/question";
+import type { Question } from "@/entities/question/@x/quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { finishQuiz, goTo, selectQuiz, setAnswer } from "./quizSlice";
 import type { QuizAnswer } from "./types";

@@ -5,7 +5,7 @@ import type {
   UpdateProfilePayload,
   UpdateUserPayload,
 } from "../model/types";
-import type { AuthUser } from "@/entities/session";
+import type { AuthUser } from "@/entities/session/@x/profile";
 
 export const profileApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
